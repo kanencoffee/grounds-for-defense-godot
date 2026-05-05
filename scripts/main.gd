@@ -984,11 +984,20 @@ func _damage_enemy(e, d, specialty := ""):
 	if hp_now <= 0:
 		_kill_enemy(e)
 
+const DEFECT_KILL_LABEL := {
+	"date": "STALE!",
+	"aroma": "PRE-GROUND!",
+	"visual": "OVER-ROASTED!",
+	"taste": "BAD TASTE!",
+	"compound": "POD DEFEATED!",
+}
+
 func _kill_enemy(e):
 	if not e.get_meta("alive"):
 		return
 	e.set_meta("alive", false)
-	beans += e.get_meta("def").bounty
+	var def = e.get_meta("def")
+	beans += def.bounty
 	Sfx.play("enemyDie")
 	_update_hud()
 	# poof
@@ -999,6 +1008,45 @@ func _kill_enemy(e):
 	tw.tween_property(poof, "scale", Vector2(2.5,2.5), 0.4)
 	tw.parallel().tween_property(poof, "modulate:a", 0.0, 0.4)
 	tw.finished.connect(func(): poof.queue_free())
+	# Defect-type popup at kill position
+	var defect_key = def.get("defect", "")
+	var label_text = DEFECT_KILL_LABEL.get(defect_key, "CAUGHT!")
+	_spawn_kill_label(e.position, label_text, "+$%d" % def.bounty)
+
+func _spawn_kill_label(pos: Vector2, defect_text: String, bounty_text: String):
+	# Green "DEFECT NAME!" with bounty below — pops up + drifts up + fades
+	var box = VBoxContainer.new()
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.position = pos + Vector2(-90, -90)
+	box.size = Vector2(180, 0)
+	add_child(box)
+	var name_lbl = Label.new()
+	name_lbl.text = "✓ " + defect_text
+	name_lbl.add_theme_font_size_override("font_size", 18)
+	name_lbl.add_theme_color_override("font_color", Color(0.45, 1.0, 0.55))
+	name_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.15, 0.05))
+	name_lbl.add_theme_constant_override("outline_size", 5)
+	name_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(name_lbl)
+	var bounty_lbl = Label.new()
+	bounty_lbl.text = bounty_text
+	bounty_lbl.add_theme_font_size_override("font_size", 14)
+	bounty_lbl.add_theme_color_override("font_color", Color(1.0, 0.92, 0.5))
+	bounty_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.05, 0.0))
+	bounty_lbl.add_theme_constant_override("outline_size", 3)
+	bounty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	bounty_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_child(bounty_lbl)
+	# punch-up scale + drift up + fade
+	box.scale = Vector2(0.5, 0.5)
+	var tw = create_tween()
+	tw.tween_property(box, "scale", Vector2(1.1, 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(box, "scale", Vector2(1.0, 1.0), 0.10)
+	tw.parallel().tween_property(box, "position:y", box.position.y - 50, 1.0)
+	tw.tween_interval(0.4)
+	tw.tween_property(box, "modulate:a", 0.0, 0.4)
+	tw.tween_callback(func(): box.queue_free())
 
 func _enemy_update(e, delta):
 	var def = e.get_meta("def")
