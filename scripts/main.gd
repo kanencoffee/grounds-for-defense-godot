@@ -169,7 +169,7 @@ func _show_briefing():
 	briefing_pages.append({
 		"kind": "ready",
 		"title": "READY TO GET GEEKY?",
-		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n👁 Sherlock Beans is the generalist — always works.\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
+		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n👁 Sherlock Beans is the generalist — always works.\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\n🤢 IF A BAD BEAN GETS PAST YOU\n→ You drink it. -1 CUP. Lose at 0 cups.\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
 	})
 	briefing_idx = 0
 	_build_briefing_ui()
@@ -935,9 +935,49 @@ func _enemy_reach_end(e):
 	hp = max(0, hp - 1)
 	e.set_meta("alive", false)
 	Sfx.play("reachEnd")
+	# Big "SWILL!" reaction at the barista
+	var barista_pos = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
+	_spawn_swill_alert(barista_pos)
+	# Pulse the HP label red
+	if hp_label:
+		hp_label.modulate = Color(1.0, 0.3, 0.3, 1)
+		var tw = create_tween()
+		tw.tween_property(hp_label, "modulate", Color(0.94, 0.79, 0.53, 1), 0.6)
+	# Camera-style red flash via a full-screen overlay
+	_red_flash()
 	_update_hud()
 	if hp <= 0:
 		_lose()
+
+func _spawn_swill_alert(pos: Vector2):
+	# Big rotating "🤢 SWILL DRUNK! -1 CUP" pop-up
+	var lbl = Label.new()
+	lbl.text = "🤢 SWILL DRUNK!  −1 CUP"
+	lbl.add_theme_font_size_override("font_size", 28)
+	lbl.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+	lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.02, 0.0))
+	lbl.add_theme_constant_override("outline_size", 6)
+	lbl.position = pos + Vector2(-160, -40)
+	add_child(lbl)
+	var tw = create_tween()
+	tw.tween_property(lbl, "scale", Vector2(1.3, 1.3), 0.18).from(Vector2.ONE)
+	tw.tween_interval(0.6)
+	tw.tween_property(lbl, "modulate:a", 0.0, 0.4)
+	tw.tween_callback(func(): lbl.queue_free())
+
+func _red_flash():
+	var rect = ColorRect.new()
+	rect.color = Color(0.9, 0.1, 0.1, 0.0)
+	rect.size = Vector2(W, H)
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var canvas = CanvasLayer.new()
+	canvas.layer = 50
+	canvas.add_child(rect)
+	add_child(canvas)
+	var tw = create_tween()
+	tw.tween_property(rect, "color:a", 0.30, 0.08)
+	tw.tween_property(rect, "color:a", 0.0, 0.35)
+	tw.tween_callback(func(): canvas.queue_free())
 
 func _spawn_damage_text(pos, txt):
 	var lbl = Label.new()
