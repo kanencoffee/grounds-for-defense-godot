@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a20"/><stop offset="1" stop-color="#2a1a0a"/></linearGradient></defs>
+  <rect x="18" y="6" width="28" height="6" rx="1" fill="#888" stroke="#1a1108" stroke-width="1.5"/>
+  <path d="M 14 12 L 14 56 Q 14 60 18 60 L 46 60 Q 50 60 50 56 L 50 12 Z" fill="url(#cg)" stroke="#1a1108" stroke-width="2"/>
+  <path d="M 14 14 L 50 14" stroke="#1a1108" stroke-width="1.5" fill="none"/>
+  <ellipse cx="32" cy="14" rx="14" ry="2" fill="#88bbee" opacity="0.6"/>
+  <rect x="14" y="14" width="36" height="42" fill="#88bbee" opacity="0.15"/>
+  <rect x="20" y="22" width="6" height="6" rx="1" fill="#fff" opacity="0.7"/>
+  <rect x="36" y="34" width="5" height="5" rx="1" fill="#fff" opacity="0.6"/>
+  <rect x="24" y="44" width="6" height="6" rx="1" fill="#fff" opacity="0.5"/>
+  <rect x="48" y="32" width="10" height="6" rx="1" fill="#666" stroke="#1a1108" stroke-width="1.5"/>
+  <circle cx="58" cy="35" r="2" fill="#444" stroke="#1a1108" stroke-width="1"/>
+  <ellipse cx="22" cy="20" rx="4" ry="1" fill="#fff" opacity="0.3"/>
+</svg>
