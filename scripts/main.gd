@@ -132,7 +132,7 @@ func _show_briefing():
 			"kind": "intro",
 			"title": "GROUNDS FOR DEFENSE",
 			"subtitle": "COFFEE GEEK ORIENTATION",
-			"body": "Welcome to The Last Drop. Time to become a coffee geek.\n\nBad coffee is marching toward your customer. Every defect coming down the line is real — drawn from real coffee science.\n\nYour job: spot the defect, deploy the right inspection tool, fail it before it reaches the cup.\n\nThe next pages introduce the threats and your tools.\nClick NEXT to meet them, or SKIP if you already know the drill."
+			"body": "You're a coffee geek in training.\n\nBad coffee is coming for your cup — stale beans, pre-ground bags, charred roasts, watered-down shots, reheated milk, and worse. All real defects. All swill.\n\nYour mission: spot each defect, deploy the right inspection tool, and fail it before it ruins your morning. No swill makes it into the cup.\n\nThe next pages introduce the threats and your tools.\nClick NEXT to learn them, or SKIP if you've already earned your geek stripes."
 		},
 		{ "kind":"section", "title":"THE DEFECTS", "subtitle":"Six real coffee quality failures" }
 	]
@@ -509,7 +509,7 @@ func _build_hud():
 
 	beans_label = _stat_label("Beans", "250")
 	wave_label = _stat_label("Wave", "0 / 10")
-	hp_label = _stat_label("Barista", "20")
+	hp_label = _stat_label("Your Cup", "20")
 	top_bar.add_child(beans_label.get_parent())
 	top_bar.add_child(wave_label.get_parent())
 	top_bar.add_child(hp_label.get_parent())
@@ -1036,12 +1036,12 @@ func _show_enemy_intro(def):
 func _win():
 	game_over = true
 	Sfx.play("win")
-	_show_message("☕ The Counter Holds!", "You crushed the K-Pod Tyrant. The Barista lives to pull another shot.")
+	_show_message("☕ Pure Brew Achieved!", "You stopped Pod-zilla and every defect on the line. You drank zero swill today. Coffee geek status: confirmed.")
 
 func _lose():
 	game_over = true
 	Sfx.play("lose")
-	_show_message("💀 The Barista Falls", "Bad coffee overran the counter. Try again?")
+	_show_message("💀 You Drank Swill", "Bad coffee got past inspection and into your cup. Sad sip. Run it back?")
 
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_P:
