@@ -7,38 +7,38 @@ const H := 800
 
 # ============== DEFINITIONS ==============
 const TOWER_DEFS = {
-	"eye":      {"name":"VISUAL INSPECTION",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"Q Grader's first pass. Catches color defects (Agtron), foreign matter, mold. ★ STRONG vs over-roasted, mold."},
-	"tongue":   {"name":"CUPPING STATION",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"SCA cupping protocol — slurp + score. Slow but devastating. ★ STRONG vs reheated milk, complex defects.", "charge":1.5, "pierce":true},
-	"date":     {"name":"DATE STAMP",         "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Roast-date + lot tracking. Freezes expired lots in inspection. ★ STRONG vs stale, K-pod.", "root":2.0},
-	"nose":     {"name":"AROMA STATION",      "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Pre-grind sniff. Detects rancid + stale aromas. ★ STRONG vs pre-ground, stale.", "slow":0.55, "aura":true},
+	"eye":      {"name":"SHERLOCK BEANS",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"Visual inspection. Color card + magnifier. ★ Catches OVER-ROASTED, mold, foreign matter."},
+	"tongue":   {"name":"TASTE-MASTER",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"Cupping station — SCA slurp protocol. Slow charge, line damage. ★ Catches REHEATED MILK, UNDER-EXTRACTED.", "charge":1.5, "pierce":true},
+	"date":     {"name":"FATHER TIME",     "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Date stamp / lot tracker. Freezes expired lots mid-march. No damage, pure CC. ★ Catches STALE LOTS, POD-ZILLA.", "root":2.0},
+	"nose":     {"name":"NOSE GOES",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Aroma station. Sniffs out rancidity in radius — slows everything. ★ Catches PRE-GROUND, STALE.", "slow":0.55, "aura":true},
 }
 
 const ENEMY_DEFS = {
 	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100,
-		"name":"STALE LOT",         "defect":"date",
-		"fail":"Roast date: 2 years past. SCA freshness window: 4 weeks.",
-		"intro":"DEFECT: Stale (oxidation past freshness window). Lost ~50% volatile aromatics. CATCH WITH: Date Stamp ✓, Aroma ✓"},
+		"name":"SIR STALES-A-LOT",  "defect":"date",
+		"fail":"Roasted 2 years ago. SCA freshness window: 4 weeks.",
+		"intro":"DEFECT: STALE. CO₂ + volatile aromatics dissipate after roasting. Past 4 weeks → 50% aroma loss. CATCH WITH: Father Time ✓, Nose Goes ✓"},
 	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100,
-		"name":"PRE-GROUND BAG",    "defect":"aroma",
-		"fail":"Surface area 10,000× higher. Oxidizes in HOURS, not weeks.",
-		"intro":"DEFECT: Pre-ground oxidation. Once ground, aromatics gas off rapidly. CATCH WITH: Aroma ✓, Visual ✓",
+		"name":"GRIND ZERO",        "defect":"aroma",
+		"fail":"Pre-ground. Surface area 10,000× higher → oxidizes in HOURS.",
+		"intro":"DEFECT: PRE-GROUND. Coffee should be ground RIGHT BEFORE brewing. Bagged grounds are stale before you open them. CATCH WITH: Nose Goes ✓, Sherlock Beans ✓",
 		"slow_immune":3.0},
 	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120,
-		"name":"REHEATED MILK",     "defect":"taste",
-		"fail":"Steamed 3×. Proteins denatured >70°C, lactose scorched.",
-		"intro":"DEFECT: Reheated dairy. Milk can only be steamed ONCE — proteins denature on second heat. CATCH WITH: Cupping ✓"},
+		"name":"SKIN-DEEP MILK",    "defect":"taste",
+		"fail":"Steamed 3×. Proteins denatured >70°C → that crusty skin on top.",
+		"intro":"DEFECT: REHEATED DAIRY. Milk can only be steamed ONCE — second heat denatures proteins, scorches lactose. Tanky. CATCH WITH: Taste-Master ✓"},
 	"wraith":     {"hp":80,  "speed":56, "sprite":"enemy-wraith.svg",     "bounty":15,  "size":110,
-		"name":"OVER-ROASTED",      "defect":"visual",
-		"fail":"Agtron color: 18 (target 55). Roasted past 2nd crack — carbonized.",
-		"intro":"DEFECT: Over-roasted / dark. Internal temp exceeded 240°C. Origin character destroyed; only ash remains. CATCH WITH: Visual ✓ (Agtron color card)"},
+		"name":"BURNY McBURNFACE",  "defect":"visual",
+		"fail":"Agtron color: 18 (target ~55). Roasted past 2nd crack — carbonized.",
+		"intro":"DEFECT: OVER-ROASTED. Internal temp blew past 240°C. Origin character incinerated. Bitter + ashy. The dead giveaway: color. CATCH WITH: Sherlock Beans ✓"},
 	"zealot":     {"hp":50,  "speed":68, "sprite":"enemy-zealot.svg",     "bounty":10,  "size":100,
-		"name":"UNDER-EXTRACTED",   "defect":"taste",
-		"fail":"TDS: 0.5% (SCA target 1.15-1.35%). Brew ratio 1:30 (target 1:15-18).",
-		"intro":"DEFECT: Under-extracted brew. Ratio too far past 1:18 = sour, weak, no body. CATCH WITH: Cupping ✓"},
+		"name":"MR. WISHY-WASHY",   "defect":"taste",
+		"fail":"TDS 0.5% (target 1.15-1.35%). Ratio 1:30 (target 1:15-18).",
+		"intro":"DEFECT: UNDER-EXTRACTED. Brew ratio way off. Sour, weak, no body — basically brown water. CATCH WITH: Taste-Master ✓"},
 	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180,
-		"name":"K-POD TYRANT",      "defect":"compound",
-		"fail":"Pre-ground + sealed 18mo + foil + plastic + microplastics. Fails ALL QC.",
-		"intro":"BOSS DEFECT: Compound pod. Combines stale, pre-ground, plastic taint. Heavily armored. ALL inspection tools work — match them all.",
+		"name":"POD-ZILLA",         "defect":"compound",
+		"fail":"Pre-ground + sealed 18mo + foil + plastic + microplastics.",
+		"intro":"BOSS: POD-ZILLA. Compound defect — stale + pre-ground + plastic taint at once. Heavily armored. ALL QC tools work, but at reduced bonus. Bring everything.",
 		"regen":5, "armor":0.25},
 }
 
@@ -125,58 +125,60 @@ func _show_briefing():
 	var dlg = AcceptDialog.new()
 	dlg.title = "GROUNDS FOR DEFENSE — Q GRADER ORIENTATION"
 	dlg.ok_button_text = "I'm Ready. Begin QC."
-	dlg.dialog_text = """You are the Q GRADER on shift at The Last Drop.
-Coffee defects are coming down the line. Your job: identify each defect, deploy the right inspection tool, and stop them before they reach the customer.
+	dlg.dialog_text = """Welcome to your shift at THE LAST DROP. You're the Q Grader.
 
-This is real Q Grader work. Every threat below is an SCA-recognized defect.
-Every defense is an actual quality control instrument.
+Bad coffee is marching down the line. Each defect is a real coffee quality issue — recognized by the Specialty Coffee Association (SCA). Your job: spot the defect, deploy the matching inspection tool, fail the bad coffee before it ruins someone's morning.
 
 ═══════════════════════════════════════════════
-THE DEFECTS (real coffee QC failures)
+THE LINEUP — KNOW YOUR DEFECTS
 ═══════════════════════════════════════════════
 
-🪲  STALE LOT — Past freshness window. Roasted >4 weeks ago. (defect type: DATE)
-🪲  PRE-GROUND BAG — Surface 10,000× higher. Stales in hours. (defect type: AROMA)
-🪲  OVER-ROASTED — Agtron <30. Sugars carbonized. (defect type: VISUAL)
-🪲  UNDER-EXTRACTED — TDS <1.0%. Ratio 1:30. (defect type: TASTE)
-🪲  REHEATED MILK — Steamed 3×. Proteins denatured. (defect type: TASTE)
-🪲  K-POD TYRANT (BOSS) — Compound defect. ALL tools apply. Armored.
+🫘  SIR STALES-A-LOT   [DATE]    "Roasted 2 years ago. The aroma left months ago."
+                       → Coffee oxidizes after roasting. Window is ~4 weeks.
+
+🫘  GRIND ZERO         [AROMA]   "Pre-ground bag, factory-sealed, FAST."
+                       → Grinding multiplies surface area 10,000×.
+                          Aromatics gas off in HOURS.
+
+🫘  BURNY McBURNFACE   [VISUAL]  "Roasted till it's basically charcoal."
+                       → Past 2nd crack. Origin flavors gone.
+                          Tells you "I taste like ash" because it does.
+
+🫘  MR. WISHY-WASHY    [TASTE]   "1:30 ratio. Brown water, basically."
+                       → SCA target: 1:15-1:18. TDS 1.15-1.35%.
+                          Anything weaker = under-extracted.
+
+🫘  SKIN-DEEP MILK     [TASTE]   "Steamed three times. The skin is a clue."
+                       → Milk steamed >65°C denatures proteins.
+                          Cannot be re-steamed without scorching lactose.
+
+🫘  POD-ZILLA  (BOSS)  [ALL]     "Pre-ground beans in a plastic-and-foil tomb."
+                       → Compound defect. Microplastics included free!
 
 ═══════════════════════════════════════════════
-YOUR QC INSTRUMENTS (Q Grader standard kit)
+YOUR Q GRADER KIT
 ═══════════════════════════════════════════════
 
-👁  VISUAL INSPECTION (50¢) — specialty: VISUAL
-    Color card / Agtron reader. Catches over-roast, mold, color defects.
-
-📅  DATE STAMP (75¢) — specialty: DATE
-    Roast-date verifier. FREEZES stale lots in their tracks. No damage.
-
-👃  AROMA STATION (100¢) — specialty: AROMA
-    Pre-grind sniff test. Slows everything in radius. Best vs pre-ground.
-
-👅  CUPPING STATION (150¢) — specialty: TASTE
-    SCA cupping protocol. Slow charge → devastating line verdict.
+👁  SHERLOCK BEANS    50¢  Visual inspection — catches BURNY McBURNFACE
+📅  FATHER TIME       75¢  Date stamp — freezes SIR STALES-A-LOT
+👃  NOSE GOES        100¢  Aroma station — busts GRIND ZERO
+👅  TASTE-MASTER     150¢  Cupping verdict — finishes WISHY-WASHY + SKIN-DEEP MILK
 
 ═══════════════════════════════════════════════
-HOW MATCHING WORKS — THIS IS THE GAME
+THE GOLDEN RULE
 ═══════════════════════════════════════════════
 
-Every defect has a TYPE. Every instrument has a SPECIALTY.
+★  RIGHT TOOL  → 2× damage + ✓ DEFECT CAUGHT (green)
+✗  WRONG TOOL  → 0.6× damage + ✗ WRONG TOOL (red)
+☆  POD-ZILLA   → All tools apply at 1.3× (use everything)
 
-★ MATCH (instrument vs same-type defect):  2× damage + ✓ DEFECT CAUGHT
-✗ MISMATCH (wrong instrument for defect):  0.6× damage + ✗ WRONG TOOL
-☆ K-Pod compound: all tools apply at 1.3×
+You'll memorize the matchups by playing. That's the whole game.
 
-LEARN by playing: deploy mixed defenses, watch what catches what.
-
-═══════════════════════════════════════════════
-
-Click empty slot → choose instrument. Click placed → sell (60% refund).
-Press P + click enemy = Perfect Cupping Spoon (500 dmg, 45s CD).
-'Start Wave' (top right) when ready."""
+Click empty slot → place tool. Click placed tool → sell (60% refund).
+Press P + click enemy → Perfect Cupping Shot (500 dmg, 45s).
+Hit 'Start Wave' (top right) when ready, Q Grader."""
 	add_child(dlg)
-	dlg.popup_centered(Vector2(900, 760))
+	dlg.popup_centered(Vector2(900, 800))
 
 func _load_textures():
 	var keys = ["barista"]
@@ -376,7 +378,7 @@ func _stat_label(label_text: String, value_text: String) -> Label:
 func _on_pick_tower(type_key):
 	if beans < TOWER_DEFS[type_key].cost:
 		_flash_info("Not enough beans!")
-		Audio.play("error")
+		Sfx.play("error")
 		return
 	if pending_slot < 0:
 		return
@@ -389,7 +391,7 @@ func _on_pick_tower(type_key):
 	slot_nodes[pending_slot].visible = false
 	pending_slot = -1
 	picker_panel.visible = false
-	Audio.play("place")
+	Sfx.play("place")
 	_update_hud()
 
 func _build_tower(type_key, pos, slot_idx):
@@ -426,7 +428,7 @@ func _sell_tower(t):
 	slot_nodes[slot_idx].visible = true
 	towers.erase(t)
 	t.queue_free()
-	Audio.play("sell")
+	Sfx.play("sell")
 	_update_hud()
 	_flash_info("Sold for %d¢" % int(def.cost * 0.6))
 
@@ -438,7 +440,7 @@ func _on_start_wave():
 	wave_num += 1
 	spawning = true
 	wave_active = true
-	Audio.play("waveStart")
+	Sfx.play("waveStart")
 	var plan = WAVE_PLAN[wave_num - 1]
 	var pending = plan.size()
 	for group in plan:
@@ -524,7 +526,7 @@ func _process(delta):
 		if wave_num >= max_waves:
 			_win()
 		else:
-			Audio.play("waveClear")
+			Sfx.play("waveClear")
 		_update_hud()
 	# perfect shot cd
 	if not perfect_ready:
@@ -558,18 +560,18 @@ func _tower_update(t, delta):
 	t.set_meta("last_fire", now)
 	if def.get("charge", 0) > 0:
 		# espresso: charge then pierce
-		Audio.play("espressoCh")
+		Sfx.play("espressoCh")
 		await get_tree().create_timer(def.charge).timeout
 		if not is_instance_valid(t): return
-		Audio.play("espressoF")
+		Sfx.play("espressoF")
 		_fire_pierce(t, def)
 	else:
 		# play tower-specific sound
 		var type_key = t.get_meta("type")
 		match type_key:
-			"eye": Audio.play("drip")
-			"date": Audio.play("frother")
-			_: Audio.play("drip")
+			"eye": Sfx.play("drip")
+			"date": Sfx.play("frother")
+			_: Sfx.play("drip")
 		_fire_projectile(t, target, def)
 
 func _find_target(t):
@@ -669,7 +671,7 @@ func _damage_enemy(e, d, specialty := ""):
 	if match_label != "":
 		_spawn_match_text(e.position, match_label)
 	if d > 0:
-		Audio.play("hit")
+		Sfx.play("hit")
 	# flash
 	var spr = e.get_child(0)
 	if spr is Sprite2D:
@@ -684,7 +686,7 @@ func _kill_enemy(e):
 		return
 	e.set_meta("alive", false)
 	beans += e.get_meta("def").bounty
-	Audio.play("enemyDie")
+	Sfx.play("enemyDie")
 	_update_hud()
 	# poof
 	var poof = _make_circle_drawer(20, Color(0.94,0.79,0.53,1), 0, Color(0.94,0.79,0.53,0.4))
@@ -722,7 +724,7 @@ func _enemy_update(e, delta):
 func _enemy_reach_end(e):
 	hp = max(0, hp - 1)
 	e.set_meta("alive", false)
-	Audio.play("reachEnd")
+	Sfx.play("reachEnd")
 	_update_hud()
 	if hp <= 0:
 		_lose()
@@ -828,7 +830,7 @@ func _show_enemy_intro(def):
 	intro.custom_minimum_size = Vector2(720, 0)
 	vb.add_child(intro)
 	# play sound
-	Audio.play("error")
+	Sfx.play("error")
 	# fade in / hold / fade out
 	var tw = create_tween()
 	tw.tween_property(banner, "modulate:a", 1.0, 0.25)
@@ -838,12 +840,12 @@ func _show_enemy_intro(def):
 
 func _win():
 	game_over = true
-	Audio.play("win")
+	Sfx.play("win")
 	_show_message("☕ The Counter Holds!", "You crushed the K-Pod Tyrant. The Barista lives to pull another shot.")
 
 func _lose():
 	game_over = true
-	Audio.play("lose")
+	Sfx.play("lose")
 	_show_message("💀 The Barista Falls", "Bad coffee overran the counter. Try again?")
 
 func _input(event):
@@ -862,7 +864,7 @@ func _input(event):
 				best_d = d
 				best = e
 		if best:
-			Audio.play("perfect")
+			Sfx.play("perfect")
 			_damage_enemy(best, 500)
 			perfect_armed = false
 			perfect_ready = false
