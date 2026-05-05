@@ -1,27 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- STALE BEAN — old, dusty coffee bean -->
-  <ellipse cx="32" cy="58" rx="18" ry="2.5" fill="#1a1108" opacity="0.35"/>
-  <!-- dust motes -->
-  <circle cx="10" cy="14" r="1.5" fill="#a89878" opacity="0.6"/>
-  <circle cx="54" cy="18" r="1" fill="#a89878" opacity="0.5"/>
-  <circle cx="50" cy="8" r="1.2" fill="#a89878" opacity="0.4"/>
-  <circle cx="14" cy="6" r="0.8" fill="#a89878" opacity="0.5"/>
-  <!-- bean body -->
-  <ellipse cx="32" cy="34" rx="22" ry="24" fill="#7a6248" stroke="#3d2817" stroke-width="2.5"/>
-  <ellipse cx="28" cy="28" rx="9" ry="6" fill="#9a8265" opacity="0.5"/>
-  <!-- center crease -->
-  <path d="M 32 14 Q 26 34 32 54" fill="none" stroke="#3d2817" stroke-width="3"/>
-  <path d="M 32 14 Q 28 34 32 54" fill="none" stroke="#3d2817" stroke-width="1" opacity="0.4"/>
-  <!-- cobwebs -->
-  <path d="M 12 18 L 22 24 M 12 18 L 16 28" stroke="#d0c0a0" stroke-width="0.6" opacity="0.6"/>
-  <path d="M 52 14 L 44 22 M 52 14 L 50 24" stroke="#d0c0a0" stroke-width="0.6" opacity="0.6"/>
-  <!-- mold spot -->
-  <circle cx="44" cy="42" r="3" fill="#5a7a4a" opacity="0.6"/>
-  <circle cx="44" cy="42" r="1.5" fill="#3a5a2a" opacity="0.7"/>
-  <!-- sad face -->
-  <ellipse cx="22" cy="36" rx="1.8" ry="2.5" fill="#1a1108"/>
-  <ellipse cx="42" cy="36" rx="1.8" ry="2.5" fill="#1a1108"/>
-  <path d="M 22 46 Q 32 42 42 46" fill="none" stroke="#1a1108" stroke-width="2" stroke-linecap="round"/>
-  <!-- "STALE" stamp -->
-  <text x="32" y="22" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#3d2817" opacity="0.7">STALE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- STALE BEAN: After roasting, beans degrade — CO2 escapes, volatile aromatics oxidize within weeks. -->
+  <defs>
+    <radialGradient id="dustcloud" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#8b7a5c" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#8b7a5c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="64" cy="116" rx="42" ry="5" fill="#1a1108" opacity="0.4"/>
+  <ellipse cx="64" cy="64" rx="60" ry="50" fill="url(#dustcloud)"/>
+  <circle cx="14" cy="20" r="2" fill="#a89878" opacity="0.7"/>
+  <circle cx="110" cy="24" r="1.5" fill="#a89878" opacity="0.6"/>
+  <circle cx="100" cy="14" r="2" fill="#a89878" opacity="0.5"/>
+  <circle cx="22" cy="10" r="1.2" fill="#a89878" opacity="0.6"/>
+  <circle cx="116" cy="48" r="1.8" fill="#a89878" opacity="0.5"/>
+  <circle cx="8" cy="52" r="1.5" fill="#a89878" opacity="0.6"/>
+  <ellipse cx="64" cy="68" rx="44" ry="48" fill="#7a6248" stroke="#3d2817" stroke-width="4"/>
+  <ellipse cx="56" cy="56" rx="18" ry="12" fill="#9a8265" opacity="0.4"/>
+  <path d="M 64 28 Q 54 68 64 108" fill="none" stroke="#3d2817" stroke-width="6"/>
+  <path d="M 64 32 Q 58 68 64 104" fill="none" stroke="#1a1108" stroke-width="2" opacity="0.5"/>
+  <path d="M 18 38 L 38 50 M 18 38 L 26 56 M 18 38 L 30 38" stroke="#d0c0a0" stroke-width="1" opacity="0.7"/>
+  <path d="M 110 28 L 90 46 M 110 28 L 102 50 M 110 28 L 96 36" stroke="#d0c0a0" stroke-width="1" opacity="0.7"/>
+  <circle cx="88" cy="84" r="7" fill="#5a7a4a" opacity="0.8"/>
+  <circle cx="88" cy="84" r="4" fill="#3a5a2a"/>
+  <circle cx="91" cy="82" r="1.5" fill="#7a9a5a"/>
+  <circle cx="40" cy="92" r="5" fill="#5a7a4a" opacity="0.7"/>
+  <circle cx="40" cy="92" r="2.5" fill="#3a5a2a"/>
+  <ellipse cx="44" cy="72" rx="3.5" ry="5" fill="#1a1108"/>
+  <ellipse cx="84" cy="72" rx="3.5" ry="5" fill="#1a1108"/>
+  <ellipse cx="45" cy="70" rx="0.8" ry="1" fill="#fff" opacity="0.6"/>
+  <ellipse cx="85" cy="70" rx="0.8" ry="1" fill="#fff" opacity="0.6"/>
+  <path d="M 36 64 L 50 70" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 78 70 L 92 64" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 44 92 Q 64 86 84 92" fill="none" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
+  <rect x="32" y="38" width="64" height="14" fill="#fff8f0" stroke="#1a1108" stroke-width="1.5" rx="1" opacity="0.95"/>
+  <text x="64" y="48" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#8b1c1c">ROASTED 2 YRS AGO</text>
+  <g transform="rotate(-15 12 100)">
+    <rect x="2" y="94" width="26" height="12" fill="#c8302c" stroke="#1a1108" stroke-width="1"/>
+    <text x="15" y="102" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#fff">STALE</text>
+  </g>
+  <text x="98" y="118" font-family="sans-serif" font-size="9" font-weight="bold" fill="#3d2817">-50%</text>
+  <text x="93" y="126" font-family="sans-serif" font-size="5" fill="#3d2817">AROMA</text>
 </svg>

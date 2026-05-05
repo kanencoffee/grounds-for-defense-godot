@@ -1,28 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- WATERY/WEAK COFFEE — pale, thin, drowning in water -->
-  <ellipse cx="32" cy="60" rx="18" ry="2.5" fill="#1a1108" opacity="0.3"/>
-  <!-- water drops around -->
-  <path d="M 8 18 Q 10 22 10 24 Q 6 22 8 18 Z" fill="#88bbee" opacity="0.7"/>
-  <path d="M 54 14 Q 56 18 56 20 Q 52 18 54 14 Z" fill="#88bbee" opacity="0.7"/>
-  <path d="M 50 50 Q 52 54 52 56 Q 48 54 50 50 Z" fill="#88bbee" opacity="0.7"/>
-  <!-- mug body — clear/translucent look -->
-  <path d="M 16 22 L 18 56 Q 18 60 22 60 L 42 60 Q 46 60 46 56 L 48 22 Z" fill="#fff" stroke="#1a1108" stroke-width="2" opacity="0.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- WATERY/UNDER-EXTRACTED COFFEE: ratio too far past 1:18; sour, weak, no body. SCAA recommends 1:15-18. -->
+  <ellipse cx="64" cy="120" rx="40" ry="5" fill="#1a1108" opacity="0.3"/>
+  <!-- water drops floating around -->
+  <path d="M 14 36 Q 17 42 17 46 Q 11 42 14 36 Z" fill="#88bbee" opacity="0.85" stroke="#1a1108" stroke-width="1"/>
+  <path d="M 110 28 Q 113 34 113 38 Q 107 34 110 28 Z" fill="#88bbee" opacity="0.85" stroke="#1a1108" stroke-width="1"/>
+  <path d="M 100 100 Q 103 106 103 110 Q 97 106 100 100 Z" fill="#88bbee" opacity="0.85" stroke="#1a1108" stroke-width="1"/>
+  <!-- mug body — translucent -->
+  <path d="M 30 44 L 34 112 Q 34 120 42 120 L 86 120 Q 94 120 94 112 L 98 44 Z" fill="#fff" stroke="#1a1108" stroke-width="3" opacity="0.7"/>
   <!-- handle -->
-  <path d="M 46 28 Q 58 30 58 40 Q 58 50 46 50" fill="none" stroke="#1a1108" stroke-width="2.5" opacity="0.7"/>
+  <path d="M 94 60 Q 116 64 116 80 Q 116 100 94 100" fill="none" stroke="#1a1108" stroke-width="3.5"/>
   <!-- pale watery coffee -->
-  <path d="M 18 28 L 20 56 Q 20 58 22 58 L 42 58 Q 44 58 44 56 L 46 28 Z" fill="#d8c8a8" opacity="0.65"/>
-  <!-- water surface ripples -->
-  <ellipse cx="32" cy="28" rx="14" ry="2.5" fill="#c8b890" opacity="0.7"/>
-  <ellipse cx="32" cy="28" rx="9" ry="1.5" fill="#a89870" opacity="0.5"/>
-  <ellipse cx="28" cy="32" rx="3" ry="0.5" fill="#fff" opacity="0.6"/>
-  <!-- big WATER drop on top suggesting dilution -->
-  <path d="M 32 4 Q 38 14 38 18 Q 38 24 32 24 Q 26 24 26 18 Q 26 14 32 4 Z" fill="#88bbee" stroke="#1a1108" stroke-width="1.5"/>
-  <ellipse cx="30" cy="14" rx="2" ry="3" fill="#fff" opacity="0.7"/>
+  <path d="M 34 56 L 38 112 Q 38 116 42 116 L 86 116 Q 90 116 90 112 L 94 56 Z" fill="#d8c8a8" opacity="0.7"/>
+  <!-- water surface -->
+  <ellipse cx="64" cy="56" rx="30" ry="5" fill="#c8b890" opacity="0.8"/>
+  <ellipse cx="64" cy="56" rx="22" ry="3" fill="#a89870" opacity="0.6"/>
+  <ellipse cx="56" cy="62" rx="8" ry="1.5" fill="#fff" opacity="0.7"/>
+  <!-- giant water drop on top (it's been diluted) -->
+  <path d="M 64 8 Q 76 28 76 36 Q 76 48 64 48 Q 52 48 52 36 Q 52 28 64 8 Z" fill="#88bbee" stroke="#1a1108" stroke-width="2"/>
+  <ellipse cx="60" cy="28" rx="4" ry="6" fill="#fff" opacity="0.7"/>
+  <text x="64" y="36" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#1a1108">H₂O</text>
+  <!-- ratio chart label -->
+  <rect x="38" y="64" width="52" height="22" fill="#fff8f0" stroke="#1a1108" stroke-width="1.5" rx="1"/>
+  <text x="64" y="74" text-anchor="middle" font-family="monospace" font-size="7" font-weight="bold" fill="#1a1108">RATIO</text>
+  <text x="64" y="82" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#c8302c">1:30</text>
+  <!-- X mark -->
+  <path d="M 84 68 L 90 74 M 90 68 L 84 74" stroke="#c8302c" stroke-width="2" stroke-linecap="round"/>
+  <!-- defect tag -->
+  <g transform="rotate(-15 16 102)">
+    <rect x="4" y="96" width="30" height="14" fill="#c8302c" stroke="#1a1108" stroke-width="1.5"/>
+    <text x="19" y="106" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#fff">UNDER</text>
+  </g>
+  <g transform="rotate(-15 16 116)">
+    <rect x="4" y="110" width="38" height="12" fill="#c8302c" stroke="#1a1108" stroke-width="1"/>
+    <text x="23" y="119" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="bold" fill="#fff">EXTRACTED</text>
+  </g>
+  <!-- TDS note -->
+  <text x="92" y="108" font-family="monospace" font-size="6" font-weight="bold" fill="#3d2817">TDS</text>
+  <text x="92" y="116" font-family="sans-serif" font-size="9" font-weight="bold" fill="#c8302c">0.5%</text>
+  <text x="92" y="124" font-family="monospace" font-size="4" fill="#3d2817">(want 1.3%)</text>
   <!-- sad face on cup -->
-  <circle cx="24" cy="42" r="1.5" fill="#1a1108"/>
-  <circle cx="40" cy="42" r="1.5" fill="#1a1108"/>
-  <path d="M 26 50 Q 32 46 38 50" fill="none" stroke="#1a1108" stroke-width="1.5" stroke-linecap="round"/>
-  <!-- "WEAK" label -->
-  <rect x="22" y="34" width="20" height="6" fill="#fff8f0" stroke="#1a1108" stroke-width="1" opacity="0.9"/>
-  <text x="32" y="39" text-anchor="middle" font-family="sans-serif" font-size="5" font-weight="bold" fill="#c8302c">WEAK</text>
+  <circle cx="48" cy="86" r="2" fill="#1a1108"/>
+  <circle cx="80" cy="86" r="2" fill="#1a1108"/>
+  <path d="M 50 96 Q 64 92 78 96" fill="none" stroke="#1a1108" stroke-width="2" stroke-linecap="round"/>
 </svg>

@@ -14,10 +14,10 @@ const TOWER_DEFS = {
 }
 
 const ENEMY_DEFS = {
-	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":80, "name":"Stale Bean"},
-	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":76, "name":"Pre-Ground", "slow_immune":3.0},
-	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":104,"name":"Reheated Milk"},
-	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":140,"name":"K-Pod Tyrant", "regen":5, "armor":0.25},
+	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100, "name":"Stale Bean"},
+	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100, "name":"Pre-Ground", "slow_immune":3.0},
+	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120, "name":"Reheated Milk"},
+	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180, "name":"K-Pod Tyrant", "regen":5, "armor":0.25},
 }
 
 # Path waypoints (zigzag) — bigger viewport so enemies are clearly visible
@@ -143,8 +143,8 @@ func _draw():
 func _build_barista():
 	var spr = Sprite2D.new()
 	spr.texture = textures.get("barista.svg")
-	spr.position = PATH_PTS[PATH_PTS.size()-1] + Vector2(-60, -20)
-	spr.scale = Vector2(1.4, 1.4)
+	spr.position = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
+	spr.scale = Vector2(1.0, 1.0)
 	add_child(spr)
 	# Idle bob
 	var tw = create_tween().set_loops()

@@ -1,4 +1,4 @@
-name: Build & Deploy Web
+name: Build & Deploy to Cloudflare Pages
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  deployments: write
 
 jobs:
   export-web:
@@ -38,14 +39,16 @@ jobs:
           mkdir -p build/web
           godot --headless --export-release "Web" build/web/index.html
 
-      - name: Add a fallback index page
+      - name: Rename main HTML to index.html if needed
         run: |
-          # Rename to index.html (GH Pages root)
-          ls -la build/web/
+          cd build/web
+          ls -la
+          # If Godot exported as something else, rename the main HTML
+          if [ ! -f index.html ] && [ -f main.html ]; then mv main.html index.html; fi
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          publish_branch: gh-pages
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/web --project-name=grounds-for-defense --branch=main
