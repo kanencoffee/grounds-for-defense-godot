@@ -7,7 +7,7 @@ const H := 800
 
 # ============== DEFINITIONS ==============
 const TOWER_DEFS = {
-	"eye":      {"name":"SHERLOCK BEANS",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"Spots visible defects.\n★ Catches Burny McBurnFace."},
+	"eye":      {"name":"SHERLOCK BEANS",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"The all-purpose detective. Always works.\n★ Best vs Burny McBurnFace (catches him 2×)."},
 	"tongue":   {"name":"TASTE-MASTER",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"The taste test. Slow but devastating.\n★ Catches Skin-Deep Milk + Mr. Wishy-Washy.", "charge":1.5, "pierce":true},
 	"date":     {"name":"FATHER TIME",     "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Reads roast dates. Freezes stale lots in their tracks.\n★ Catches Sir Stales-A-Lot.", "root":2.0},
 	"nose":     {"name":"NOSE GOES",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Sniffs out bad coffee in a radius. Slows everything.\n★ Catches Grind Zero.", "slow":0.55, "aura":true},
@@ -169,7 +169,7 @@ func _show_briefing():
 	briefing_pages.append({
 		"kind": "ready",
 		"title": "READY TO GET GEEKY?",
-		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
+		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n👁 Sherlock Beans is the generalist — always works.\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
 	})
 	briefing_idx = 0
 	_build_briefing_ui()
@@ -848,12 +848,15 @@ func _damage_enemy(e, d, specialty := ""):
 	if specialty != "" and def.has("defect"):
 		var defect = def.defect
 		if defect == "compound":
-			# K-Pod: every check applies, but only 1.3× since it's compound
+			# Pod-zilla: every check applies, but only 1.3× since it's compound
 			d *= 1.3
 			match_label = "✓ ONE OF MANY"
 		elif specialty == defect:
 			d *= MATCH_BONUS
 			match_label = "✓ DEFECT CAUGHT"
+		elif specialty == "visual":
+			# Sherlock Beans is the generalist — visual inspection always works at base damage
+			pass
 		else:
 			d *= MISMATCH_PENALTY
 			match_label = "✗ WRONG TOOL"
