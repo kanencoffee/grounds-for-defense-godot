@@ -1,4 +1,4 @@
-name: Build & Deploy to Cloudflare Pages
+name: Build & Deploy Godot Web
 
 on:
   push:
@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  deployments: write
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   export-web:
@@ -46,9 +47,9 @@ jobs:
           # If Godot exported as something else, rename the main HTML
           if [ ! -f index.html ] && [ -f main.html ]; then mv main.html index.html; fi
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build/web --project-name=grounds-for-defense --branch=main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          publish_branch: gh-pages
