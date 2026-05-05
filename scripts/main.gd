@@ -8,7 +8,7 @@ const H := 800
 # ============== DEFINITIONS ==============
 const TOWER_DEFS = {
 	"eye":      {"name":"SHERLOCK BEANS",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"Visual inspection. Color card + magnifier. ★ Catches OVER-ROASTED, mold, foreign matter."},
-	"tongue":   {"name":"TASTE-MASTER",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"Cupping station — SCA slurp protocol. Slow charge, line damage. ★ Catches REHEATED MILK, UNDER-EXTRACTED.", "charge":1.5, "pierce":true},
+	"tongue":   {"name":"TASTE-MASTER",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"Cupping station — coffee-geek slurp protocol. Slow charge, line damage. ★ Catches REHEATED MILK, UNDER-EXTRACTED.", "charge":1.5, "pierce":true},
 	"date":     {"name":"FATHER TIME",     "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Date stamp / lot tracker. Freezes expired lots mid-march. No damage, pure CC. ★ Catches STALE LOTS, POD-ZILLA.", "root":2.0},
 	"nose":     {"name":"NOSE GOES",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Aroma station. Sniffs out rancidity in radius — slows everything. ★ Catches PRE-GROUND, STALE.", "slow":0.55, "aura":true},
 }
@@ -16,7 +16,7 @@ const TOWER_DEFS = {
 const ENEMY_DEFS = {
 	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100,
 		"name":"SIR STALES-A-LOT",  "defect":"date",
-		"fail":"Roasted 2 years ago. SCA freshness window: 4 weeks.",
+		"fail":"Roasted 2 years ago. Industry freshness window: 4 weeks.",
 		"intro":"DEFECT: STALE. CO₂ + volatile aromatics dissipate after roasting. Past 4 weeks → 50% aroma loss. CATCH WITH: Father Time ✓, Nose Goes ✓"},
 	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100,
 		"name":"GRIND ZERO",        "defect":"aroma",
@@ -38,7 +38,7 @@ const ENEMY_DEFS = {
 	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180,
 		"name":"POD-ZILLA",         "defect":"compound",
 		"fail":"Pre-ground + sealed 18mo + foil + plastic + microplastics.",
-		"intro":"BOSS: POD-ZILLA. Compound defect — stale + pre-ground + plastic taint at once. Heavily armored. ALL QC tools work, but at reduced bonus. Bring everything.",
+		"intro":"BOSS: POD-ZILLA. Compound defect — stale + pre-ground + plastic taint at once. Heavily armored. ALL inspection tools work, but at reduced bonus. Bring everything.",
 		"regen":5, "armor":0.25},
 }
 
@@ -131,8 +131,8 @@ func _show_briefing():
 		{
 			"kind": "intro",
 			"title": "GROUNDS FOR DEFENSE",
-			"subtitle": "Q GRADER ORIENTATION",
-			"body": "Welcome to The Last Drop, Q Grader.\n\nBad coffee is marching toward your customer. Every defect coming down the line is real — recognized by the Specialty Coffee Association.\n\nYour job: spot the defect, deploy the right inspection tool, fail it before it reaches the cup.\n\nThe next pages introduce the threats and your tools.\nClick NEXT to meet them, or SKIP if you already know the drill."
+			"subtitle": "COFFEE GEEK ORIENTATION",
+			"body": "Welcome to The Last Drop. Time to become a coffee geek.\n\nBad coffee is marching toward your customer. Every defect coming down the line is real — drawn from real coffee science.\n\nYour job: spot the defect, deploy the right inspection tool, fail it before it reaches the cup.\n\nThe next pages introduce the threats and your tools.\nClick NEXT to meet them, or SKIP if you already know the drill."
 		},
 		{ "kind":"section", "title":"THE DEFECTS", "subtitle":"Six real coffee quality failures" }
 	]
@@ -151,7 +151,7 @@ func _show_briefing():
 				"sprite": d.sprite,
 				"is_boss": k == "baron"
 			})
-	briefing_pages.append({ "kind":"section", "title":"YOUR Q GRADER KIT", "subtitle":"Four tools. Each catches specific defects." })
+	briefing_pages.append({ "kind":"section", "title":"YOUR COFFEE GEEK KIT", "subtitle":"Four tools. Each catches specific defects." })
 	# Add each tower as its own page
 	var tower_order = ["eye", "date", "nose", "tongue"]
 	for k in tower_order:
@@ -168,7 +168,7 @@ func _show_briefing():
 			})
 	briefing_pages.append({
 		"kind": "ready",
-		"title": "READY, Q GRADER?",
+		"title": "READY TO GET GEEKY?",
 		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
 	})
 	briefing_idx = 0
