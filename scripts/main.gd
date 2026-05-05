@@ -335,7 +335,7 @@ func _render_briefing_page():
 	elif kind == "tower":
 		title_lbl.text = p.name
 		title_lbl.add_theme_color_override("font_color", Color(0.5, 0.95, 0.7))
-		badge_lbl.text = "SPECIALTY: %s   |   COST: %d¢" % [str(p.specialty).to_upper(), p.cost]
+		badge_lbl.text = "SPECIALTY: %s   |   COST: $%d" % [str(p.specialty).to_upper(), p.cost]
 		badge_lbl.add_theme_color_override("font_color", Color(0.7, 0.9, 0.7))
 		body.text = p.blurb
 	elif kind == "ready":
@@ -562,7 +562,7 @@ func _build_hud():
 	top_bar.add_theme_constant_override("separation", 24)
 	canvas.add_child(top_bar)
 
-	beans_label = _stat_label("Beans", "250")
+	beans_label = _stat_label("Cash", "$250")
 	wave_label = _stat_label("Wave", "0 / 10")
 	hp_label = _stat_label("Your Cup", "20")
 	top_bar.add_child(beans_label.get_parent())
@@ -587,18 +587,56 @@ func _build_hud():
 	vb.add_theme_constant_override("separation", 8)
 	picker_panel.add_child(vb)
 	var title = Label.new()
-	title.text = "DEPLOY A SENSE"
+	title.text = "DEPLOY A TOOL"
 	title.add_theme_font_size_override("font_size", 22)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vb.add_child(title)
 	for k in TOWER_DEFS:
 		var d = TOWER_DEFS[k]
-		var b = Button.new()
-		b.text = "%s — %d¢ — %s" % [d.name, d.cost, d.blurb]
-		b.add_theme_font_size_override("font_size", 14)
-		b.custom_minimum_size = Vector2(380, 40)
-		b.pressed.connect(_on_pick_tower.bind(k))
-		vb.add_child(b)
+		var btn = Button.new()
+		btn.custom_minimum_size = Vector2(440, 72)
+		btn.add_theme_font_size_override("font_size", 13)
+		btn.pressed.connect(_on_pick_tower.bind(k))
+		# horizontal layout: [icon] [name+cost] [blurb]
+		var hb = HBoxContainer.new()
+		hb.add_theme_constant_override("separation", 12)
+		hb.position = Vector2(8, 4)
+		hb.size = Vector2(424, 64)
+		hb.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		btn.add_child(hb)
+		# Icon
+		var icon_box = CenterContainer.new()
+		icon_box.custom_minimum_size = Vector2(64, 64)
+		icon_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		hb.add_child(icon_box)
+		var icon = TextureRect.new()
+		icon.texture = textures.get(d.sprite)
+		icon.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.custom_minimum_size = Vector2(60, 60)
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		icon_box.add_child(icon)
+		# Right side: name/cost + blurb
+		var right = VBoxContainer.new()
+		right.add_theme_constant_override("separation", 2)
+		right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		right.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		hb.add_child(right)
+		var name_lbl = Label.new()
+		name_lbl.text = "%s   $%d" % [d.name, d.cost]
+		name_lbl.add_theme_font_size_override("font_size", 16)
+		name_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+		name_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		right.add_child(name_lbl)
+		var blurb_lbl = Label.new()
+		blurb_lbl.text = d.blurb
+		blurb_lbl.add_theme_font_size_override("font_size", 11)
+		blurb_lbl.add_theme_color_override("font_color", Color(0.85, 0.78, 0.62))
+		blurb_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		blurb_lbl.custom_minimum_size = Vector2(340, 0)
+		blurb_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		right.add_child(blurb_lbl)
+		vb.add_child(btn)
 	var cancel_btn = Button.new()
 	cancel_btn.text = "Cancel"
 	cancel_btn.pressed.connect(func(): picker_panel.visible = false)
@@ -680,7 +718,7 @@ func _sell_tower(t):
 	t.queue_free()
 	Sfx.play("sell")
 	_update_hud()
-	_flash_info("Sold for %d¢" % int(def.cost * 0.6))
+	_flash_info("Sold for $%d" % int(def.cost * 0.6))
 
 func _on_start_wave():
 	if spawning or wave_active or game_over:
@@ -1068,7 +1106,7 @@ func _flash_info(msg):
 	tw.tween_property(info_label, "modulate", Color(0.94,0.79,0.53,1), 1.5)
 
 func _update_hud():
-	beans_label.text = str(beans)
+	beans_label.text = "$" + str(beans)
 	wave_label.text = "%d / %d" % [wave_num, max_waves]
 	hp_label.text = str(hp)
 	if start_btn:
