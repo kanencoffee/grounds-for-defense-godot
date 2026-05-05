@@ -7,21 +7,47 @@ const H := 800
 
 # ============== DEFINITIONS ==============
 const TOWER_DEFS = {
-	"eye":      {"name":"The Eye",        "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "blurb":"SIGHT. Spots visible defects — mold, foreign matter, color issues. Fast steady damage."},
-	"tongue":   {"name":"The Tongue",     "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "blurb":"TASTE. Slow tasting → devastating verdict. Pierces a line of enemies.", "charge":1.5, "pierce":true},
-	"date":     {"name":"The Date Reader","cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "blurb":"AGE CHECK. Reads roast date, freezes expired items mid-march. No damage.", "root":2.0},
-	"nose":     {"name":"The Nose",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "blurb":"SMELL. Aroma evaluation slows all bad coffee in range. Permanent radius.", "slow":0.55, "aura":true},
+	"eye":      {"name":"VISUAL INSPECTION",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"Q Grader's first pass. Catches color defects (Agtron), foreign matter, mold. ★ STRONG vs over-roasted, mold."},
+	"tongue":   {"name":"CUPPING STATION",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"SCA cupping protocol — slurp + score. Slow but devastating. ★ STRONG vs reheated milk, complex defects.", "charge":1.5, "pierce":true},
+	"date":     {"name":"DATE STAMP",         "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Roast-date + lot tracking. Freezes expired lots in inspection. ★ STRONG vs stale, K-pod.", "root":2.0},
+	"nose":     {"name":"AROMA STATION",      "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Pre-grind sniff. Detects rancid + stale aromas. ★ STRONG vs pre-ground, stale.", "slow":0.55, "aura":true},
 }
 
 const ENEMY_DEFS = {
-	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100, "name":"STALE BEAN",        "intro":"Roasted 2+ years ago. Lost 50% of its aroma. SIGHT spots the dust + mold."},
-	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100, "name":"PRE-GROUND BAG",    "intro":"Surface area 10,000× higher than whole bean. Oxidizes in HOURS. SMELL detects it from far.", "slow_immune":3.0},
-	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120, "name":"REHEATED MILK",     "intro":"Steamed 3×. Proteins denatured, sugars scorched. Slow but tanky — TASTE finishes it."},
-	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180, "name":"K-POD TYRANT",      "intro":"BOSS. Pre-ground stale beans sealed 18 months in plastic + foil. Microplastics included. Armored.", "regen":5, "armor":0.25},
+	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100,
+		"name":"STALE LOT",         "defect":"date",
+		"fail":"Roast date: 2 years past. SCA freshness window: 4 weeks.",
+		"intro":"DEFECT: Stale (oxidation past freshness window). Lost ~50% volatile aromatics. CATCH WITH: Date Stamp ✓, Aroma ✓"},
+	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100,
+		"name":"PRE-GROUND BAG",    "defect":"aroma",
+		"fail":"Surface area 10,000× higher. Oxidizes in HOURS, not weeks.",
+		"intro":"DEFECT: Pre-ground oxidation. Once ground, aromatics gas off rapidly. CATCH WITH: Aroma ✓, Visual ✓",
+		"slow_immune":3.0},
+	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120,
+		"name":"REHEATED MILK",     "defect":"taste",
+		"fail":"Steamed 3×. Proteins denatured >70°C, lactose scorched.",
+		"intro":"DEFECT: Reheated dairy. Milk can only be steamed ONCE — proteins denature on second heat. CATCH WITH: Cupping ✓"},
+	"wraith":     {"hp":80,  "speed":56, "sprite":"enemy-wraith.svg",     "bounty":15,  "size":110,
+		"name":"OVER-ROASTED",      "defect":"visual",
+		"fail":"Agtron color: 18 (target 55). Roasted past 2nd crack — carbonized.",
+		"intro":"DEFECT: Over-roasted / dark. Internal temp exceeded 240°C. Origin character destroyed; only ash remains. CATCH WITH: Visual ✓ (Agtron color card)"},
+	"zealot":     {"hp":50,  "speed":68, "sprite":"enemy-zealot.svg",     "bounty":10,  "size":100,
+		"name":"UNDER-EXTRACTED",   "defect":"taste",
+		"fail":"TDS: 0.5% (SCA target 1.15-1.35%). Brew ratio 1:30 (target 1:15-18).",
+		"intro":"DEFECT: Under-extracted brew. Ratio too far past 1:18 = sour, weak, no body. CATCH WITH: Cupping ✓"},
+	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180,
+		"name":"K-POD TYRANT",      "defect":"compound",
+		"fail":"Pre-ground + sealed 18mo + foil + plastic + microplastics. Fails ALL QC.",
+		"intro":"BOSS DEFECT: Compound pod. Combines stale, pre-ground, plastic taint. Heavily armored. ALL inspection tools work — match them all.",
+		"regen":5, "armor":0.25},
 }
 
 # Track which enemy types have already been introduced this session
 var enemies_seen: Dictionary = {}
+
+# Specialty matching: defense.specialty matches enemy.defect → bonus damage + visual feedback
+const MATCH_BONUS := 2.0
+const MISMATCH_PENALTY := 0.6  # wrong tool — does some damage, but reduced
 
 # Path waypoints (zigzag) — bigger viewport so enemies are clearly visible
 const PATH_PTS = [
@@ -44,13 +70,13 @@ const WAVE_PLAN = [
 	[ {"type":"disciple", "count":8,  "gap":0.8, "delay":0.0} ],
 	[ {"type":"disciple", "count":12, "gap":0.6, "delay":0.0} ],
 	[ {"type":"disciple", "count":10, "gap":0.5, "delay":0.0}, {"type":"evangelist", "count":4, "gap":0.7, "delay":6.0} ],
-	[ {"type":"evangelist","count":10, "gap":0.5, "delay":0.0} ],
-	[ {"type":"disciple", "count":14, "gap":0.45,"delay":0.0}, {"type":"demon", "count":1, "gap":0.0, "delay":5.0} ],
-	[ {"type":"evangelist","count":12, "gap":0.4, "delay":0.0}, {"type":"disciple", "count":6, "gap":0.5, "delay":3.0} ],
-	[ {"type":"demon", "count":3, "gap":3.5, "delay":0.0}, {"type":"disciple", "count":14, "gap":0.38, "delay":1.5} ],
-	[ {"type":"disciple", "count":18, "gap":0.35, "delay":0.0}, {"type":"evangelist", "count":8, "gap":0.45, "delay":2.0} ],
-	[ {"type":"evangelist","count":14,"gap":0.28,"delay":0.0}, {"type":"demon", "count":4, "gap":2.5, "delay":1.0} ],
-	[ {"type":"baron", "count":1, "gap":0.0, "delay":0.0}, {"type":"demon", "count":3, "gap":2.5, "delay":5.0}, {"type":"evangelist", "count":12, "gap":0.4, "delay":11.0} ],
+	[ {"type":"evangelist","count":10,"gap":0.5, "delay":0.0}, {"type":"zealot",     "count":3, "gap":1.2, "delay":3.0} ],
+	[ {"type":"wraith",   "count":4,  "gap":1.0, "delay":0.0}, {"type":"demon",      "count":1, "gap":0.0, "delay":5.0} ],
+	[ {"type":"evangelist","count":12,"gap":0.4, "delay":0.0}, {"type":"wraith",     "count":3, "gap":1.2, "delay":3.0} ],
+	[ {"type":"demon",    "count":3,  "gap":3.5, "delay":0.0}, {"type":"zealot",     "count":6, "gap":0.6, "delay":1.5}, {"type":"wraith", "count":3, "gap":1.5, "delay":8.0} ],
+	[ {"type":"disciple", "count":18, "gap":0.35,"delay":0.0}, {"type":"zealot",     "count":5, "gap":0.5, "delay":2.0}, {"type":"wraith", "count":2, "gap":2.0, "delay":6.0} ],
+	[ {"type":"evangelist","count":14,"gap":0.28,"delay":0.0}, {"type":"demon",      "count":4, "gap":2.5, "delay":1.0}, {"type":"zealot", "count":8, "gap":0.5, "delay":8.0} ],
+	[ {"type":"baron",    "count":1,  "gap":0.0, "delay":0.0}, {"type":"demon",      "count":3, "gap":2.5, "delay":5.0}, {"type":"wraith", "count":4, "gap":1.5, "delay":7.0}, {"type":"evangelist","count":12,"gap":0.4,"delay":11.0} ],
 ]
 
 # ============== STATE ==============
@@ -97,43 +123,60 @@ func _ready():
 
 func _show_briefing():
 	var dlg = AcceptDialog.new()
-	dlg.title = "GROUNDS FOR DEFENSE — BRIEFING"
-	dlg.ok_button_text = "I'm Ready. Defend the Counter."
-	dlg.dialog_text = """The Decaf Cult is sending in BAD COFFEE to overrun the Barista.
-Your job: identify defects with your senses before they reach the counter.
+	dlg.title = "GROUNDS FOR DEFENSE — Q GRADER ORIENTATION"
+	dlg.ok_button_text = "I'm Ready. Begin QC."
+	dlg.dialog_text = """You are the Q GRADER on shift at The Last Drop.
+Coffee defects are coming down the line. Your job: identify each defect, deploy the right inspection tool, and stop them before they reach the customer.
 
-══════════════════════════════════════
-THE THREATS (educational — each one is a real coffee defect)
-══════════════════════════════════════
+This is real Q Grader work. Every threat below is an SCA-recognized defect.
+Every defense is an actual quality control instrument.
 
-🪲  STALE BEAN — Roasted 2+ years ago. Lost 50% of aroma. Easy to spot.
-🪲  PRE-GROUND BAG — Surface area 10,000× higher than whole bean. Stales in HOURS.
-🪲  REHEATED MILK — Steamed 3×. Proteins denatured, sugars scorched. Tanky.
-🪲  K-POD TYRANT (BOSS) — Pre-ground beans sealed 18 months in plastic + foil.
+═══════════════════════════════════════════════
+THE DEFECTS (real coffee QC failures)
+═══════════════════════════════════════════════
 
-══════════════════════════════════════
-YOUR DEFENSES (the senses every barista uses)
-══════════════════════════════════════
+🪲  STALE LOT — Past freshness window. Roasted >4 weeks ago. (defect type: DATE)
+🪲  PRE-GROUND BAG — Surface 10,000× higher. Stales in hours. (defect type: AROMA)
+🪲  OVER-ROASTED — Agtron <30. Sugars carbonized. (defect type: VISUAL)
+🪲  UNDER-EXTRACTED — TDS <1.0%. Ratio 1:30. (defect type: TASTE)
+🪲  REHEATED MILK — Steamed 3×. Proteins denatured. (defect type: TASTE)
+🪲  K-POD TYRANT (BOSS) — Compound defect. ALL tools apply. Armored.
 
-👁  THE EYE — SIGHT (50¢)
-    Spots visible defects. Fast steady damage. The first line of inspection.
+═══════════════════════════════════════════════
+YOUR QC INSTRUMENTS (Q Grader standard kit)
+═══════════════════════════════════════════════
 
-📅  THE DATE READER — AGE CHECK (75¢)
-    Checks roast date. Freezes expired items mid-march. No damage, pure CC.
+👁  VISUAL INSPECTION (50¢) — specialty: VISUAL
+    Color card / Agtron reader. Catches over-roast, mold, color defects.
 
-👃  THE NOSE — SMELL (100¢)
-    Aroma evaluation slows ALL bad coffee in range. Permanent radius.
+📅  DATE STAMP (75¢) — specialty: DATE
+    Roast-date verifier. FREEZES stale lots in their tracks. No damage.
 
-👅  THE TONGUE — TASTE (150¢)
-    Final QC. Slow charge → devastating verdict that pierces a line.
+👃  AROMA STATION (100¢) — specialty: AROMA
+    Pre-grind sniff test. Slows everything in radius. Best vs pre-ground.
 
-══════════════════════════════════════
+👅  CUPPING STATION (150¢) — specialty: TASTE
+    SCA cupping protocol. Slow charge → devastating line verdict.
 
-Click an empty slot to place a sense. Click a placed sense to sell.
-Press P + click an enemy for the Perfect Cupping Spoon (500 dmg, 45s CD).
-Click 'Start Wave' (top right) when ready."""
+═══════════════════════════════════════════════
+HOW MATCHING WORKS — THIS IS THE GAME
+═══════════════════════════════════════════════
+
+Every defect has a TYPE. Every instrument has a SPECIALTY.
+
+★ MATCH (instrument vs same-type defect):  2× damage + ✓ DEFECT CAUGHT
+✗ MISMATCH (wrong instrument for defect):  0.6× damage + ✗ WRONG TOOL
+☆ K-Pod compound: all tools apply at 1.3×
+
+LEARN by playing: deploy mixed defenses, watch what catches what.
+
+═══════════════════════════════════════════════
+
+Click empty slot → choose instrument. Click placed → sell (60% refund).
+Press P + click enemy = Perfect Cupping Spoon (500 dmg, 45s CD).
+'Start Wave' (top right) when ready."""
 	add_child(dlg)
-	dlg.popup_centered(Vector2(820, 720))
+	dlg.popup_centered(Vector2(900, 760))
 
 func _load_textures():
 	var keys = ["barista"]
@@ -552,6 +595,7 @@ func _fire_projectile(tower_node, target, def):
 	proj.position = tower_node.position - Vector2(5, 5)
 	add_child(proj)
 	var dur = max(0.08, tower_node.position.distance_to(target.position) / 600.0)
+	var specialty = def.get("specialty", "")
 	var tw = create_tween()
 	tw.tween_property(proj, "position", target.position - Vector2(5, 5), dur)
 	tw.finished.connect(func():
@@ -559,9 +603,13 @@ func _fire_projectile(tower_node, target, def):
 		if not is_instance_valid(target) or not target.get_meta("alive"):
 			return
 		if def.get("root", 0) > 0:
+			# Date stamp catches stale + compound — show match feedback
+			var enemy_def = target.get_meta("def")
+			if specialty == "date" and (enemy_def.defect == "date" or enemy_def.defect == "compound"):
+				_spawn_match_text(target.position, "✓ DEFECT CAUGHT")
 			target.set_meta("rooted_until", Time.get_ticks_msec()/1000.0 + def.root)
 		if def.dmg > 0:
-			_damage_enemy(target, def.dmg)
+			_damage_enemy(target, def.dmg, specialty)
 	)
 
 func _fire_pierce(tower_node, def):
@@ -581,11 +629,12 @@ func _fire_pierce(tower_node, def):
 	tw.tween_property(beam, "modulate:a", 0.0, 0.32)
 	tw.finished.connect(func(): beam.queue_free())
 	# damage everything close to the line
+	var specialty = def.get("specialty", "")
 	for e in enemies:
 		if not e.get_meta("alive"):
 			continue
 		if _dist_to_segment(e.position, tower_node.position, end) < 28:
-			_damage_enemy(e, def.dmg)
+			_damage_enemy(e, def.dmg, specialty)
 
 func _dist_to_segment(p: Vector2, a: Vector2, b: Vector2) -> float:
 	var ab = b - a
@@ -595,14 +644,30 @@ func _dist_to_segment(p: Vector2, a: Vector2, b: Vector2) -> float:
 	var t = clamp((p - a).dot(ab) / l2, 0.0, 1.0)
 	return p.distance_to(a + ab * t)
 
-func _damage_enemy(e, d):
+func _damage_enemy(e, d, specialty := ""):
 	var def = e.get_meta("def")
+	# QC matching: specialty vs defect type
+	var match_label = ""
+	if specialty != "" and def.has("defect"):
+		var defect = def.defect
+		if defect == "compound":
+			# K-Pod: every check applies, but only 1.3× since it's compound
+			d *= 1.3
+			match_label = "✓ ONE OF MANY"
+		elif specialty == defect:
+			d *= MATCH_BONUS
+			match_label = "✓ DEFECT CAUGHT"
+		else:
+			d *= MISMATCH_PENALTY
+			match_label = "✗ WRONG TOOL"
 	if def.has("armor"):
 		d *= (1.0 - def.armor)
 	var hp_now = e.get_meta("hp") - d
 	e.set_meta("hp", hp_now)
 	# damage number
 	_spawn_damage_text(e.position, str(int(round(d))))
+	if match_label != "":
+		_spawn_match_text(e.position, match_label)
 	if d > 0:
 		Audio.play("hit")
 	# flash
@@ -674,6 +739,19 @@ func _spawn_damage_text(pos, txt):
 	tw.parallel().tween_property(lbl, "modulate:a", 0.0, 0.6)
 	tw.finished.connect(func(): lbl.queue_free())
 
+func _spawn_match_text(pos, txt):
+	var lbl = Label.new()
+	lbl.text = txt
+	lbl.position = pos + Vector2(-50, -78)
+	lbl.add_theme_font_size_override("font_size", 13)
+	var col = Color(0.4, 1.0, 0.5) if txt.begins_with("✓") else Color(1.0, 0.5, 0.4)
+	lbl.add_theme_color_override("font_color", col)
+	add_child(lbl)
+	var tw = create_tween()
+	tw.tween_property(lbl, "position:y", lbl.position.y - 24, 0.8)
+	tw.parallel().tween_property(lbl, "modulate:a", 0.0, 0.8)
+	tw.finished.connect(func(): lbl.queue_free())
+
 func _flash_info(msg):
 	info_label.text = msg
 	info_label.modulate = Color(1, 0.5, 0.5, 1)
@@ -700,7 +778,7 @@ func _show_enemy_intro(def):
 	# Slide-in banner at top showing the enemy's name + 1-line defect explanation
 	var banner = PanelContainer.new()
 	banner.position = Vector2(W/2 - 380, 80)
-	banner.custom_minimum_size = Vector2(760, 90)
+	banner.custom_minimum_size = Vector2(760, 130)
 	banner.modulate.a = 0
 	var canvas = $CanvasLayer if has_node("CanvasLayer") else null
 	# attach to a top canvas if we have one, else add to scene root
@@ -725,16 +803,26 @@ func _show_enemy_intro(def):
 	var vb = VBoxContainer.new()
 	vb.add_theme_constant_override("separation", 6)
 	banner.add_child(vb)
-	# header line: NEW THREAT — name
+	# header line: DEFECT INCOMING — name + type
 	var header = Label.new()
-	header.text = "⚠ NEW THREAT: %s" % def.name
+	var type_str = ("[%s]" % def.defect.to_upper()) if def.has("defect") else ""
+	header.text = "⚠ DEFECT INCOMING: %s %s" % [def.name, type_str]
 	header.add_theme_font_size_override("font_size", 22)
 	header.add_theme_color_override("font_color", Color(1, 0.4, 0.3))
 	vb.add_child(header)
+	# fail condition (the QC parameter that fails)
+	if def.has("fail"):
+		var fail_lbl = Label.new()
+		fail_lbl.text = "FAIL: " + def.fail
+		fail_lbl.add_theme_font_size_override("font_size", 13)
+		fail_lbl.add_theme_color_override("font_color", Color(1.0, 0.7, 0.5))
+		fail_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		fail_lbl.custom_minimum_size = Vector2(720, 0)
+		vb.add_child(fail_lbl)
 	# intro line: educational
 	var intro = Label.new()
 	intro.text = def.intro
-	intro.add_theme_font_size_override("font_size", 15)
+	intro.add_theme_font_size_override("font_size", 14)
 	intro.add_theme_color_override("font_color", Color(0.94, 0.85, 0.65))
 	intro.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	intro.custom_minimum_size = Vector2(720, 0)
