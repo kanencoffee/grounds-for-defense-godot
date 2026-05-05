@@ -12,6 +12,10 @@ config_version=5
 
 compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
+[autoload]
+
+Audio="*res://scripts/audio.gd"
+
 [application]
 
 config/name="Grounds for Defense"

@@ -290,6 +290,7 @@ func _stat_label(label_text: String, value_text: String) -> Label:
 func _on_pick_tower(type_key):
 	if beans < TOWER_DEFS[type_key].cost:
 		_flash_info("Not enough beans!")
+		Audio.play("error")
 		return
 	if pending_slot < 0:
 		return
@@ -302,6 +303,7 @@ func _on_pick_tower(type_key):
 	slot_nodes[pending_slot].visible = false
 	pending_slot = -1
 	picker_panel.visible = false
+	Audio.play("place")
 	_update_hud()
 
 func _build_tower(type_key, pos, slot_idx):
@@ -338,6 +340,7 @@ func _sell_tower(t):
 	slot_nodes[slot_idx].visible = true
 	towers.erase(t)
 	t.queue_free()
+	Audio.play("sell")
 	_update_hud()
 	_flash_info("Sold for %d¢" % int(def.cost * 0.6))
 
@@ -349,6 +352,7 @@ func _on_start_wave():
 	wave_num += 1
 	spawning = true
 	wave_active = true
+	Audio.play("waveStart")
 	var plan = WAVE_PLAN[wave_num - 1]
 	var pending = plan.size()
 	for group in plan:
@@ -429,6 +433,8 @@ func _process(delta):
 		beans += 30 + wave_num * 5
 		if wave_num >= max_waves:
 			_win()
+		else:
+			Audio.play("waveClear")
 		_update_hud()
 	# perfect shot cd
 	if not perfect_ready:
@@ -462,10 +468,18 @@ func _tower_update(t, delta):
 	t.set_meta("last_fire", now)
 	if def.get("charge", 0) > 0:
 		# espresso: charge then pierce
+		Audio.play("espressoCh")
 		await get_tree().create_timer(def.charge).timeout
 		if not is_instance_valid(t): return
+		Audio.play("espressoF")
 		_fire_pierce(t, def)
 	else:
+		# play tower-specific sound
+		var type_key = t.get_meta("type")
+		match type_key:
+			"drip": Audio.play("drip")
+			"frother": Audio.play("frother")
+			_: Audio.play("drip")
 		_fire_projectile(t, target, def)
 
 func _find_target(t):
@@ -542,6 +556,8 @@ func _damage_enemy(e, d):
 	e.set_meta("hp", hp_now)
 	# damage number
 	_spawn_damage_text(e.position, str(int(round(d))))
+	if d > 0:
+		Audio.play("hit")
 	# flash
 	var spr = e.get_child(0)
 	if spr is Sprite2D:
@@ -556,6 +572,7 @@ func _kill_enemy(e):
 		return
 	e.set_meta("alive", false)
 	beans += e.get_meta("def").bounty
+	Audio.play("enemyDie")
 	_update_hud()
 	# poof
 	var poof = _make_circle_drawer(20, Color(0.94,0.79,0.53,1), 0, Color(0.94,0.79,0.53,0.4))
@@ -593,6 +610,7 @@ func _enemy_update(e, delta):
 func _enemy_reach_end(e):
 	hp = max(0, hp - 1)
 	e.set_meta("alive", false)
+	Audio.play("reachEnd")
 	_update_hud()
 	if hp <= 0:
 		_lose()
@@ -633,10 +651,12 @@ func _show_message(title, body):
 
 func _win():
 	game_over = true
+	Audio.play("win")
 	_show_message("☕ The Counter Holds!", "You crushed the K-Pod Tyrant. The Barista lives to pull another shot.")
 
 func _lose():
 	game_over = true
+	Audio.play("lose")
 	_show_message("💀 The Barista Falls", "Bad coffee overran the counter. Try again?")
 
 func _input(event):
@@ -655,6 +675,7 @@ func _input(event):
 				best_d = d
 				best = e
 		if best:
+			Audio.play("perfect")
 			_damage_enemy(best, 500)
 			perfect_armed = false
 			perfect_ready = false
