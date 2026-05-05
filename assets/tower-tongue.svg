@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <!-- THE TONGUE (taste): final QC — slow charge, devastating verdict -->
+  <defs>
+    <linearGradient id="tongue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e57a8a"/>
+      <stop offset="0.5" stop-color="#c84a5a"/>
+      <stop offset="1" stop-color="#8b2030"/>
+    </linearGradient>
+  </defs>
+  <!-- mouth outline -->
+  <path d="M 14 38 Q 14 24 30 22 L 66 22 Q 82 24 82 38 L 82 50 Q 82 64 66 66 L 30 66 Q 14 64 14 50 Z" fill="#1a1108" stroke="#0a0604" stroke-width="2"/>
+  <!-- upper teeth -->
+  <rect x="20" y="26" width="56" height="10" fill="#fff" stroke="#1a1108" stroke-width="1.5"/>
+  <line x1="28" y1="26" x2="28" y2="36" stroke="#1a1108" stroke-width="1"/>
+  <line x1="36" y1="26" x2="36" y2="36" stroke="#1a1108" stroke-width="1"/>
+  <line x1="48" y1="26" x2="48" y2="36" stroke="#1a1108" stroke-width="1"/>
+  <line x1="60" y1="26" x2="60" y2="36" stroke="#1a1108" stroke-width="1"/>
+  <line x1="68" y1="26" x2="68" y2="36" stroke="#1a1108" stroke-width="1"/>
+  <!-- tongue (the star) -->
+  <ellipse cx="48" cy="56" rx="28" ry="14" fill="url(#tongue)" stroke="#1a1108" stroke-width="2.5"/>
+  <!-- tongue centerline -->
+  <path d="M 48 44 Q 46 56 48 68" stroke="#8b2030" stroke-width="2" fill="none" opacity="0.7"/>
+  <!-- taste buds -->
+  <circle cx="36" cy="52" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="48" cy="50" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="60" cy="52" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="42" cy="58" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="54" cy="58" r="1" fill="#fff" opacity="0.6"/>
+  <!-- shine -->
+  <ellipse cx="36" cy="50" rx="6" ry="2" fill="#fff" opacity="0.5"/>
+  <!-- coffee cup with steam (what's being tasted) -->
+  <path d="M 70 78 L 72 92 L 84 92 L 86 78 Z" fill="#fff8f0" stroke="#1a1108" stroke-width="1.5"/>
+  <ellipse cx="78" cy="78" rx="9" ry="2" fill="#3d2817"/>
+  <path d="M 86 82 Q 90 84 90 88" fill="none" stroke="#1a1108" stroke-width="1.5"/>
+  <path d="M 78 76 Q 76 70 78 66" stroke="#aaa" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- "TASTE" label -->
+  <text x="48" y="84" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#c8302c">TASTING</text>
+</svg>

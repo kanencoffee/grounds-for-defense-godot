@@ -7,18 +7,21 @@ const H := 800
 
 # ============== DEFINITIONS ==============
 const TOWER_DEFS = {
-	"drip":      {"name":"Drip",      "cost":50,  "range":160, "dmg":6,  "fire_rate":0.22, "sprite":"tower-drip.svg",     "blurb":"Old reliable. Fast weak shots."},
-	"espresso":  {"name":"Espresso",  "cost":150, "range":300, "dmg":60, "fire_rate":1.8,  "sprite":"tower-espresso.svg", "blurb":"Charges, then fires a piercing line.", "charge":1.5, "pierce":true},
-	"frother":   {"name":"Frother",   "cost":75,  "range":175, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-frother.svg",  "blurb":"Roots target, no damage.", "root":2.0},
-	"cold":      {"name":"Cold Brew", "cost":100, "range":160, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-cold.svg",     "blurb":"Slow aura on all enemies in range.", "slow":0.55, "aura":true},
+	"eye":      {"name":"The Eye",        "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "blurb":"SIGHT. Spots visible defects — mold, foreign matter, color issues. Fast steady damage."},
+	"tongue":   {"name":"The Tongue",     "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "blurb":"TASTE. Slow tasting → devastating verdict. Pierces a line of enemies.", "charge":1.5, "pierce":true},
+	"date":     {"name":"The Date Reader","cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "blurb":"AGE CHECK. Reads roast date, freezes expired items mid-march. No damage.", "root":2.0},
+	"nose":     {"name":"The Nose",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "blurb":"SMELL. Aroma evaluation slows all bad coffee in range. Permanent radius.", "slow":0.55, "aura":true},
 }
 
 const ENEMY_DEFS = {
-	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100, "name":"Stale Bean"},
-	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100, "name":"Pre-Ground", "slow_immune":3.0},
-	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120, "name":"Reheated Milk"},
-	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180, "name":"K-Pod Tyrant", "regen":5, "armor":0.25},
+	"disciple":   {"hp":30,  "speed":52, "sprite":"enemy-disciple.svg",   "bounty":5,   "size":100, "name":"STALE BEAN",        "intro":"Roasted 2+ years ago. Lost 50% of its aroma. SIGHT spots the dust + mold."},
+	"evangelist": {"hp":20,  "speed":100,"sprite":"enemy-evangelist.svg", "bounty":8,   "size":100, "name":"PRE-GROUND BAG",    "intro":"Surface area 10,000× higher than whole bean. Oxidizes in HOURS. SMELL detects it from far.", "slow_immune":3.0},
+	"demon":      {"hp":140, "speed":30, "sprite":"enemy-demon.svg",      "bounty":22,  "size":120, "name":"REHEATED MILK",     "intro":"Steamed 3×. Proteins denatured, sugars scorched. Slow but tanky — TASTE finishes it."},
+	"baron":      {"hp":600, "speed":36, "sprite":"enemy-baron.svg",      "bounty":250, "size":180, "name":"K-POD TYRANT",      "intro":"BOSS. Pre-ground stale beans sealed 18 months in plastic + foil. Microplastics included. Armored.", "regen":5, "armor":0.25},
 }
+
+# Track which enemy types have already been introduced this session
+var enemies_seen: Dictionary = {}
 
 # Path waypoints (zigzag) — bigger viewport so enemies are clearly visible
 const PATH_PTS = [
@@ -90,7 +93,47 @@ func _ready():
 	_build_barista()
 	_build_slots()
 	_build_hud()
-	_show_message("Grounds for Defense", "Bad coffee marches on the Barista. Place towers, defend the counter. Click Start Wave when ready.")
+	_show_briefing()
+
+func _show_briefing():
+	var dlg = AcceptDialog.new()
+	dlg.title = "GROUNDS FOR DEFENSE — BRIEFING"
+	dlg.ok_button_text = "I'm Ready. Defend the Counter."
+	dlg.dialog_text = """The Decaf Cult is sending in BAD COFFEE to overrun the Barista.
+Your job: identify defects with your senses before they reach the counter.
+
+══════════════════════════════════════
+THE THREATS (educational — each one is a real coffee defect)
+══════════════════════════════════════
+
+🪲  STALE BEAN — Roasted 2+ years ago. Lost 50% of aroma. Easy to spot.
+🪲  PRE-GROUND BAG — Surface area 10,000× higher than whole bean. Stales in HOURS.
+🪲  REHEATED MILK — Steamed 3×. Proteins denatured, sugars scorched. Tanky.
+🪲  K-POD TYRANT (BOSS) — Pre-ground beans sealed 18 months in plastic + foil.
+
+══════════════════════════════════════
+YOUR DEFENSES (the senses every barista uses)
+══════════════════════════════════════
+
+👁  THE EYE — SIGHT (50¢)
+    Spots visible defects. Fast steady damage. The first line of inspection.
+
+📅  THE DATE READER — AGE CHECK (75¢)
+    Checks roast date. Freezes expired items mid-march. No damage, pure CC.
+
+👃  THE NOSE — SMELL (100¢)
+    Aroma evaluation slows ALL bad coffee in range. Permanent radius.
+
+👅  THE TONGUE — TASTE (150¢)
+    Final QC. Slow charge → devastating verdict that pierces a line.
+
+══════════════════════════════════════
+
+Click an empty slot to place a sense. Click a placed sense to sell.
+Press P + click an enemy for the Perfect Cupping Spoon (500 dmg, 45s CD).
+Click 'Start Wave' (top right) when ready."""
+	add_child(dlg)
+	dlg.popup_centered(Vector2(820, 720))
 
 func _load_textures():
 	var keys = ["barista"]
@@ -249,7 +292,7 @@ func _build_hud():
 	vb.add_theme_constant_override("separation", 8)
 	picker_panel.add_child(vb)
 	var title = Label.new()
-	title.text = "PLACE TOWER"
+	title.text = "DEPLOY A SENSE"
 	title.add_theme_font_size_override("font_size", 22)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	vb.add_child(title)
@@ -373,6 +416,10 @@ func _on_start_wave():
 
 func _spawn_enemy(type_key):
 	var def = ENEMY_DEFS[type_key]
+	# First-appearance intro popup
+	if not enemies_seen.has(type_key):
+		enemies_seen[type_key] = true
+		_show_enemy_intro(def)
 	var node = Node2D.new()
 	node.set_meta("type", type_key)
 	node.set_meta("def", def)
@@ -477,8 +524,8 @@ func _tower_update(t, delta):
 		# play tower-specific sound
 		var type_key = t.get_meta("type")
 		match type_key:
-			"drip": Audio.play("drip")
-			"frother": Audio.play("frother")
+			"eye": Audio.play("drip")
+			"date": Audio.play("frother")
 			_: Audio.play("drip")
 		_fire_projectile(t, target, def)
 
@@ -648,6 +695,58 @@ func _show_message(title, body):
 	dlg.dialog_text = body
 	add_child(dlg)
 	dlg.popup_centered(Vector2(600, 300))
+
+func _show_enemy_intro(def):
+	# Slide-in banner at top showing the enemy's name + 1-line defect explanation
+	var banner = PanelContainer.new()
+	banner.position = Vector2(W/2 - 380, 80)
+	banner.custom_minimum_size = Vector2(760, 90)
+	banner.modulate.a = 0
+	var canvas = $CanvasLayer if has_node("CanvasLayer") else null
+	# attach to a top canvas if we have one, else add to scene root
+	add_child(banner)
+	# style
+	var sb = StyleBoxFlat.new()
+	sb.bg_color = Color(0.10, 0.07, 0.04, 0.95)
+	sb.border_width_left = 4
+	sb.border_width_right = 4
+	sb.border_width_top = 4
+	sb.border_width_bottom = 4
+	sb.border_color = Color(0.94, 0.79, 0.53)
+	sb.corner_radius_top_left = 8
+	sb.corner_radius_top_right = 8
+	sb.corner_radius_bottom_left = 8
+	sb.corner_radius_bottom_right = 8
+	sb.content_margin_left = 18
+	sb.content_margin_right = 18
+	sb.content_margin_top = 12
+	sb.content_margin_bottom = 12
+	banner.add_theme_stylebox_override("panel", sb)
+	var vb = VBoxContainer.new()
+	vb.add_theme_constant_override("separation", 6)
+	banner.add_child(vb)
+	# header line: NEW THREAT — name
+	var header = Label.new()
+	header.text = "⚠ NEW THREAT: %s" % def.name
+	header.add_theme_font_size_override("font_size", 22)
+	header.add_theme_color_override("font_color", Color(1, 0.4, 0.3))
+	vb.add_child(header)
+	# intro line: educational
+	var intro = Label.new()
+	intro.text = def.intro
+	intro.add_theme_font_size_override("font_size", 15)
+	intro.add_theme_color_override("font_color", Color(0.94, 0.85, 0.65))
+	intro.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	intro.custom_minimum_size = Vector2(720, 0)
+	vb.add_child(intro)
+	# play sound
+	Audio.play("error")
+	# fade in / hold / fade out
+	var tw = create_tween()
+	tw.tween_property(banner, "modulate:a", 1.0, 0.25)
+	tw.tween_interval(4.5)
+	tw.tween_property(banner, "modulate:a", 0.0, 0.4)
+	tw.tween_callback(func(): banner.queue_free())
 
 func _win():
 	game_over = true
