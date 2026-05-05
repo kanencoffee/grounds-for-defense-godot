@@ -121,64 +121,259 @@ func _ready():
 	_build_hud()
 	_show_briefing()
 
+var briefing_pages: Array = []
+var briefing_idx: int = 0
+var briefing_layer: CanvasLayer
+
 func _show_briefing():
-	var dlg = AcceptDialog.new()
-	dlg.title = "GROUNDS FOR DEFENSE — Q GRADER ORIENTATION"
-	dlg.ok_button_text = "I'm Ready. Begin QC."
-	dlg.dialog_text = """Welcome to your shift at THE LAST DROP. You're the Q Grader.
+	# Build the page list
+	briefing_pages = [
+		{
+			"kind": "intro",
+			"title": "GROUNDS FOR DEFENSE",
+			"subtitle": "Q GRADER ORIENTATION",
+			"body": "Welcome to The Last Drop, Q Grader.\n\nBad coffee is marching toward your customer. Every defect coming down the line is real — recognized by the Specialty Coffee Association.\n\nYour job: spot the defect, deploy the right inspection tool, fail it before it reaches the cup.\n\nThe next pages introduce the threats and your tools.\nClick NEXT to meet them, or SKIP if you already know the drill."
+		},
+		{ "kind":"section", "title":"THE DEFECTS", "subtitle":"Six real coffee quality failures" }
+	]
+	# Add each enemy as its own page (in spawn order)
+	var enemy_order = ["disciple", "evangelist", "wraith", "zealot", "demon", "baron"]
+	for k in enemy_order:
+		if ENEMY_DEFS.has(k):
+			var d = ENEMY_DEFS[k]
+			briefing_pages.append({
+				"kind": "enemy",
+				"key": k,
+				"name": d.name,
+				"defect_type": d.defect,
+				"fail": d.fail,
+				"intro": d.intro,
+				"sprite": d.sprite,
+				"is_boss": k == "baron"
+			})
+	briefing_pages.append({ "kind":"section", "title":"YOUR Q GRADER KIT", "subtitle":"Four tools. Each catches specific defects." })
+	# Add each tower as its own page
+	var tower_order = ["eye", "date", "nose", "tongue"]
+	for k in tower_order:
+		if TOWER_DEFS.has(k):
+			var d = TOWER_DEFS[k]
+			briefing_pages.append({
+				"kind": "tower",
+				"key": k,
+				"name": d.name,
+				"specialty": d.specialty,
+				"cost": d.cost,
+				"blurb": d.blurb,
+				"sprite": d.sprite
+			})
+	briefing_pages.append({
+		"kind": "ready",
+		"title": "READY, Q GRADER?",
+		"body": "★ Right tool → 2× damage + ✓ DEFECT CAUGHT\n✗ Wrong tool → 0.6× damage + ✗ WRONG TOOL\n☆ Pod-zilla (boss) → all tools apply at 1.3×\n\nClick empty slot → place tool.\nClick placed tool → sell (60% refund).\nPress P + click enemy → Perfect Cupping Shot.\n\nHit 'Start Wave' (top right) when you're ready."
+	})
+	briefing_idx = 0
+	_build_briefing_ui()
+	_render_briefing_page()
 
-Bad coffee is marching down the line. Each defect is a real coffee quality issue — recognized by the Specialty Coffee Association (SCA). Your job: spot the defect, deploy the matching inspection tool, fail the bad coffee before it ruins someone's morning.
+func _build_briefing_ui():
+	if briefing_layer and is_instance_valid(briefing_layer):
+		briefing_layer.queue_free()
+	briefing_layer = CanvasLayer.new()
+	briefing_layer.layer = 100
+	add_child(briefing_layer)
+	# Full-screen darken
+	var dim = ColorRect.new()
+	dim.color = Color(0, 0, 0, 0.85)
+	dim.size = Vector2(W, H)
+	briefing_layer.add_child(dim)
+	# Card panel (centered)
+	var card = PanelContainer.new()
+	card.name = "Card"
+	card.size = Vector2(720, 620)
+	card.position = Vector2((W - 720)/2, (H - 620)/2)
+	briefing_layer.add_child(card)
+	var sb = StyleBoxFlat.new()
+	sb.bg_color = Color(0.12, 0.08, 0.05)
+	sb.border_width_left = 4
+	sb.border_width_right = 4
+	sb.border_width_top = 4
+	sb.border_width_bottom = 4
+	sb.border_color = Color(0.94, 0.79, 0.53)
+	sb.corner_radius_top_left = 14
+	sb.corner_radius_top_right = 14
+	sb.corner_radius_bottom_left = 14
+	sb.corner_radius_bottom_right = 14
+	sb.content_margin_left = 32
+	sb.content_margin_right = 32
+	sb.content_margin_top = 24
+	sb.content_margin_bottom = 24
+	card.add_theme_stylebox_override("panel", sb)
+	# Vertical layout
+	var v = VBoxContainer.new()
+	v.name = "Content"
+	v.add_theme_constant_override("separation", 14)
+	card.add_child(v)
+	# Page indicator at top right
+	var page_lbl = Label.new()
+	page_lbl.name = "PageIndicator"
+	page_lbl.add_theme_font_size_override("font_size", 12)
+	page_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.6))
+	page_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	v.add_child(page_lbl)
+	# Sprite container
+	var sprite_box = CenterContainer.new()
+	sprite_box.name = "SpriteBox"
+	sprite_box.custom_minimum_size = Vector2(0, 220)
+	v.add_child(sprite_box)
+	# Title
+	var title = Label.new()
+	title.name = "Title"
+	title.add_theme_font_size_override("font_size", 32)
+	title.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(title)
+	# Type badge
+	var badge = Label.new()
+	badge.name = "Badge"
+	badge.add_theme_font_size_override("font_size", 16)
+	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(badge)
+	# Body text
+	var body = RichTextLabel.new()
+	body.name = "Body"
+	body.bbcode_enabled = true
+	body.fit_content = true
+	body.scroll_active = false
+	body.add_theme_font_size_override("normal_font_size", 17)
+	body.custom_minimum_size = Vector2(0, 180)
+	v.add_child(body)
+	# spacer
+	var spacer = Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	v.add_child(spacer)
+	# Buttons row
+	var btn_row = HBoxContainer.new()
+	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	btn_row.add_theme_constant_override("separation", 12)
+	v.add_child(btn_row)
+	var prev_btn = Button.new()
+	prev_btn.name = "PrevBtn"
+	prev_btn.text = "◀  Previous"
+	prev_btn.add_theme_font_size_override("font_size", 16)
+	prev_btn.custom_minimum_size = Vector2(140, 44)
+	prev_btn.pressed.connect(_briefing_prev)
+	btn_row.add_child(prev_btn)
+	var skip_btn = Button.new()
+	skip_btn.text = "Skip All"
+	skip_btn.add_theme_font_size_override("font_size", 14)
+	skip_btn.custom_minimum_size = Vector2(100, 44)
+	skip_btn.pressed.connect(_briefing_skip)
+	btn_row.add_child(skip_btn)
+	var next_btn = Button.new()
+	next_btn.name = "NextBtn"
+	next_btn.text = "Next  ▶"
+	next_btn.add_theme_font_size_override("font_size", 16)
+	next_btn.custom_minimum_size = Vector2(160, 44)
+	next_btn.pressed.connect(_briefing_next)
+	btn_row.add_child(next_btn)
 
-═══════════════════════════════════════════════
-THE LINEUP — KNOW YOUR DEFECTS
-═══════════════════════════════════════════════
+func _render_briefing_page():
+	if not is_instance_valid(briefing_layer): return
+	var card = briefing_layer.get_node("Card")
+	var page_lbl = card.get_node("Content/PageIndicator")
+	var sprite_box = card.get_node("Content/SpriteBox")
+	var title_lbl = card.get_node("Content/Title")
+	var badge_lbl = card.get_node("Content/Badge")
+	var body = card.get_node("Content/Body")
+	var prev_btn = card.get_node("Content").get_node_or_null("../").get_node_or_null("Content")
+	# More robust button lookup
+	var btn_row = card.get_node("Content").get_child(card.get_node("Content").get_child_count() - 1)
+	var prev_b = btn_row.get_child(0)
+	var next_b = btn_row.get_child(2)
 
-🫘  SIR STALES-A-LOT   [DATE]    "Roasted 2 years ago. The aroma left months ago."
-                       → Coffee oxidizes after roasting. Window is ~4 weeks.
+	page_lbl.text = "%d / %d" % [briefing_idx + 1, briefing_pages.size()]
 
-🫘  GRIND ZERO         [AROMA]   "Pre-ground bag, factory-sealed, FAST."
-                       → Grinding multiplies surface area 10,000×.
-                          Aromatics gas off in HOURS.
+	# clear sprite box
+	for c in sprite_box.get_children():
+		c.queue_free()
 
-🫘  BURNY McBURNFACE   [VISUAL]  "Roasted till it's basically charcoal."
-                       → Past 2nd crack. Origin flavors gone.
-                          Tells you "I taste like ash" because it does.
+	var p = briefing_pages[briefing_idx]
+	var kind = p.kind
 
-🫘  MR. WISHY-WASHY    [TASTE]   "1:30 ratio. Brown water, basically."
-                       → SCA target: 1:15-1:18. TDS 1.15-1.35%.
-                          Anything weaker = under-extracted.
+	# Set sprite
+	if p.has("sprite") and textures.has(p.sprite):
+		var tr = TextureRect.new()
+		tr.texture = textures[p.sprite]
+		tr.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+		tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		var size = 200.0 if not (p.has("is_boss") and p.is_boss) else 240.0
+		tr.custom_minimum_size = Vector2(size, size)
+		sprite_box.add_child(tr)
+		sprite_box.custom_minimum_size = Vector2(0, size + 8)
+	else:
+		sprite_box.custom_minimum_size = Vector2(0, 40)
 
-🫘  SKIN-DEEP MILK     [TASTE]   "Steamed three times. The skin is a clue."
-                       → Milk steamed >65°C denatures proteins.
-                          Cannot be re-steamed without scorching lactose.
+	# Set title + badge + body per kind
+	if kind == "intro":
+		title_lbl.text = p.title
+		title_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+		badge_lbl.text = p.subtitle
+		badge_lbl.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+		body.text = "[center]%s[/center]" % p.body
+	elif kind == "section":
+		title_lbl.text = p.title
+		title_lbl.add_theme_color_override("font_color", Color(1.0, 0.65, 0.3))
+		badge_lbl.text = p.subtitle
+		badge_lbl.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+		body.text = ""
+	elif kind == "enemy":
+		title_lbl.text = p.name
+		title_lbl.add_theme_color_override("font_color", Color(1.0, 0.5, 0.4))
+		badge_lbl.text = "DEFECT TYPE: " + str(p.defect_type).to_upper() + ("   [BOSS]" if p.get("is_boss", false) else "")
+		badge_lbl.add_theme_color_override("font_color", Color(1.0, 0.7, 0.4))
+		body.text = "[color=#ffb088]FAIL CONDITION:[/color] %s\n\n%s" % [p.fail, p.intro]
+	elif kind == "tower":
+		title_lbl.text = p.name
+		title_lbl.add_theme_color_override("font_color", Color(0.5, 0.95, 0.7))
+		badge_lbl.text = "SPECIALTY: %s   |   COST: %d¢" % [str(p.specialty).to_upper(), p.cost]
+		badge_lbl.add_theme_color_override("font_color", Color(0.7, 0.9, 0.7))
+		body.text = p.blurb
+	elif kind == "ready":
+		title_lbl.text = p.title
+		title_lbl.add_theme_color_override("font_color", Color(1.0, 0.85, 0.4))
+		badge_lbl.text = ""
+		body.text = "[center]%s[/center]" % p.body
 
-🫘  POD-ZILLA  (BOSS)  [ALL]     "Pre-ground beans in a plastic-and-foil tomb."
-                       → Compound defect. Microplastics included free!
+	# Update buttons
+	prev_b.disabled = briefing_idx == 0
+	if briefing_idx == briefing_pages.size() - 1:
+		next_b.text = "Begin Game ▶"
+		next_b.add_theme_color_override("font_color", Color(1, 0.9, 0.4))
+	else:
+		next_b.text = "Next  ▶"
+		next_b.remove_theme_color_override("font_color")
 
-═══════════════════════════════════════════════
-YOUR Q GRADER KIT
-═══════════════════════════════════════════════
+func _briefing_prev():
+	if briefing_idx > 0:
+		briefing_idx -= 1
+		Sfx.play("place")
+		_render_briefing_page()
 
-👁  SHERLOCK BEANS    50¢  Visual inspection — catches BURNY McBURNFACE
-📅  FATHER TIME       75¢  Date stamp — freezes SIR STALES-A-LOT
-👃  NOSE GOES        100¢  Aroma station — busts GRIND ZERO
-👅  TASTE-MASTER     150¢  Cupping verdict — finishes WISHY-WASHY + SKIN-DEEP MILK
+func _briefing_next():
+	if briefing_idx < briefing_pages.size() - 1:
+		briefing_idx += 1
+		Sfx.play("place")
+		_render_briefing_page()
+	else:
+		_briefing_close()
 
-═══════════════════════════════════════════════
-THE GOLDEN RULE
-═══════════════════════════════════════════════
+func _briefing_skip():
+	_briefing_close()
 
-★  RIGHT TOOL  → 2× damage + ✓ DEFECT CAUGHT (green)
-✗  WRONG TOOL  → 0.6× damage + ✗ WRONG TOOL (red)
-☆  POD-ZILLA   → All tools apply at 1.3× (use everything)
-
-You'll memorize the matchups by playing. That's the whole game.
-
-Click empty slot → place tool. Click placed tool → sell (60% refund).
-Press P + click enemy → Perfect Cupping Shot (500 dmg, 45s).
-Hit 'Start Wave' (top right) when ready, Q Grader."""
-	add_child(dlg)
-	dlg.popup_centered(Vector2(900, 800))
+func _briefing_close():
+	if is_instance_valid(briefing_layer):
+		Sfx.play("waveStart")
+		briefing_layer.queue_free()
 
 func _load_textures():
 	var keys = ["barista"]
