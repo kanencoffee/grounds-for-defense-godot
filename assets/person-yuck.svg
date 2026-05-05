@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- Person disgusted — drank swill, tongue out, cup tilted away -->
+  <defs>
+    <radialGradient id="halo5" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#ffaa88" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#aa3333" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shirt3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a8aaa"/>
+      <stop offset="1" stop-color="#3a6280"/>
+    </linearGradient>
+    <linearGradient id="skin5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0d090"/>
+      <stop offset="1" stop-color="#c89055"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#halo5)"/>
+  <!-- shadow -->
+  <ellipse cx="96" cy="220" rx="64" ry="6" fill="#1a1108" opacity="0.45"/>
+  <!-- T-shirt body (slightly raised shoulders) -->
+  <path d="M 44 110 L 30 220 L 162 220 L 148 110 Q 146 96 132 90 L 128 96 L 96 112 L 64 96 L 60 90 Q 46 96 44 110 Z" fill="url(#shirt3)" stroke="#1a1108" stroke-width="3"/>
+  <path d="M 56 124 L 50 215" stroke="#3a6280" stroke-width="2" opacity="0.5"/>
+  <path d="M 136 124 L 142 215" stroke="#1a3850" stroke-width="2" opacity="0.5"/>
+  <path d="M 76 90 L 96 112 L 116 90" fill="none" stroke="#1a3850" stroke-width="2.5"/>
+  <!-- right arm relaxed -->
+  <ellipse cx="148" cy="138" rx="12" ry="32" fill="url(#shirt3)" stroke="#1a1108" stroke-width="2.5"/>
+  <circle cx="148" cy="180" r="11" fill="url(#skin5)" stroke="#1a1108" stroke-width="2.5"/>
+  <!-- LEFT arm pulled BACK from face (recoiling), mug tilted -->
+  <ellipse cx="36" cy="148" rx="12" ry="34" fill="url(#shirt3)" stroke="#1a1108" stroke-width="2.5"/>
+  <circle cx="32" cy="184" r="11" fill="url(#skin5)" stroke="#1a1108" stroke-width="2.5"/>
+  <!-- mug tilted away spilling some -->
+  <g transform="rotate(-25 24 168)">
+    <path d="M 14 152 L 10 188 Q 10 192 14 192 L 38 192 Q 42 192 42 188 L 38 152 Z" fill="#fff8f0" stroke="#1a1108" stroke-width="2.5"/>
+    <ellipse cx="26" cy="152" rx="13" ry="3" fill="#3d2817" stroke="#1a1108" stroke-width="1.5"/>
+    <path d="M 38 158 Q 50 162 50 170 Q 50 178 38 178" fill="none" stroke="#1a1108" stroke-width="2.5"/>
+  </g>
+  <!-- spilled drop -->
+  <path d="M 4 162 Q 6 168 6 172 Q 0 168 4 162 Z" fill="#3d2817" opacity="0.85"/>
+  <circle cx="2" cy="178" r="2" fill="#3d2817" opacity="0.7"/>
+  <!-- neck (pulled in slightly) -->
+  <rect x="84" y="74" width="24" height="20" fill="url(#skin5)" stroke="#1a1108" stroke-width="2.5"/>
+  <rect x="84" y="88" width="24" height="6" fill="#1a1108" opacity="0.3"/>
+  <!-- head (slightly larger, slightly tilted back) -->
+  <g transform="rotate(-8 96 56)">
+    <circle cx="96" cy="56" r="32" fill="url(#skin5)" stroke="#1a1108" stroke-width="3"/>
+    <ellipse cx="64" cy="56" rx="4" ry="6" fill="url(#skin5)" stroke="#1a1108" stroke-width="2"/>
+    <ellipse cx="128" cy="56" rx="4" ry="6" fill="url(#skin5)" stroke="#1a1108" stroke-width="2"/>
+    <!-- hair (a little more chaotic — disgust) -->
+    <path d="M 64 50 Q 60 18 96 14 Q 132 18 128 50 Q 124 32 110 26 Q 96 24 82 26 Q 68 32 64 50 Z" fill="#5c3a1c" stroke="#1a1108" stroke-width="2.5"/>
+    <path d="M 70 24 L 68 16 M 96 22 L 96 12 M 122 24 L 124 16" stroke="#3d2817" stroke-width="2" stroke-linecap="round"/>
+    <!-- shocked/disgusted eyebrows (raised, angled) -->
+    <path d="M 74 44 L 90 40" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 102 40 L 118 44" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
+    <!-- wide squinted eyes (X-style — yuck) -->
+    <path d="M 78 56 L 90 60 M 78 60 L 90 56" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 102 56 L 114 60 M 102 60 L 114 56" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
+    <!-- tongue out, mouth open -->
+    <ellipse cx="96" cy="78" rx="14" ry="8" fill="#1a1108"/>
+    <path d="M 88 80 Q 96 96 104 80 Q 96 92 88 80 Z" fill="#e57a8a" stroke="#1a1108" stroke-width="2"/>
+    <!-- tongue centerline -->
+    <path d="M 96 80 L 96 92" stroke="#8b2030" stroke-width="1.5" opacity="0.7"/>
+    <!-- sweat drops -->
+    <path d="M 130 22 Q 134 30 134 34 Q 126 30 130 22 Z" fill="#88bbee" stroke="#1a1108" stroke-width="1"/>
+    <path d="M 60 22 Q 56 30 56 34 Q 64 30 60 22 Z" fill="#88bbee" stroke="#1a1108" stroke-width="1"/>
+  </g>
+  <!-- "BLECCH!" indicator with motion lines -->
+  <text x="36" y="42" font-family="sans-serif" font-size="22" font-weight="bold" fill="#c8302c" stroke="#1a1108" stroke-width="1">BLECCH!</text>
+  <!-- shake lines -->
+  <path d="M 30 60 L 22 56 M 30 70 L 18 70 M 30 80 L 22 84" stroke="#c8302c" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 162 60 L 170 56 M 162 70 L 174 70 M 162 80 L 170 84" stroke="#c8302c" stroke-width="2" stroke-linecap="round"/>
+</svg>

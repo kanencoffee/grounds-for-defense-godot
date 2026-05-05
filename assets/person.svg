@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- Regular person — casual, content, holding a coffee mug -->
+  <defs>
+    <radialGradient id="halo3" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#fff5d6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#f0c987" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a8aaa"/>
+      <stop offset="1" stop-color="#3a6280"/>
+    </linearGradient>
+    <linearGradient id="skin3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5d4a8"/>
+      <stop offset="1" stop-color="#d4a574"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="96" cy="128" rx="112" ry="112" fill="url(#halo3)"/>
+  <!-- shadow -->
+  <ellipse cx="96" cy="220" rx="64" ry="6" fill="#1a1108" opacity="0.45"/>
+  <!-- T-shirt body -->
+  <path d="M 44 116 L 32 220 L 160 220 L 148 116 Q 148 102 134 96 L 130 100 L 96 116 L 62 100 L 58 96 Q 44 102 44 116 Z" fill="url(#shirt)" stroke="#1a1108" stroke-width="3"/>
+  <!-- shirt highlights -->
+  <path d="M 56 130 L 50 215" stroke="#3a6280" stroke-width="2" opacity="0.5"/>
+  <path d="M 136 130 L 142 215" stroke="#1a3850" stroke-width="2" opacity="0.5"/>
+  <!-- collar / neckline V -->
+  <path d="M 76 96 L 96 116 L 116 96" fill="none" stroke="#1a3850" stroke-width="2.5"/>
+  <!-- left arm holding mug -->
+  <ellipse cx="44" cy="140" rx="12" ry="28" fill="url(#shirt)" stroke="#1a1108" stroke-width="2.5"/>
+  <ellipse cx="40" cy="130" rx="5" ry="10" fill="#5a8aaa" opacity="0.5"/>
+  <!-- left hand -->
+  <circle cx="48" cy="172" r="11" fill="url(#skin3)" stroke="#1a1108" stroke-width="2.5"/>
+  <!-- right arm relaxed -->
+  <ellipse cx="148" cy="140" rx="12" ry="32" fill="url(#shirt)" stroke="#1a1108" stroke-width="2.5"/>
+  <ellipse cx="152" cy="130" rx="5" ry="10" fill="#5a8aaa" opacity="0.5"/>
+  <circle cx="148" cy="180" r="11" fill="url(#skin3)" stroke="#1a1108" stroke-width="2.5"/>
+  <!-- coffee mug in left hand (chest level) -->
+  <path d="M 56 154 L 60 188 Q 60 192 64 192 L 96 192 Q 100 192 100 188 L 104 154 Z" fill="#fff8f0" stroke="#1a1108" stroke-width="2.5"/>
+  <ellipse cx="80" cy="154" rx="24" ry="4" fill="#3d2817" stroke="#1a1108" stroke-width="2"/>
+  <ellipse cx="80" cy="153" rx="18" ry="2" fill="#5c3a1c"/>
+  <!-- handle -->
+  <path d="M 104 162 Q 116 166 116 175 Q 116 184 104 184" fill="none" stroke="#1a1108" stroke-width="3"/>
+  <!-- steam -->
+  <path d="M 70 148 Q 66 138 72 130" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 86 146 Q 82 134 88 124" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- neck -->
+  <rect x="84" y="76" width="24" height="22" fill="url(#skin3)" stroke="#1a1108" stroke-width="2.5"/>
+  <rect x="84" y="92" width="24" height="6" fill="#1a1108" opacity="0.3"/>
+  <!-- head -->
+  <circle cx="96" cy="56" r="30" fill="url(#skin3)" stroke="#1a1108" stroke-width="3"/>
+  <!-- ears -->
+  <ellipse cx="66" cy="56" rx="4" ry="6" fill="url(#skin3)" stroke="#1a1108" stroke-width="2"/>
+  <ellipse cx="126" cy="56" rx="4" ry="6" fill="url(#skin3)" stroke="#1a1108" stroke-width="2"/>
+  <!-- hair (messy/casual) -->
+  <path d="M 66 50 Q 64 22 96 18 Q 128 22 126 50 Q 124 36 110 30 Q 96 28 82 30 Q 68 36 66 50 Z" fill="#5c3a1c" stroke="#1a1108" stroke-width="2.5"/>
+  <path d="M 76 30 L 78 24 M 100 26 L 102 20 M 118 32 L 122 28" stroke="#3d2817" stroke-width="2" stroke-linecap="round"/>
+  <!-- relaxed eyebrows -->
+  <path d="M 78 50 L 90 52" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 102 52 L 114 50" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- eyes (open, friendly) -->
+  <ellipse cx="84" cy="58" rx="3.5" ry="4" fill="#fff"/>
+  <ellipse cx="108" cy="58" rx="3.5" ry="4" fill="#fff"/>
+  <circle cx="84" cy="59" r="2.4" fill="#3d2817"/>
+  <circle cx="108" cy="59" r="2.4" fill="#3d2817"/>
+  <circle cx="85" cy="58" r="0.9" fill="#fff"/>
+  <circle cx="109" cy="58" r="0.9" fill="#fff"/>
+  <!-- nose -->
+  <path d="M 96 60 Q 94 68 96 72 Q 98 68 96 60" fill="#d4a574" stroke="#1a1108" stroke-width="1"/>
+  <!-- subtle smile -->
+  <path d="M 86 78 Q 96 82 106 78" fill="none" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- cheeks -->
+  <ellipse cx="76" cy="68" rx="4" ry="2.5" fill="#e89b7a" opacity="0.5"/>
+  <ellipse cx="116" cy="68" rx="4" ry="2.5" fill="#e89b7a" opacity="0.5"/>
+</svg>

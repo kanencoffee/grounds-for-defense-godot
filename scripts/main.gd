@@ -382,6 +382,9 @@ func _load_textures():
 	for k in ENEMY_DEFS:
 		keys.append(ENEMY_DEFS[k].sprite)
 	keys.append("barista.svg")
+	keys.append("person.svg")
+	keys.append("person-sip.svg")
+	keys.append("person-yuck.svg")
 	for fname in keys:
 		var path = "res://assets/" + (fname if fname.ends_with(".svg") else fname + ".svg")
 		if not ResourceLoader.exists(path):
@@ -423,16 +426,68 @@ func _draw():
 	s.reload()
 	return s
 
+var person_sprite: Sprite2D
+var person_busy := false  # true while showing sip or yuck
+
 func _build_barista():
-	var spr = Sprite2D.new()
-	spr.texture = textures.get("barista.svg")
-	spr.position = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
-	spr.scale = Vector2(1.0, 1.0)
-	add_child(spr)
+	person_sprite = Sprite2D.new()
+	person_sprite.texture = textures.get("person.svg")
+	person_sprite.position = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
+	person_sprite.scale = Vector2(1.0, 1.0)
+	add_child(person_sprite)
 	# Idle bob
 	var tw = create_tween().set_loops()
-	tw.tween_property(spr, "scale", Vector2(1.46,1.46), 1.8).set_trans(Tween.TRANS_SINE)
-	tw.tween_property(spr, "scale", Vector2(1.4,1.4), 1.8).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(person_sprite, "scale", Vector2(1.04, 1.04), 1.8).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(person_sprite, "scale", Vector2(1.0, 1.0), 1.8).set_trans(Tween.TRANS_SINE)
+	# periodic happy sip every 5-9 seconds
+	_schedule_idle_sip()
+
+func _schedule_idle_sip():
+	var t = randf_range(5.0, 9.0)
+	get_tree().create_timer(t).timeout.connect(func():
+		if game_over or not is_instance_valid(person_sprite):
+			return
+		_play_idle_sip()
+	)
+
+func _play_idle_sip():
+	if person_busy or game_over:
+		_schedule_idle_sip()
+		return
+	person_busy = true
+	person_sprite.texture = textures.get("person-sip.svg")
+	# small content scale-up
+	var tw = create_tween()
+	tw.tween_property(person_sprite, "scale", Vector2(1.06, 1.06), 0.2).set_trans(Tween.TRANS_SINE)
+	tw.tween_interval(0.7)
+	tw.tween_property(person_sprite, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	tw.tween_callback(func():
+		if is_instance_valid(person_sprite):
+			person_sprite.texture = textures.get("person.svg")
+		person_busy = false
+		_schedule_idle_sip()
+	)
+
+func _play_yuck_reaction():
+	if not is_instance_valid(person_sprite): return
+	person_busy = true
+	person_sprite.texture = textures.get("person-yuck.svg")
+	# Quick recoil shake animation
+	var orig_x = person_sprite.position.x
+	var tw = create_tween()
+	tw.tween_property(person_sprite, "scale", Vector2(1.15, 1.15), 0.08).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	# horizontal jitter (4 quick shakes)
+	for i in 4:
+		var dx = 6.0 if i % 2 == 0 else -6.0
+		tw.tween_property(person_sprite, "position:x", orig_x + dx, 0.05)
+	tw.tween_property(person_sprite, "position:x", orig_x, 0.05)
+	tw.tween_interval(0.7)
+	tw.tween_property(person_sprite, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+	tw.tween_callback(func():
+		if is_instance_valid(person_sprite):
+			person_sprite.texture = textures.get("person.svg")
+		person_busy = false
+	)
 
 func _build_slots():
 	for i in SLOTS.size():
@@ -935,9 +990,11 @@ func _enemy_reach_end(e):
 	hp = max(0, hp - 1)
 	e.set_meta("alive", false)
 	Sfx.play("reachEnd")
-	# Big "SWILL!" reaction at the barista
-	var barista_pos = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
-	_spawn_swill_alert(barista_pos)
+	# Big "SWILL!" reaction at the person
+	var person_pos = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
+	_spawn_swill_alert(person_pos)
+	# Animate the yuck face + recoil
+	_play_yuck_reaction()
 	# Pulse the HP label red
 	if hp_label:
 		hp_label.modulate = Color(1.0, 0.3, 0.3, 1)
