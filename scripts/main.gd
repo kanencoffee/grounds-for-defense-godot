@@ -9,7 +9,7 @@ const H := 800
 const TOWER_DEFS = {
 	"eye":      {"name":"SHERLOCK BEANS",  "cost":50,  "range":180, "dmg":6,  "fire_rate":0.22, "sprite":"tower-eye.svg",    "specialty":"visual",    "blurb":"The all-purpose detective. Always works.\n★ Best vs Burny McBurnFace (catches him 2×)."},
 	"tongue":   {"name":"TASTE-MASTER",    "cost":150, "range":320, "dmg":60, "fire_rate":1.8,  "sprite":"tower-tongue.svg", "specialty":"taste",     "blurb":"The taste test. Slow but devastating.\n★ Catches Skin-Deep Milk + Mr. Wishy-Washy.", "charge":1.5, "pierce":true},
-	"date":     {"name":"FATHER TIME",     "cost":75,  "range":190, "dmg":0,  "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Reads roast dates. Freezes stale lots in their tracks.\n★ Catches Sir Stales-A-Lot.", "root":2.0},
+	"date":     {"name":"FATHER TIME",     "cost":75,  "range":190, "dmg":15, "fire_rate":1.2,  "sprite":"tower-date.svg",   "specialty":"date",      "blurb":"Reads roast dates. Freezes stale lots + tags them.\n★ Catches Sir Stales-A-Lot (one-shots him).", "root":2.0},
 	"nose":     {"name":"NOSE GOES",       "cost":100, "range":180, "dmg":0,  "fire_rate":0.0,  "sprite":"tower-nose.svg",   "specialty":"aroma",     "blurb":"Sniffs out bad coffee in a radius. Slows everything.\n★ Catches Grind Zero.", "slow":0.55, "aura":true},
 }
 
@@ -770,20 +770,32 @@ func _tower_update(t, delta):
 		_fire_projectile(t, target, def)
 
 func _find_target(t):
-	var best = null
-	var best_t = -1.0
+	# For root-towers (Father Time): prefer un-rooted enemies so we don't waste shots re-freezing.
 	var def = t.get_meta("def")
 	var r2 = def.range * def.range
+	var prefer_unrooted = def.get("root", 0) > 0
+	var now = Time.get_ticks_msec() / 1000.0
+	var best = null
+	var best_t = -1.0
+	var best_fallback = null
+	var fallback_t = -1.0
 	for e in enemies:
 		if not e.get_meta("alive"):
 			continue
 		if t.position.distance_squared_to(e.position) > r2:
 			continue
 		var et = e.get_meta("t")
+		var is_rooted = e.get_meta("rooted_until") > now
+		if prefer_unrooted and is_rooted:
+			# remember as fallback in case nothing un-rooted is in range
+			if et > fallback_t:
+				fallback_t = et
+				best_fallback = e
+			continue
 		if et > best_t:
 			best_t = et
 			best = e
-	return best
+	return best if best != null else best_fallback
 
 func _fire_projectile(tower_node, target, def):
 	var proj = ColorRect.new()
