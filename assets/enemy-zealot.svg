@@ -1,39 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <!-- MR. WISHY-WASHY — pale watery cup with HUGE blue water drops, "WEAK!" tag -->
+  <!-- WATERY GHOST — translucent ghost-bean, dripping, faded brown, water trails -->
   <defs>
-    <pattern id="ht-weak" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="0.7" fill="#000" opacity="0.3"/>
-    </pattern>
+    <radialGradient id="wg-ghost" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#88bbee" stop-opacity="0.5"/>
+      <stop offset="0.5" stop-color="#b8a888" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#7a5034" stop-opacity="0.2"/>
+    </radialGradient>
   </defs>
-  <ellipse cx="64" cy="120" rx="40" ry="5" fill="#000" opacity="0.6"/>
-  <!-- floating water drops (the "watered down" idea made literal) -->
-  <path d="M 14 30 Q 18 38 18 42 Q 10 38 14 30 Z" fill="#88bbee" stroke="#000" stroke-width="3"/>
-  <path d="M 110 22 Q 114 30 114 34 Q 106 30 110 22 Z" fill="#88bbee" stroke="#000" stroke-width="3"/>
-  <path d="M 100 100 Q 104 108 104 112 Q 96 108 100 100 Z" fill="#88bbee" stroke="#000" stroke-width="3"/>
-  <!-- mug body — chunky outline -->
-  <path d="M 26 46 L 32 116 Q 32 122 38 122 L 90 122 Q 96 122 96 116 L 102 46 Z" fill="#fff" stroke="#000" stroke-width="5"/>
-  <!-- shadow on right -->
-  <path d="M 96 46 L 90 122 Q 96 122 96 116 Z" fill="url(#ht-weak)"/>
-  <!-- handle -->
-  <path d="M 96 60 Q 116 64 116 84 Q 116 104 96 104" fill="none" stroke="#000" stroke-width="5"/>
-  <!-- pale watery coffee inside -->
-  <path d="M 32 58 L 36 116 Q 36 120 40 120 L 88 120 Q 92 120 92 116 L 96 58 Z" fill="#dcc8a8"/>
-  <!-- water level / surface -->
-  <ellipse cx="64" cy="58" rx="32" ry="5" fill="#bca888" stroke="#000" stroke-width="3"/>
-  <!-- BIG water drop on top (literal "watered down") -->
-  <path d="M 64 4 Q 80 24 80 36 Q 80 50 64 50 Q 48 50 48 36 Q 48 24 64 4 Z" fill="#88bbee" stroke="#000" stroke-width="4"/>
-  <text x="64" y="34" text-anchor="middle" font-family="Impact, sans-serif" font-size="14" font-weight="bold" fill="#000">H₂O</text>
-  <!-- highlight on water drop -->
-  <ellipse cx="58" cy="22" rx="4" ry="8" fill="#fff" opacity="0.8"/>
-  <!-- sad face on cup -->
-  <circle cx="48" cy="84" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
-  <circle cx="80" cy="84" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
-  <circle cx="48" cy="86" r="2.5" fill="#000"/>
-  <circle cx="80" cy="86" r="2.5" fill="#000"/>
-  <path d="M 48 102 Q 64 96 80 102" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
-  <!-- WEAK! tag -->
-  <g transform="rotate(-12 16 116)">
-    <rect x="-2" y="106" width="42" height="18" fill="#c8302c" stroke="#000" stroke-width="3"/>
-    <text x="19" y="119" text-anchor="middle" font-family="Impact, sans-serif" font-size="12" fill="#fff">WEAK!</text>
-  </g>
+  <ellipse cx="64" cy="120" rx="32" ry="3" fill="#3d2817" opacity="0.25"/>
+  <!-- water drops floating around -->
+  <path d="M 16 24 Q 19 32 19 36 Q 13 32 16 24 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5" opacity="0.85"/>
+  <path d="M 110 18 Q 113 26 113 30 Q 107 26 110 18 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5" opacity="0.85"/>
+  <path d="M 14 80 Q 17 88 17 92 Q 11 88 14 80 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5" opacity="0.85"/>
+  <path d="M 112 90 Q 115 98 115 102 Q 109 98 112 90 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5" opacity="0.85"/>
+  <!-- GHOST BODY (bean-shaped but ghostly with wavy bottom) -->
+  <path d="M 36 36 Q 32 18 64 18 Q 96 18 92 36 L 96 78 Q 96 96 100 110 L 92 102 L 80 110 L 70 102 L 60 110 L 50 102 L 40 110 L 32 102 L 36 78 Z" fill="url(#wg-ghost)"/>
+  <!-- secondary translucent layer -->
+  <path d="M 40 40 Q 38 22 64 22 Q 90 22 88 40 L 90 78 L 86 90 L 78 84 L 68 90 L 60 84 L 52 90 L 42 84 L 38 90 L 40 78 Z" fill="#fff" opacity="0.25"/>
+  <!-- wispy ink outline (broken to feel ethereal) -->
+  <path d="M 36 36 Q 32 18 64 18 Q 96 18 92 36" fill="none" stroke="#3d2817" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M 92 38 L 96 78 Q 96 96 100 110" fill="none" stroke="#3d2817" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.7"/>
+  <path d="M 36 38 L 32 78 Q 32 96 28 110" fill="none" stroke="#3d2817" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.7"/>
+  <path d="M 100 110 L 92 102 L 80 110 L 70 102 L 60 110 L 50 102 L 40 110 L 32 102 L 28 110" fill="none" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- BEAN CREASE (faint, as if the bean is fading away) -->
+  <path d="M 64 22 Q 62 60 64 102" stroke="#3d2817" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+  <!-- HOLLOW SAD EYES (typical ghost eyes — empty black ovals) -->
+  <ellipse cx="50" cy="56" rx="5" ry="8" fill="#1a1108" opacity="0.85"/>
+  <ellipse cx="78" cy="56" rx="5" ry="8" fill="#1a1108" opacity="0.85"/>
+  <!-- subtle eye glow -->
+  <ellipse cx="51" cy="55" rx="1.5" ry="2" fill="#88bbee" opacity="0.6"/>
+  <ellipse cx="79" cy="55" rx="1.5" ry="2" fill="#88bbee" opacity="0.6"/>
+  <!-- droopy melancholy frown -->
+  <path d="M 48 78 Q 64 70 80 78" stroke="#1a1108" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- BIG TEAR DROP (it's crying water, fitting "watery") -->
+  <path d="M 50 64 Q 52 76 50 84 Q 48 76 50 64 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.2"/>
+  <path d="M 78 64 Q 80 76 78 84 Q 76 76 78 64 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- DRIPPING DROPS underneath -->
+  <path d="M 36 116 Q 38 122 36 126 Q 34 122 36 116 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5"/>
+  <path d="M 64 118 Q 66 124 64 128 Q 62 124 64 118 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5"/>
+  <path d="M 92 116 Q 94 122 92 126 Q 90 122 92 116 Z" fill="#88bbee" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- ghostly wisp coming off top -->
+  <path d="M 64 18 Q 62 8 68 4" stroke="#88bbee" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 64 18 Q 66 8 60 4" stroke="#88bbee" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
 </svg>

@@ -1,49 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <!-- SKIN-DEEP MILK — sad carton with HUGE crusty top, drips, microwave waves -->
+  <!-- THE SKIN WALKER — lumpy ambulating puddle of denatured milk skin (gross, sad, slow) -->
   <defs>
-    <pattern id="ht-milk" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="0.8" fill="#000" opacity="0.4"/>
-    </pattern>
+    <radialGradient id="sw-body" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#fff8e8"/>
+      <stop offset="0.7" stop-color="#d8c4a0" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#a8906c" stop-opacity="0.5"/>
+    </radialGradient>
+    <radialGradient id="sw-skin" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#c8a878"/>
+      <stop offset="1" stop-color="#7a5840" stop-opacity="0.85"/>
+    </radialGradient>
   </defs>
-  <ellipse cx="64" cy="124" rx="46" ry="5" fill="#000" opacity="0.6"/>
-  <!-- microwave radiation lines (it's been nuked) -->
-  <path d="M 6 50 Q 12 46 12 54" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
-  <path d="M 14 56 Q 20 52 20 60" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
-  <path d="M 122 50 Q 116 46 116 54" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
-  <path d="M 114 56 Q 108 52 108 60" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
-  <!-- carton body — flat cream -->
-  <path d="M 28 44 L 28 116 Q 28 122 34 122 L 94 122 Q 100 122 100 116 L 100 44 L 64 28 Z" fill="#fff8e8" stroke="#000" stroke-width="5"/>
-  <!-- top fold -->
-  <path d="M 28 44 L 64 28 L 100 44" fill="#e8d8b8" stroke="#000" stroke-width="5"/>
-  <line x1="64" y1="28" x2="64" y2="44" stroke="#000" stroke-width="3"/>
-  <!-- shadow side -->
-  <path d="M 100 44 L 100 116 Q 100 122 94 122 L 76 122 L 76 44 Z" fill="url(#ht-milk)"/>
-  <!-- HUGE crusty top (the gross feature) -->
-  <ellipse cx="64" cy="44" rx="32" ry="7" fill="#c8a878" stroke="#000" stroke-width="4"/>
-  <ellipse cx="64" cy="42" rx="26" ry="3" fill="#a08260"/>
-  <!-- crust chunks -->
-  <circle cx="44" cy="42" r="5" fill="#a08260" stroke="#000" stroke-width="2.5"/>
-  <circle cx="84" cy="42" r="4.5" fill="#a08260" stroke="#000" stroke-width="2.5"/>
-  <circle cx="64" cy="38" r="6" fill="#8b6f47" stroke="#000" stroke-width="2.5"/>
-  <circle cx="54" cy="44" r="3" fill="#5c4a30" stroke="#000" stroke-width="2"/>
-  <circle cx="74" cy="46" r="3" fill="#5c4a30" stroke="#000" stroke-width="2"/>
-  <!-- steam wisps -->
-  <path d="M 44 28 Q 38 16 44 4" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
-  <path d="M 64 24 Q 58 10 64 -2" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
-  <path d="M 84 28 Q 78 16 84 4" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
-  <!-- BIG MILK label -->
-  <rect x="36" y="62" width="56" height="22" fill="#fff" stroke="#000" stroke-width="4"/>
-  <text x="64" y="80" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="20" font-weight="900" fill="#000">MILK</text>
-  <!-- big sad eyes on carton -->
-  <circle cx="50" cy="98" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
-  <circle cx="78" cy="98" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
-  <circle cx="50" cy="100" r="2.5" fill="#000"/>
-  <circle cx="78" cy="100" r="2.5" fill="#000"/>
+  <ellipse cx="64" cy="118" rx="46" ry="5" fill="#3d2817" opacity="0.5"/>
+  <!-- floating heat squiggles -->
+  <path d="M 8 22 Q 12 14 8 8" stroke="#ff7733" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 120 28 Q 124 20 120 14" stroke="#ff7733" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- BODY: irregular puddle/blob shape — denatured milk -->
+  <path d="M 22 86 Q 18 70 28 60 Q 24 48 38 44 Q 36 30 50 32 Q 54 22 66 28 Q 76 22 86 30 Q 100 28 100 44 Q 110 50 106 64 Q 112 76 104 88 Q 110 102 96 108 Q 88 116 70 114 Q 56 118 44 112 Q 28 112 22 100 Q 16 92 22 86 Z" fill="url(#sw-body)"/>
+  <!-- ink outline (wobbly to feel organic) -->
+  <path d="M 22 86 Q 18 70 28 60 Q 24 48 38 44 Q 36 30 50 32 Q 54 22 66 28 Q 76 22 86 30 Q 100 28 100 44 Q 110 50 106 64 Q 112 76 104 88 Q 110 102 96 108 Q 88 116 70 114 Q 56 118 44 112 Q 28 112 22 100 Q 16 92 22 86 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- LUMPY SKIN CHUNKS hanging off (the gross feature) -->
+  <ellipse cx="38" cy="60" rx="9" ry="6" fill="url(#sw-skin)" stroke="#5c3a1c" stroke-width="1.5"/>
+  <ellipse cx="66" cy="50" rx="11" ry="7" fill="url(#sw-skin)" stroke="#5c3a1c" stroke-width="1.5"/>
+  <ellipse cx="92" cy="58" rx="9" ry="6" fill="url(#sw-skin)" stroke="#5c3a1c" stroke-width="1.5"/>
+  <ellipse cx="48" cy="84" rx="7" ry="5" fill="url(#sw-skin)" stroke="#5c3a1c" stroke-width="1.5"/>
+  <ellipse cx="84" cy="86" rx="8" ry="6" fill="url(#sw-skin)" stroke="#5c3a1c" stroke-width="1.5"/>
+  <!-- darker spots within skin chunks -->
+  <circle cx="38" cy="60" r="3" fill="#5c4a30" opacity="0.6"/>
+  <circle cx="66" cy="50" r="3.5" fill="#5c4a30" opacity="0.6"/>
+  <circle cx="92" cy="58" r="3" fill="#5c4a30" opacity="0.6"/>
+  <!-- SAD EYES (peering out from the puddle) -->
+  <ellipse cx="48" cy="74" rx="4" ry="5" fill="#fff" stroke="#1a1108" stroke-width="1.8"/>
+  <ellipse cx="80" cy="74" rx="4" ry="5" fill="#fff" stroke="#1a1108" stroke-width="1.8"/>
+  <ellipse cx="48" cy="76" rx="2" ry="2.5" fill="#1a1108"/>
+  <ellipse cx="80" cy="76" rx="2" ry="2.5" fill="#1a1108"/>
+  <!-- droopy tear under eye -->
+  <path d="M 48 80 Q 49 85 47 88 Q 46 84 48 80 Z" fill="#88bbee" stroke="#1a1108" stroke-width="1"/>
   <!-- frown -->
-  <path d="M 50 114 Q 64 108 78 114" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
-  <!-- tilted "RE-HEATED!" tag -->
-  <g transform="rotate(-10 14 110)">
-    <rect x="-2" y="100" width="50" height="16" fill="#ff7733" stroke="#000" stroke-width="3"/>
-    <text x="23" y="111" text-anchor="middle" font-family="Impact, sans-serif" font-size="10" fill="#000">RE-HEATED!</text>
-  </g>
+  <path d="M 54 100 Q 64 96 74 100" stroke="#1a1108" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- DRIPS hanging from underside (it's melting/reforming) -->
+  <path d="M 44 116 Q 46 122 44 126 Q 42 122 44 116 Z" fill="url(#sw-skin)" stroke="#3d2817" stroke-width="1.2"/>
+  <path d="M 64 118 Q 66 124 64 128 Q 62 124 64 118 Z" fill="url(#sw-skin)" stroke="#3d2817" stroke-width="1.2"/>
+  <path d="M 84 116 Q 86 122 84 126 Q 82 122 84 116 Z" fill="url(#sw-skin)" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- steam wisps from top -->
+  <path d="M 40 24 Q 36 16 42 8" stroke="#aaa" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 64 22 Q 60 12 66 4" stroke="#aaa" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 86 24 Q 82 16 88 8" stroke="#aaa" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
 </svg>

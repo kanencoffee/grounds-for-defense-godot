@@ -1,55 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <!-- SIR STALES-A-LOT — comic book style — bold outlines, flat colors, halftone shading, action pose -->
+  <!-- BEAN GRANDPA — hunched elderly anthropomorphic coffee bean with cane, monocle, white whiskers -->
   <defs>
-    <pattern id="halftone-dark" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
-      <circle cx="2.5" cy="2.5" r="1.2" fill="#1a1108" opacity="0.55"/>
-    </pattern>
-    <pattern id="halftone-mid" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-      <circle cx="3" cy="3" r="1.0" fill="#3d2817" opacity="0.4"/>
-    </pattern>
+    <radialGradient id="bg-bean" cx="0.4" cy="0.4">
+      <stop offset="0" stop-color="#a87a52"/>
+      <stop offset="1" stop-color="#5c3a1c" stop-opacity="0.85"/>
+    </radialGradient>
   </defs>
-  <!-- floor shadow -->
-  <ellipse cx="64" cy="120" rx="40" ry="4" fill="#000" opacity="0.6"/>
-  <!-- motion lines (action pose feel) -->
-  <line x1="6" y1="44" x2="20" y2="42" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-  <line x1="4" y1="64" x2="18" y2="62" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-  <line x1="6" y1="84" x2="20" y2="82" stroke="#000" stroke-width="3" stroke-linecap="round"/>
-  <!-- bean body — flat color base -->
-  <ellipse cx="64" cy="68" rx="44" ry="48" fill="#9a7a52" stroke="#000" stroke-width="5"/>
-  <!-- shadow side (flat darker color, no gradient) -->
-  <path d="M 64 22 Q 90 22 106 60 Q 110 80 100 100 Q 90 116 64 116 Q 64 22 64 22 Z" fill="#5c3d20"/>
-  <!-- halftone dot shading on the shadow side -->
-  <path d="M 64 22 Q 90 22 106 60 Q 110 80 100 100 Q 90 116 64 116 Q 64 22 64 22 Z" fill="url(#halftone-dark)"/>
-  <!-- highlight side (flat lighter) -->
-  <ellipse cx="44" cy="50" rx="14" ry="20" fill="#c8a878"/>
-  <!-- bold center crease -->
-  <path d="M 64 22 Q 56 68 64 114" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/>
-  <!-- mold spot 1 — comic-flat green -->
-  <circle cx="86" cy="86" r="9" fill="#5a8a3a" stroke="#000" stroke-width="3"/>
-  <circle cx="84" cy="84" r="3" fill="#1a4818"/>
-  <!-- mold spot 2 -->
-  <circle cx="38" cy="92" r="6" fill="#5a8a3a" stroke="#000" stroke-width="3"/>
-  <circle cx="38" cy="92" r="2" fill="#1a4818"/>
-  <!-- big angry-tired comic eyes -->
-  <ellipse cx="44" cy="68" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="4"/>
-  <ellipse cx="84" cy="68" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="4"/>
-  <circle cx="44" cy="72" r="5" fill="#000"/>
-  <circle cx="84" cy="72" r="5" fill="#000"/>
-  <circle cx="46" cy="70" r="2" fill="#fff"/>
-  <circle cx="86" cy="70" r="2" fill="#fff"/>
-  <!-- droopy bushy eyebrows -->
-  <path d="M 30 56 Q 38 58 50 62 L 52 64 L 50 60 Q 38 54 30 56 Z" fill="#1a1108"/>
-  <path d="M 78 64 Q 90 58 98 56 Q 90 54 78 60 L 76 64 Z" fill="#1a1108"/>
-  <!-- frown -->
-  <path d="M 42 96 Q 64 88 86 96 Q 64 94 42 96 Z" fill="#000"/>
-  <!-- speech burst with the WORD -->
-  <g transform="translate(82 8)">
-    <polygon points="0,12 6,4 14,8 22,2 28,12 34,4 38,12 32,18 38,22 30,26 34,32 24,28 18,34 12,28 4,32 6,22 -2,18" fill="#ffd24a" stroke="#000" stroke-width="3"/>
-    <text x="18" y="22" text-anchor="middle" font-family="Impact, sans-serif" font-size="10" font-weight="bold" fill="#000">STALE!</text>
+  <ellipse cx="64" cy="120" rx="32" ry="3" fill="#3d2817" opacity="0.4"/>
+  <!-- floating dust + cobweb -->
+  <g stroke="#a89878" stroke-width="0.5" fill="none" opacity="0.6">
+    <line x1="6" y1="6" x2="22" y2="22"/>
+    <line x1="6" y1="6" x2="14" y2="20"/>
+    <line x1="6" y1="6" x2="18" y2="10"/>
+    <path d="M 10 10 Q 14 12 16 16" stroke="#a89878" fill="#a89878"/>
   </g>
-  <!-- date stamp tag (comic style) -->
-  <g transform="rotate(-12 28 110)">
-    <rect x="8" y="100" width="40" height="16" fill="#c8302c" stroke="#000" stroke-width="3"/>
-    <text x="28" y="111" text-anchor="middle" font-family="Impact, sans-serif" font-size="9" fill="#fff">2-YR-OLD</text>
-  </g>
+  <circle cx="14" cy="32" r="1" fill="#a89878" opacity="0.6"/>
+  <circle cx="116" cy="40" r="1.2" fill="#a89878" opacity="0.6"/>
+  <!-- WALKING CANE (slightly behind body) -->
+  <line x1="92" y1="56" x2="100" y2="118" stroke="#5c3a1c" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="91" cy="55" r="4" fill="#d4a574" stroke="#3d2817" stroke-width="2"/>
+  <!-- HUNCHED bean body (tilted forward, smaller upper) -->
+  <path d="M 38 44 Q 32 32 50 28 Q 70 26 84 36 Q 92 42 88 60 Q 88 88 76 102 Q 60 110 44 102 Q 32 88 32 70 Q 32 54 38 44 Z" fill="url(#bg-bean)"/>
+  <path d="M 38 44 Q 32 32 50 28 Q 70 26 84 36 Q 92 42 88 60 Q 88 88 76 102 Q 60 110 44 102 Q 32 88 32 70 Q 32 54 38 44 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- bean center crease (curved with body posture) -->
+  <path d="M 56 28 Q 48 64 58 104" stroke="#3d2817" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- bald spot on top with wispy hair -->
+  <ellipse cx="56" cy="34" rx="14" ry="6" fill="#9a7252" opacity="0.7"/>
+  <path d="M 44 32 Q 40 28 42 24" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 70 32 Q 74 28 72 24" stroke="#fff" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <!-- BUSHY WHITE EYEBROWS -->
+  <ellipse cx="44" cy="50" rx="7" ry="3" fill="#e8e8e8" stroke="#5c3a1c" stroke-width="1.2"/>
+  <ellipse cx="68" cy="50" rx="7" ry="3" fill="#e8e8e8" stroke="#5c3a1c" stroke-width="1.2"/>
+  <!-- eyes (squinty old) -->
+  <path d="M 40 58 Q 44 60 48 58" stroke="#1a1108" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="68" cy="58" rx="3" ry="2.5" fill="#fff" stroke="#1a1108" stroke-width="1.5"/>
+  <ellipse cx="68" cy="58" rx="1.5" ry="1.5" fill="#1a1108"/>
+  <!-- MONOCLE on right eye -->
+  <circle cx="68" cy="58" r="6" fill="#fff" fill-opacity="0.15" stroke="#d8a830" stroke-width="2"/>
+  <line x1="74" y1="60" x2="80" y2="68" stroke="#d8a830" stroke-width="1.5"/>
+  <!-- WHITE BEARD/WHISKERS -->
+  <path d="M 36 76 Q 40 96 60 100 Q 80 96 80 76 Q 76 90 60 92 Q 44 90 36 76 Z" fill="#e8e8e8" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- mustache -->
+  <path d="M 44 72 Q 56 76 58 74 Q 60 76 72 72 Q 68 80 58 80 Q 48 80 44 72 Z" fill="#e8e8e8" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- frowning mouth in beard -->
+  <path d="M 50 84 Q 58 82 66 84" stroke="#1a1108" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- BOW TIE under beard (formal old man) -->
+  <path d="M 50 96 L 46 90 L 46 102 L 50 96 L 46 108 L 46 102 Z" fill="#3a2848" stroke="#1a1108" stroke-width="1"/>
+  <path d="M 66 96 L 70 90 L 70 102 L 66 96 L 70 108 L 70 102 Z" fill="#3a2848" stroke="#1a1108" stroke-width="1"/>
+  <rect x="56" y="92" width="6" height="8" fill="#1a1828" stroke="#1a1108" stroke-width="1"/>
+  <!-- "Z" sleepy mark (he keeps dozing) -->
+  <text x="100" y="20" font-family="serif" font-size="14" font-style="italic" fill="#3d2817" opacity="0.6">z</text>
+  <text x="106" y="32" font-family="serif" font-size="10" font-style="italic" fill="#3d2817" opacity="0.5">z</text>
 </svg>

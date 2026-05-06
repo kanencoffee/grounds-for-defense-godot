@@ -1,42 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
-  <!-- THEO — bearded indie barista; black-frame glasses, curly hair, cream sweater, forearm tattoo peek -->
+  <!-- THEO — bearded barista, sharper jaw + cheekbones, fitted henley showing chest, bicep hint -->
   <defs>
-    <radialGradient id="t-page" cx="0.5" cy="0.4">
-      <stop offset="0" stop-color="#fffaf0"/>
-      <stop offset="1" stop-color="#f0dcb8" stop-opacity="0"/>
-    </radialGradient>
     <radialGradient id="t-skin" cx="0.4" cy="0.4">
       <stop offset="0" stop-color="#e8c090"/>
-      <stop offset="1" stop-color="#b8865a" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#a87852" stop-opacity="0.9"/>
     </radialGradient>
-    <radialGradient id="t-sweater" cx="0.5" cy="0.4">
-      <stop offset="0" stop-color="#f0e0c0"/>
-      <stop offset="1" stop-color="#a08868" stop-opacity="0.7"/>
+    <radialGradient id="t-shirt" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#3a4a4a"/>
+      <stop offset="1" stop-color="#1a2a2a" stop-opacity="0.85"/>
     </radialGradient>
   </defs>
-  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#t-page)"/>
-  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#3d2817" opacity="0.3"/>
-  <!-- chunky sweater body -->
-  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="url(#t-sweater)"/>
-  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
-  <!-- subtle pec/chest definition -->
-  <path d="M 96 116 L 96 144" stroke="#7a5a30" stroke-width="1.2" opacity="0.5"/>
-  <path d="M 76 134 Q 86 144 96 144 Q 106 144 116 134" fill="none" stroke="#7a5a30" stroke-width="1.2" opacity="0.5"/>
-  <!-- cable knit -->
-  <path d="M 56 130 L 50 215 M 138 130 L 144 215" stroke="#8b7050" stroke-width="1.2" fill="none" opacity="0.5"/>
-  <!-- v-neck collar -->
-  <path d="M 78 92 L 96 116 L 114 92" fill="none" stroke="#3d2817" stroke-width="1.8"/>
-  <!-- arms -->
-  <ellipse cx="44" cy="148" rx="14" ry="34" fill="url(#t-sweater)" stroke="#3d2817" stroke-width="1.8"/>
-  <ellipse cx="148" cy="148" rx="14" ry="34" fill="url(#t-sweater)" stroke="#3d2817" stroke-width="1.8"/>
-  <!-- forearm peeking from sleeve (skin + tattoo) -->
-  <ellipse cx="148" cy="190" rx="12" ry="14" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.8"/>
-  <!-- coffee bean tattoo on forearm -->
-  <ellipse cx="146" cy="186" rx="3" ry="3.5" fill="#1a1108"/>
-  <path d="M 146 183 Q 145 186 146 189" stroke="#5c3a1c" stroke-width="0.6" fill="none"/>
-  <ellipse cx="152" cy="194" rx="2" ry="2.5" fill="#1a1108" opacity="0.7"/>
-  <!-- left hand with mug -->
-  <circle cx="48" cy="178" r="11" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#3d2817" opacity="0.35"/>
+  <!-- fitted dark henley (broader shoulders, tapered waist) -->
+  <path d="M 38 122 Q 30 168 32 200 L 28 222 L 164 222 L 160 200 Q 162 168 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="url(#t-shirt)"/>
+  <path d="M 38 122 Q 30 168 32 200 L 28 222 L 164 222 L 160 200 Q 162 168 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- DEFINED PEC LINE -->
+  <path d="M 96 116 L 96 152" stroke="#0a1a1a" stroke-width="1.8" opacity="0.85"/>
+  <path d="M 70 132 Q 86 152 96 152 Q 106 152 122 132" fill="none" stroke="#0a1a1a" stroke-width="1.8" opacity="0.7"/>
+  <!-- chest swell wash -->
+  <path d="M 68 128 Q 80 140 96 138 Q 112 140 124 128" fill="#1a3a3a" opacity="0.4"/>
+  <!-- waist tapered hint -->
+  <path d="M 50 175 Q 96 180 142 175" fill="none" stroke="#0a1a1a" stroke-width="1.2" opacity="0.5"/>
+  <!-- HENLEY BUTTON PLACKET (V opening at top) -->
+  <path d="M 88 92 L 88 130 L 104 130 L 104 92" fill="#5a6a6a" stroke="#0a1a1a" stroke-width="1.5"/>
+  <circle cx="96" cy="106" r="1.5" fill="#0a1a1a"/>
+  <circle cx="96" cy="120" r="1.5" fill="#0a1a1a"/>
+  <!-- chest hair / skin showing in V -->
+  <path d="M 88 92 L 96 110 L 104 92" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- arms (defined biceps) -->
+  <path d="M 32 130 Q 28 152 38 174 Q 52 178 56 156 Q 60 132 56 122 Z" fill="url(#t-shirt)" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 160 130 Q 164 152 154 174 Q 140 178 136 156 Q 132 132 136 122 Z" fill="url(#t-shirt)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- bicep contour -->
+  <path d="M 36 144 Q 44 152 50 144" fill="none" stroke="#0a1a1a" stroke-width="1.2" opacity="0.6"/>
+  <path d="M 156 144 Q 148 152 142 144" fill="none" stroke="#0a1a1a" stroke-width="1.2" opacity="0.6"/>
+  <!-- forearm exposed, with TATTOO -->
+  <ellipse cx="42" cy="190" rx="11" ry="14" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="150" cy="190" rx="11" ry="14" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- coffee bean tattoo on right forearm (visible) -->
+  <ellipse cx="148" cy="186" rx="3.5" ry="4" fill="#1a1108"/>
+  <path d="M 148 182 Q 146 186 148 190" stroke="#5c3a1c" stroke-width="0.7" fill="none"/>
+  <ellipse cx="154" cy="194" rx="2.5" ry="3" fill="#1a1108" opacity="0.7"/>
+  <!-- hand holding mug -->
+  <circle cx="46" cy="206" r="11" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="146" cy="208" r="11" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
   <!-- mug -->
   <path d="M 56 158 L 62 192 Q 62 198 68 198 L 96 198 Q 102 198 102 192 L 108 158 Z" fill="#fff8e8" stroke="#3d2817" stroke-width="1.8"/>
   <ellipse cx="82" cy="158" rx="26" ry="4" fill="#5c3a1c" stroke="#3d2817" stroke-width="1.5"/>
@@ -44,38 +50,51 @@
   <path d="M 108 168 Q 122 172 122 180 Q 122 188 108 188" fill="none" stroke="#3d2817" stroke-width="1.8"/>
   <path d="M 70 152 Q 66 144 72 136" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
   <path d="M 88 150 Q 84 140 90 132" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
-  <!-- neck -->
-  <rect x="84" y="76" width="24" height="22" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.8"/>
-  <!-- head — warm olive skin -->
-  <circle cx="96" cy="56" r="32" fill="url(#t-skin)" stroke="#3d2817" stroke-width="2"/>
-  <ellipse cx="64" cy="56" rx="5" ry="8" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
-  <ellipse cx="128" cy="56" rx="5" ry="8" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
-  <!-- thick curly dark hair (tied back hint) -->
-  <path d="M 64 50 Q 56 12 96 10 Q 138 12 128 50 Q 124 28 110 22 Q 96 20 82 22 Q 68 28 64 50 Z" fill="#2a1808" stroke="#3d2817" stroke-width="2"/>
-  <!-- curly hair tufts -->
-  <circle cx="76" cy="20" r="4" fill="#2a1808" stroke="#3d2817" stroke-width="1.5"/>
-  <circle cx="96" cy="14" r="5" fill="#2a1808" stroke="#3d2817" stroke-width="1.5"/>
-  <circle cx="116" cy="20" r="4" fill="#2a1808" stroke="#3d2817" stroke-width="1.5"/>
-  <circle cx="86" cy="16" r="3" fill="#2a1808" stroke="#3d2817" stroke-width="1"/>
-  <circle cx="106" cy="16" r="3" fill="#2a1808" stroke="#3d2817" stroke-width="1"/>
-  <!-- THICK BLACK FRAME GLASSES -->
-  <rect x="68" y="50" width="22" height="18" rx="3" fill="#fff" fill-opacity="0.1" stroke="#1a1108" stroke-width="3"/>
-  <rect x="102" y="50" width="22" height="18" rx="3" fill="#fff" fill-opacity="0.1" stroke="#1a1108" stroke-width="3"/>
-  <line x1="90" y1="58" x2="102" y2="58" stroke="#1a1108" stroke-width="3"/>
-  <!-- eyes -->
-  <circle cx="79" cy="60" r="2.5" fill="#3d2817"/>
-  <circle cx="113" cy="60" r="2.5" fill="#3d2817"/>
-  <circle cx="80" cy="59" r="0.8" fill="#fff"/>
-  <circle cx="114" cy="59" r="0.8" fill="#fff"/>
-  <!-- nose -->
-  <path d="M 96 70 Q 92 80 96 84 Q 100 80 96 70 Z" fill="#a86848" stroke="#3d2817" stroke-width="1.2"/>
-  <!-- FULL BEARD (the iconic feature) -->
-  <path d="M 70 78 Q 70 100 96 102 Q 122 100 122 78 Q 118 90 96 92 Q 74 90 70 78 Z" fill="#2a1808" stroke="#3d2817" stroke-width="2"/>
-  <!-- mustache -->
-  <path d="M 78 78 Q 88 82 96 80 Q 104 82 114 78 Q 110 86 96 86 Q 82 86 78 78 Z" fill="#2a1808" stroke="#3d2817" stroke-width="1.5"/>
-  <!-- visible warm smile in beard -->
-  <path d="M 88 88 Q 96 92 104 88" stroke="#5c2818" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- cheek glow -->
-  <ellipse cx="74" cy="68" rx="5" ry="3" fill="#d86060" opacity="0.35"/>
-  <ellipse cx="118" cy="68" rx="5" ry="3" fill="#d86060" opacity="0.35"/>
+  <!-- thick muscular neck -->
+  <path d="M 80 76 L 78 96 Q 96 110 114 96 L 112 76 Z" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- adam's apple / collarbone hint -->
+  <path d="M 96 88 L 96 96" stroke="#3d2817" stroke-width="0.6" opacity="0.5"/>
+  <!-- DEFINED jaw + cheekbones, head shape -->
+  <path d="M 60 56 Q 56 28 80 22 Q 96 18 112 22 Q 136 28 132 56 Q 132 70 124 80 Q 116 90 96 92 Q 76 90 68 80 Q 60 70 60 56 Z" fill="url(#t-skin)" stroke="#3d2817" stroke-width="2"/>
+  <ellipse cx="60" cy="58" rx="4" ry="7" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="132" cy="58" rx="4" ry="7" fill="url(#t-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- cheekbones -->
+  <path d="M 68 64 Q 74 70 76 76" stroke="#7a4830" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <path d="M 124 64 Q 118 70 116 76" stroke="#7a4830" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <!-- thick curly hair, side-swept -->
+  <path d="M 60 50 Q 50 8 96 8 Q 142 8 132 50 Q 138 30 122 22 Q 96 18 70 22 Q 54 30 60 50 Z" fill="#1a0808" stroke="#3d2817" stroke-width="2"/>
+  <!-- voluminous curls -->
+  <circle cx="74" cy="14" r="6" fill="#1a0808" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="92" cy="6" r="7" fill="#1a0808" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="110" cy="10" r="6" fill="#1a0808" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="124" cy="20" r="5" fill="#1a0808" stroke="#3d2817" stroke-width="1.2"/>
+  <circle cx="64" cy="28" r="4" fill="#1a0808" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- BOLD black square frame glasses -->
+  <rect x="64" y="50" width="22" height="18" rx="3" fill="#fff" fill-opacity="0.08" stroke="#1a1108" stroke-width="3"/>
+  <rect x="106" y="50" width="22" height="18" rx="3" fill="#fff" fill-opacity="0.08" stroke="#1a1108" stroke-width="3"/>
+  <line x1="86" y1="58" x2="106" y2="58" stroke="#1a1108" stroke-width="3"/>
+  <!-- intense focused eyes -->
+  <circle cx="75" cy="60" r="2.5" fill="#3d2817"/>
+  <circle cx="117" cy="60" r="2.5" fill="#3d2817"/>
+  <circle cx="76" cy="59" r="0.9" fill="#fff"/>
+  <circle cx="118" cy="59" r="0.9" fill="#fff"/>
+  <!-- sharp dark brows above glasses -->
+  <path d="M 64 46 Q 76 42 88 46" stroke="#1a0808" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 104 46 Q 116 42 128 46" stroke="#1a0808" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- nose with bridge definition -->
+  <path d="M 96 70 Q 91 80 96 84 Q 101 80 96 70 Z" fill="#a86848" stroke="#3d2817" stroke-width="1.2"/>
+  <path d="M 92 78 Q 96 82 100 78" stroke="#7a4830" stroke-width="0.8" fill="none" opacity="0.5"/>
+  <!-- WELL-GROOMED FULL BEARD (sculpted) -->
+  <path d="M 64 78 Q 64 102 80 108 Q 96 110 112 108 Q 128 102 128 78 Q 124 92 96 96 Q 68 92 64 78 Z" fill="#1a0808" stroke="#3d2817" stroke-width="2"/>
+  <!-- mustache (defined) -->
+  <path d="M 78 80 Q 88 84 96 82 Q 104 84 114 80 Q 110 90 96 90 Q 82 90 78 80 Z" fill="#1a0808" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- subtle distinguished grey accent -->
+  <path d="M 76 96 Q 78 100 80 104" stroke="#888" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- confident smirk in beard -->
+  <path d="M 86 92 Q 96 96 110 92" stroke="#3d1818" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- slight smirk lift -->
+  <path d="M 108 92 L 112 88" stroke="#3d1818" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- cheek warmth -->
+  <ellipse cx="72" cy="72" rx="5" ry="3" fill="#a83040" opacity="0.35"/>
+  <ellipse cx="120" cy="72" rx="5" ry="3" fill="#a83040" opacity="0.35"/>
 </svg>
