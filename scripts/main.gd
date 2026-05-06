@@ -281,45 +281,29 @@ func _render_cutscene_panel():
 	var panel_bottom = float(H)/2 - 30 + (panel_h * s)/2
 	var panel_center_x = float(W)/2
 	if p.has("caption"):
-		var cap_lbl = Label.new()
-		cap_lbl.text = p.caption
-		cap_lbl.add_theme_font_size_override("font_size", 36)
-		cap_lbl.add_theme_color_override("font_color", Color(0.05, 0.02, 0.0))
-		cap_lbl.add_theme_color_override("font_outline_color", Color(1, 0.94, 0.78))
-		cap_lbl.add_theme_constant_override("outline_size", 8)
-		cap_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		cap_lbl.size = Vector2(W, 50)
-		cap_lbl.position = Vector2(0, panel_top + 30)
-		cap_lbl.set_meta("is_caption", true)
-		cutscene_layer.add_child(cap_lbl)
-		_animate_caption(cap_lbl)
+		var box = _make_caption_box(p.caption, 28, Color(1, 0.94, 0.78), Color(0.05, 0.02, 0.0), Color(0, 0, 0))
+		# Top-center
+		box.set_meta("is_caption", true)
+		cutscene_layer.add_child(box)
+		var box_w = box.size.x
+		box.position = Vector2((W - box_w)/2.0, panel_top + 24)
+		_animate_caption_box(box)
 	if p.has("big_text"):
-		var big_lbl = Label.new()
-		big_lbl.text = p.big_text
-		big_lbl.add_theme_font_size_override("font_size", 76)
-		big_lbl.add_theme_color_override("font_color", Color(0.95, 0.15, 0.2))
-		big_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.02, 0.0))
-		big_lbl.add_theme_constant_override("outline_size", 10)
-		big_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		big_lbl.size = Vector2(W, 90)
-		big_lbl.position = Vector2(0, panel_top + 60)
-		big_lbl.set_meta("is_caption", true)
-		big_lbl.rotation = -0.05
-		cutscene_layer.add_child(big_lbl)
-		_animate_caption(big_lbl, true)
+		var big_box = _make_caption_box(p.big_text, 56, Color(1, 0.85, 0.2), Color(0.85, 0.1, 0.15), Color(0, 0, 0))
+		big_box.set_meta("is_caption", true)
+		big_box.rotation = -0.05
+		cutscene_layer.add_child(big_box)
+		var bw = big_box.size.x
+		big_box.position = Vector2((W - bw)/2.0, panel_top + 70)
+		_animate_caption_box(big_box, true)
 	if p.has("sub_text"):
-		var sub_lbl = Label.new()
-		sub_lbl.text = p.sub_text
-		sub_lbl.add_theme_font_size_override("font_size", 56)
-		sub_lbl.add_theme_color_override("font_color", Color(0.05, 0.02, 0.0))
-		sub_lbl.add_theme_color_override("font_outline_color", Color(1, 0.85, 0.3))
-		sub_lbl.add_theme_constant_override("outline_size", 8)
-		sub_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		sub_lbl.size = Vector2(W, 70)
-		sub_lbl.position = Vector2(0, panel_top + 150)
-		sub_lbl.set_meta("is_caption", true)
-		cutscene_layer.add_child(sub_lbl)
-		_animate_caption(sub_lbl, true, 0.15)
+		var sub_box = _make_caption_box(p.sub_text, 44, Color(1, 0.94, 0.78), Color(0.05, 0.02, 0.0), Color(0, 0, 0))
+		sub_box.set_meta("is_caption", true)
+		sub_box.rotation = 0.04
+		cutscene_layer.add_child(sub_box)
+		var sw = sub_box.size.x
+		sub_box.position = Vector2((W - sw)/2.0, panel_top + 165)
+		_animate_caption_box(sub_box, true, 0.15)
 	# Play sting (audio context already primed by start gate)
 	if p.has("sting"):
 		Sfx.play(p.sting)
@@ -344,6 +328,47 @@ func _animate_caption(lbl: Label, punchy := false, delay := 0.0):
 	if punchy:
 		tw.parallel().tween_property(lbl, "scale", Vector2(1.1, 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		tw.tween_property(lbl, "scale", Vector2(1.0, 1.0), 0.12)
+
+# Comic caption box: solid fill + thick black border + bold text inside
+func _make_caption_box(text: String, font_size: int, bg: Color, fg: Color, border: Color) -> PanelContainer:
+	var pc = PanelContainer.new()
+	var sb = StyleBoxFlat.new()
+	sb.bg_color = bg
+	sb.border_color = border
+	sb.border_width_left = 5
+	sb.border_width_right = 5
+	sb.border_width_top = 5
+	sb.border_width_bottom = 5
+	sb.content_margin_left = 22
+	sb.content_margin_right = 22
+	sb.content_margin_top = 12
+	sb.content_margin_bottom = 12
+	sb.shadow_color = Color(0, 0, 0, 0.6)
+	sb.shadow_size = 6
+	sb.shadow_offset = Vector2(4, 4)
+	pc.add_theme_stylebox_override("panel", sb)
+	var lbl = Label.new()
+	lbl.text = text
+	lbl.add_theme_font_size_override("font_size", font_size)
+	lbl.add_theme_color_override("font_color", fg)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	pc.add_child(lbl)
+	# Force compute desired size
+	pc.reset_size()
+	return pc
+
+func _animate_caption_box(box: PanelContainer, punchy := false, delay := 0.0):
+	box.modulate.a = 0.0
+	box.pivot_offset = box.size / 2.0
+	if punchy:
+		box.scale = Vector2(0.5, 0.5)
+	var tw = create_tween()
+	if delay > 0:
+		tw.tween_interval(delay)
+	tw.tween_property(box, "modulate:a", 1.0, 0.3)
+	if punchy:
+		tw.parallel().tween_property(box, "scale", Vector2(1.1, 1.1), 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(box, "scale", Vector2(1.0, 1.0), 0.12)
 
 func _advance_cutscene():
 	if not is_instance_valid(cutscene_layer):
