@@ -13,11 +13,8 @@
     <polygon points="-340,0 -260,-60 -200,-140 -100,-100 -40,-200 40,-200 100,-100 200,-140 260,-60 340,0 260,60 200,140 100,100 40,200 -40,200 -100,100 -200,140 -260,60" fill="#ffd24a" stroke="#000" stroke-width="8"/>
     <polygon points="-260,0 -200,-50 -140,-110 -70,-80 -30,-150 30,-150 70,-80 140,-110 200,-50 260,0 200,50 140,110 70,80 30,150 -30,150 -70,80 -140,110 -200,50" fill="#ee2233" stroke="#000" stroke-width="6"/>
     <!-- "GROUNDS" -->
-    <text x="0" y="-22" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="68" font-weight="900" fill="#fff" stroke="#000" stroke-width="3">GROUNDS</text>
     <!-- "FOR DEFENSE" -->
-    <text x="0" y="40" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="48" font-weight="900" fill="#000">FOR DEFENSE</text>
     <!-- subtitle -->
-    <text x="0" y="80" text-anchor="middle" font-family="Impact, sans-serif" font-size="18" fill="#fff">DEFEND YOUR CUP</text>
   </g>
   <!-- coffee bean accents in corners -->
   <ellipse cx="80" cy="80" rx="40" ry="44" fill="#5c3a1c" stroke="#000" stroke-width="5"/>

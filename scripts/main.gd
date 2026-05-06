@@ -175,22 +175,84 @@ func _show_start_gate():
 	cr.position = Vector2(0, H - 40)
 	layer.add_child(cr)
 	btn.pressed.connect(func():
-		# Prime audio + start cutscene
 		Sfx.play("place")
 		layer.queue_free()
-		_show_cutscene([
-			{"sprite":"cutscene-1.svg", "sting":"sting_intro", "duration":3.5,
-				"caption":"ANOTHER MORNING..."},
-			{"sprite":"cutscene-2.svg", "sting":"sting_tense", "duration":3.5,
-				"caption":"BUT SOMETHING'S WRONG..."},
-			{"sprite":"cutscene-3.svg", "sting":"sting_reveal", "duration":3.8,
-				"big_text":"BAD COFFEE", "sub_text":"INVASION!"},
-			{"sprite":"cutscene-4.svg", "sting":"sting_hero", "duration":3.5,
-				"big_text":"DEFEND", "sub_text":"YOUR CUP!"},
-			{"sprite":"cutscene-5.svg", "sting":"waveStart", "duration":3.0,
-				"big_text":"GROUNDS FOR", "sub_text":"DEFENSE"},
-		], _show_briefing)
+		_show_character_select()
 	)
+
+func _show_character_select():
+	var layer = CanvasLayer.new()
+	layer.layer = 115
+	add_child(layer)
+	var bg = ColorRect.new()
+	bg.color = Color(0.08, 0.05, 0.03, 1)
+	bg.size = Vector2(W, H)
+	layer.add_child(bg)
+	var header = Label.new()
+	header.text = "CHOOSE YOUR COFFEE GEEK"
+	header.add_theme_font_size_override("font_size", 38)
+	header.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+	header.add_theme_color_override("font_outline_color", Color(0, 0, 0))
+	header.add_theme_constant_override("outline_size", 5)
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.size = Vector2(W, 50)
+	header.position = Vector2(0, 60)
+	layer.add_child(header)
+	var sub = Label.new()
+	sub.text = "Same game either way."
+	sub.add_theme_font_size_override("font_size", 16)
+	sub.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	sub.size = Vector2(W, 24)
+	sub.position = Vector2(0, 120)
+	layer.add_child(sub)
+	# Two character cards side-by-side
+	var card_w = 380.0
+	var card_h = 480.0
+	var gap = 60.0
+	var total_w = card_w * 2 + gap
+	var start_x = (float(W) - total_w) / 2.0
+	for i in 2:
+		var key = "male" if i == 0 else "female"
+		var label_text = "MALE" if i == 0 else "FEMALE"
+		var x = start_x + i * (card_w + gap)
+		var card = Button.new()
+		card.size = Vector2(card_w, card_h)
+		card.position = Vector2(x, 170)
+		layer.add_child(card)
+		var preview = Sprite2D.new()
+		preview.texture = textures.get("person-" + key + ".svg")
+		preview.position = Vector2(card_w/2, 220)
+		preview.scale = Vector2(1.3, 1.3)
+		preview.mouse_filter = Control.MOUSE_FILTER_IGNORE if preview.has_method("set_mouse_filter") else 0
+		card.add_child(preview)
+		var name_lbl = Label.new()
+		name_lbl.text = label_text
+		name_lbl.add_theme_font_size_override("font_size", 28)
+		name_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+		name_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		name_lbl.size = Vector2(card_w, 40)
+		name_lbl.position = Vector2(0, card_h - 60)
+		card.add_child(name_lbl)
+		card.pressed.connect(func():
+			character_id = key
+			Sfx.play("place")
+			layer.queue_free()
+			if is_instance_valid(person_sprite):
+				person_sprite.texture = textures.get(_person_key("idle"))
+			_show_cutscene([
+				{"sprite":"cutscene-1.svg", "sting":"sting_intro", "duration":3.5,
+					"caption":"ANOTHER MORNING..."},
+				{"sprite":"cutscene-2.svg", "sting":"sting_tense", "duration":3.5,
+					"caption":"BUT SOMETHING'S WRONG..."},
+				{"sprite":"cutscene-3.svg", "sting":"sting_reveal", "duration":3.8,
+					"big_text":"BAD COFFEE", "sub_text":"INVASION!"},
+				{"sprite":"cutscene-4.svg", "sting":"sting_hero", "duration":3.5,
+					"big_text":"DEFEND", "sub_text":"YOUR CUP!"},
+				{"sprite":"cutscene-5.svg", "sting":"waveStart", "duration":3.0,
+					"big_text":"GROUNDS FOR", "sub_text":"DEFENSE"},
+			], _show_briefing)
+		)
 
 var briefing_pages: Array = []
 var briefing_idx: int = 0
@@ -930,6 +992,12 @@ func _load_textures():
 	keys.append("person.svg")
 	keys.append("person-sip.svg")
 	keys.append("person-yuck.svg")
+	keys.append("person-male.svg")
+	keys.append("person-male-sip.svg")
+	keys.append("person-male-yuck.svg")
+	keys.append("person-female.svg")
+	keys.append("person-female-sip.svg")
+	keys.append("person-female-yuck.svg")
 	keys.append("comic-burst.svg")
 	keys.append("cutscene-1.svg")
 	keys.append("cutscene-2.svg")
@@ -980,10 +1048,18 @@ func _draw():
 
 var person_sprite: Sprite2D
 var person_busy := false  # true while showing sip or yuck
+var character_id := "male"  # "male" or "female"
+
+func _person_key(state: String) -> String:
+	# state in {"idle", "sip", "yuck"} → returns the sprite filename for the chosen character
+	var suffix = ""
+	if state == "sip": suffix = "-sip"
+	elif state == "yuck": suffix = "-yuck"
+	return "person-" + character_id + suffix + ".svg"
 
 func _build_barista():
 	person_sprite = Sprite2D.new()
-	person_sprite.texture = textures.get("person.svg")
+	person_sprite.texture = textures.get(_person_key("idle"))
 	person_sprite.position = PATH_PTS[PATH_PTS.size()-1] + Vector2(-110, -80)
 	person_sprite.scale = Vector2(1.0, 1.0)
 	add_child(person_sprite)
@@ -1007,7 +1083,7 @@ func _play_idle_sip():
 		_schedule_idle_sip()
 		return
 	person_busy = true
-	person_sprite.texture = textures.get("person-sip.svg")
+	person_sprite.texture = textures.get(_person_key("sip"))
 	# small content scale-up
 	var tw = create_tween()
 	tw.tween_property(person_sprite, "scale", Vector2(1.06, 1.06), 0.2).set_trans(Tween.TRANS_SINE)
@@ -1015,7 +1091,7 @@ func _play_idle_sip():
 	tw.tween_property(person_sprite, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(func():
 		if is_instance_valid(person_sprite):
-			person_sprite.texture = textures.get("person.svg")
+			person_sprite.texture = textures.get(_person_key("idle"))
 		person_busy = false
 		_schedule_idle_sip()
 	)
@@ -1023,7 +1099,7 @@ func _play_idle_sip():
 func _play_yuck_reaction():
 	if not is_instance_valid(person_sprite): return
 	person_busy = true
-	person_sprite.texture = textures.get("person-yuck.svg")
+	person_sprite.texture = textures.get(_person_key("yuck"))
 	# Quick recoil shake animation
 	var orig_x = person_sprite.position.x
 	var tw = create_tween()
@@ -1037,7 +1113,7 @@ func _play_yuck_reaction():
 	tw.tween_property(person_sprite, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
 	tw.tween_callback(func():
 		if is_instance_valid(person_sprite):
-			person_sprite.texture = textures.get("person.svg")
+			person_sprite.texture = textures.get(_person_key("idle"))
 		person_busy = false
 	)
 

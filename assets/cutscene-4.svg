@@ -60,8 +60,6 @@
   <!-- DEFEND YOUR CUP burst -->
   <g transform="translate(140 350)">
     <polygon points="0,30 15,5 40,20 70,0 100,20 125,5 140,30 130,50 145,60 110,55 125,75 90,68 70,90 50,68 15,75 30,60 -5,55" fill="#ffd24a" stroke="#000" stroke-width="6"/>
-    <text x="70" y="42" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="22" font-weight="900" fill="#c8302c">DEFEND</text>
-    <text x="70" y="64" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="18" font-weight="900" fill="#000">YOUR CUP!</text>
   </g>
   <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
 </svg>

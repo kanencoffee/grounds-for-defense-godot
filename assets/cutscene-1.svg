@@ -30,9 +30,6 @@
   <path d="M 380 210 Q 370 180 388 150 Q 372 130 392 100" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
   <path d="M 420 210 Q 410 175 428 145 Q 412 122 432 90" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
   <path d="M 460 210 Q 450 180 468 152 Q 452 130 472 102" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-  <!-- caption box at top -->
-  <rect x="40" y="32" width="320" height="58" fill="#fff8e8" stroke="#000" stroke-width="5"/>
-  <text x="200" y="70" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="28" fill="#000">ANOTHER MORNING...</text>
   <!-- panel border (comic style heavy ink) -->
   <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
 </svg>

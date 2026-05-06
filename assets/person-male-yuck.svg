@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- MALE — yuck reaction (X eyes, BLECCH) -->
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#000" opacity="0.5"/>
+  <!-- comic burst behind head -->
+  <g transform="translate(8 -16)">
+    <polygon points="0,80 16,40 50,60 80,20 110,55 140,30 160,80 140,120 160,160 110,140 80,180 50,140 16,160 30,120" fill="#ffaa44" stroke="#000" stroke-width="4" opacity="0.65"/>
+  </g>
+  <!-- T-shirt (raised shoulders) -->
+  <path d="M 44 110 L 30 222 L 162 222 L 148 110 Q 146 92 132 86 L 128 92 L 96 110 L 64 92 L 60 86 Q 46 92 44 110 Z" fill="#5a8aaa" stroke="#000" stroke-width="4"/>
+  <path d="M 76 90 L 96 112 L 116 90" fill="none" stroke="#000" stroke-width="3"/>
+  <!-- right arm relaxed -->
+  <ellipse cx="148" cy="142" rx="14" ry="36" fill="#5a8aaa" stroke="#000" stroke-width="3.5"/>
+  <circle cx="148" cy="184" r="13" fill="#f0d090" stroke="#000" stroke-width="3.5"/>
+  <!-- left arm pulled back, mug spilling -->
+  <ellipse cx="34" cy="148" rx="14" ry="38" fill="#5a8aaa" stroke="#000" stroke-width="3.5"/>
+  <circle cx="30" cy="186" r="13" fill="#f0d090" stroke="#000" stroke-width="3.5"/>
+  <g transform="rotate(-30 22 168)">
+    <path d="M 8 150 L 4 192 Q 4 196 8 196 L 36 196 Q 40 196 40 192 L 36 150 Z" fill="#fff" stroke="#000" stroke-width="3.5"/>
+    <ellipse cx="22" cy="150" rx="14" ry="3.5" fill="#3d2817" stroke="#000" stroke-width="2.5"/>
+    <path d="M 36 158 Q 50 164 50 174 Q 50 184 36 184" fill="none" stroke="#000" stroke-width="3"/>
+  </g>
+  <path d="M -2 162 Q 2 170 2 174 Q -6 170 -2 162 Z" fill="#3d2817" stroke="#000" stroke-width="2"/>
+  <circle cx="0" cy="180" r="3" fill="#3d2817" stroke="#000" stroke-width="2"/>
+  <!-- neck -->
+  <rect x="84" y="74" width="24" height="22" fill="#f0d090" stroke="#000" stroke-width="3.5"/>
+  <!-- head tilted back -->
+  <g transform="rotate(-8 96 56)">
+    <circle cx="96" cy="56" r="34" fill="#f0d090" stroke="#000" stroke-width="4"/>
+    <ellipse cx="62" cy="56" rx="5" ry="8" fill="#f0d090" stroke="#000" stroke-width="3"/>
+    <ellipse cx="130" cy="56" rx="5" ry="8" fill="#f0d090" stroke="#000" stroke-width="3"/>
+    <path d="M 62 50 Q 58 14 96 10 Q 134 14 130 50 Q 126 30 110 24 Q 96 22 82 24 Q 66 30 62 50 Z" fill="#7a4a26" stroke="#000" stroke-width="4"/>
+    <path d="M 78 18 Q 82 12 86 18 M 102 16 Q 106 10 110 18" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- shocked eyebrows -->
+    <path d="M 72 44 L 90 38" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M 102 38 L 120 44" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- X eyes -->
+    <path d="M 76 50 L 92 64 M 76 64 L 92 50" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 100 50 L 116 64 M 100 64 L 116 50" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+    <!-- mouth open with tongue -->
+    <ellipse cx="96" cy="78" rx="16" ry="10" fill="#000"/>
+    <path d="M 86 80 Q 96 100 106 80 Q 96 92 86 80 Z" fill="#e85a78" stroke="#000" stroke-width="2.5"/>
+    <path d="M 96 80 L 96 96" stroke="#a82048" stroke-width="2"/>
+    <path d="M 130 18 Q 134 28 134 32 Q 126 28 130 18 Z" fill="#88bbee" stroke="#000" stroke-width="2"/>
+    <path d="M 60 18 Q 56 28 56 32 Q 64 28 60 18 Z" fill="#88bbee" stroke="#000" stroke-width="2"/>
+  </g>
+  <!-- BLECCH burst -->
+  <g transform="translate(28 30)">
+    <polygon points="0,16 8,4 18,10 28,2 36,16 44,4 52,16 48,24 56,28 42,32 50,40 36,36 28,46 20,36 8,40 12,28 -2,24" fill="#ffd24a" stroke="#000" stroke-width="3.5"/>
+    <text x="26" y="28" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="14" font-weight="900" fill="#c8302c">BLECCH!</text>
+  </g>
+  <path d="M 12 80 L 4 76 M 8 92 L 0 92 M 12 104 L 4 108" stroke="#c8302c" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 178 80 L 186 76 M 182 92 L 190 92 M 178 104 L 186 108" stroke="#c8302c" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

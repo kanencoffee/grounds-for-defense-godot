@@ -24,12 +24,5 @@
   <!-- distorted steam -->
   <path d="M 380 230 Q 360 200 386 170" stroke="#888" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
   <path d="M 420 230 Q 440 195 410 165" stroke="#888" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
-  <!-- ! exclamation marks floating -->
-  <text x="200" y="180" font-family="Impact, sans-serif" font-size="60" font-weight="900" fill="#c8302c" stroke="#000" stroke-width="3" transform="rotate(-15 200 180)">!</text>
-  <text x="640" y="180" font-family="Impact, sans-serif" font-size="60" font-weight="900" fill="#c8302c" stroke="#000" stroke-width="3" transform="rotate(20 640 180)">!</text>
-  <text x="540" y="220" font-family="Impact, sans-serif" font-size="40" font-weight="900" fill="#c8302c" stroke="#000" stroke-width="2" transform="rotate(-8 540 220)">?</text>
-  <!-- Caption -->
-  <rect x="80" y="370" width="640" height="60" fill="#fff8e8" stroke="#000" stroke-width="5"/>
-  <text x="400" y="411" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="30" fill="#000">BUT SOMETHING'S WRONG...</text>
   <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
 </svg>
