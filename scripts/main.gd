@@ -920,13 +920,30 @@ func _build_hud():
 	info_label.add_theme_font_size_override("font_size", 14)
 	info_label.add_theme_color_override("font_color", Color(0.94,0.79,0.53))
 	canvas.add_child(info_label)
-	# Tiny persistent copyright in bottom-right corner
-	var copyright_corner = Label.new()
-	copyright_corner.text = "© 2026 Kanen Coffee, LLC."
-	copyright_corner.position = Vector2(W - 230, H - 24)
-	copyright_corner.add_theme_font_size_override("font_size", 10)
-	copyright_corner.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.3))
+	# Tiny persistent copyright + legal links in bottom-right corner
+	var copyright_corner = RichTextLabel.new()
+	copyright_corner.bbcode_enabled = true
+	copyright_corner.fit_content = true
+	copyright_corner.scroll_active = false
+	copyright_corner.size = Vector2(440, 20)
+	copyright_corner.position = Vector2(W - 460, H - 24)
+	copyright_corner.add_theme_font_size_override("normal_font_size", 10)
+	copyright_corner.add_theme_color_override("default_color", Color(0.94, 0.79, 0.53, 0.45))
+	copyright_corner.text = "[right]© 2026 Kanen Coffee, LLC. All Rights Reserved.   ·   [url=terms]Terms[/url]   ·   [url=privacy]Privacy[/url][/right]"
+	copyright_corner.meta_clicked.connect(_on_legal_link_clicked)
 	canvas.add_child(copyright_corner)
+
+func _on_legal_link_clicked(meta):
+	var url = ""
+	if meta == "terms":
+		url = "legal/terms.html"
+	elif meta == "privacy":
+		url = "legal/privacy.html"
+	if url != "":
+		# In web export, OS.shell_open opens in a new tab.
+		# In editor/desktop, it'll try to open via OS — works for full URLs.
+		# Build full URL from current location for web safety.
+		OS.shell_open(url)
 
 func _stat_label(label_text: String, value_text: String) -> Label:
 	var box = VBoxContainer.new()

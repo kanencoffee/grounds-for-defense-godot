@@ -47,6 +47,12 @@ jobs:
           # If Godot exported as something else, rename the main HTML
           if [ ! -f index.html ] && [ -f main.html ]; then mv main.html index.html; fi
 
+      - name: Include legal pages in deploy
+        run: |
+          mkdir -p build/web/legal
+          cp legal/*.html build/web/legal/
+          ls -la build/web/legal/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
