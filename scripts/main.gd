@@ -125,6 +125,271 @@ var briefing_pages: Array = []
 var briefing_idx: int = 0
 var briefing_layer: CanvasLayer
 
+# ============== CUPPING ROUND DATA ==============
+const CUPPING_ROUNDS = [
+	{
+		"prompt": "SPOT THE SWILL — which is unrecoverable?",
+		"cups": [
+			{"label":"Cup A","desc":"Roasted today.\nGround fresh, just now.","correct":false},
+			{"label":"Cup B","desc":"Pre-ground from a tin.\n6 months old.","correct":true},
+			{"label":"Cup C","desc":"Whole bean.\nRoasted 1 week ago.","correct":false}
+		],
+		"why":"Pre-ground from a tin = double-staling. Whole bean from last week is still excellent."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which roast is burnt?",
+		"cups": [
+			{"label":"Cup A","desc":"Light roast.\nAgtron 65, fruity.","correct":false},
+			{"label":"Cup B","desc":"Medium-dark.\nAgtron 45, balanced.","correct":false},
+			{"label":"Cup C","desc":"Espresso roast.\nAgtron 25, charcoal.","correct":true}
+		],
+		"why":"Agtron under 30 = burnt territory. The bean itself becomes the flavor — not the origin."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which is under-extracted?",
+		"cups": [
+			{"label":"Cup A","desc":"1:16 ratio.\n28-second pull.","correct":false},
+			{"label":"Cup B","desc":"1:30 ratio.\n14-second pull.","correct":true},
+			{"label":"Cup C","desc":"1:18 ratio.\n25-second pull.","correct":false}
+		],
+		"why":"1:30 = brown water. The sweet spot is 1:15-1:18 with adequate contact time."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which milk is botched?",
+		"cups": [
+			{"label":"Cup A","desc":"Whole milk, 140°F (60°C).\nMicrofoam — silky.","correct":false},
+			{"label":"Cup B","desc":"2% milk, 200°F (93°C).\nLarge bubbles.","correct":true},
+			{"label":"Cup C","desc":"Oat milk, 145°F.\nSmooth foam.","correct":false}
+		],
+		"why":"Past 165°F (74°C) milk proteins denature; lactose burns. Steam to body temp + a bit, no more."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which one's got the K-pod problem?",
+		"cups": [
+			{"label":"Cup A","desc":"Single-origin pour-over.\n14 days off-roast.","correct":false},
+			{"label":"Cup B","desc":"K-cup pod.\nSealed 14 months ago.","correct":true},
+			{"label":"Cup C","desc":"French press.\nLocal beans, brewed today.","correct":false}
+		],
+		"why":"K-pods compound EVERY defect: pre-ground + 12+ months sealed + plastic taint."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which is fermented sour?",
+		"cups": [
+			{"label":"Cup A","desc":"Honey processed.\nSlight fruity notes.","correct":false},
+			{"label":"Cup B","desc":"Wet processed.\nClean acidity.","correct":false},
+			{"label":"Cup C","desc":"Cherries left 5 days.\nVinegar-like taste.","correct":true}
+		],
+		"why":"Coffee fruit fermenting on the bean = sour/vinegar defect. Smells/tastes like rotten apples."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which milk shouldn't be served?",
+		"cups": [
+			{"label":"Cup A","desc":"Steamed once, 145°F.\nUsed immediately.","correct":false},
+			{"label":"Cup B","desc":"Steamed once, 150°F.\nSat 2 minutes.","correct":false},
+			{"label":"Cup C","desc":"Re-steamed twice.\nWaited 5 min between.","correct":true}
+		],
+		"why":"Re-steaming = denatured proteins, burnt sugars. Discard cooled milk and start fresh."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which is criminally stale?",
+		"cups": [
+			{"label":"Cup A","desc":"Roasted 3 days ago.\nOpened today.","correct":false},
+			{"label":"Cup B","desc":"Roasted 3 weeks ago.\nValve bag.","correct":false},
+			{"label":"Cup C","desc":"Roasted 8 months ago.\nOpen for 2 weeks.","correct":true}
+		],
+		"why":"8 months past roast + 2 weeks of air = aroma corpse. Drinkable, but flat."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which one fails on grind alone?",
+		"cups": [
+			{"label":"Cup A","desc":"Whole bean.\nGround 30s before brew.","correct":false},
+			{"label":"Cup B","desc":"Vacuum-sealed pre-ground.\nOpened 1 month ago.","correct":true},
+			{"label":"Cup C","desc":"Whole bean, frozen.\nGround at use.","correct":false}
+		],
+		"why":"Vacuum slows oxidation but doesn't stop it. Pre-ground is doomed once ground."
+	},
+	{
+		"prompt": "SPOT THE SWILL — which has it ALL wrong?",
+		"cups": [
+			{"label":"Cup A","desc":"Whole bean, 1 week.\nGround at use, fresh milk.","correct":false},
+			{"label":"Cup B","desc":"Pre-ground + 6 mo old\n+ plastic + re-steamed milk.","correct":true},
+			{"label":"Cup C","desc":"Single-origin, fresh.\nV60, 1:16 ratio.","correct":false}
+		],
+		"why":"Trifecta: stale + pre-ground + plastic + bad milk. The full swill catastrophe."
+	}
+]
+
+var cupping_round_idx := 0
+var cupping_layer: CanvasLayer
+
+func _show_cupping_round():
+	if game_over: return
+	if cupping_round_idx >= CUPPING_ROUNDS.size():
+		return  # ran out of rounds
+	var data = CUPPING_ROUNDS[cupping_round_idx]
+	cupping_round_idx += 1
+	# Layer
+	if cupping_layer and is_instance_valid(cupping_layer):
+		cupping_layer.queue_free()
+	cupping_layer = CanvasLayer.new()
+	cupping_layer.layer = 90
+	add_child(cupping_layer)
+	var dim = ColorRect.new()
+	dim.color = Color(0,0,0,0.85)
+	dim.size = Vector2(W, H)
+	cupping_layer.add_child(dim)
+	# Card
+	var card = PanelContainer.new()
+	card.size = Vector2(900, 540)
+	card.position = Vector2((W-900)/2, (H-540)/2)
+	cupping_layer.add_child(card)
+	var sb = StyleBoxFlat.new()
+	sb.bg_color = Color(0.12, 0.08, 0.05)
+	sb.border_width_left=4; sb.border_width_right=4; sb.border_width_top=4; sb.border_width_bottom=4
+	sb.border_color = Color(0.94, 0.79, 0.53)
+	sb.corner_radius_top_left=14; sb.corner_radius_top_right=14
+	sb.corner_radius_bottom_left=14; sb.corner_radius_bottom_right=14
+	sb.content_margin_left=28; sb.content_margin_right=28
+	sb.content_margin_top=20; sb.content_margin_bottom=20
+	card.add_theme_stylebox_override("panel", sb)
+	var v = VBoxContainer.new()
+	v.add_theme_constant_override("separation", 14)
+	card.add_child(v)
+	# Header
+	var header = Label.new()
+	header.text = "☕ CUPPING ROUND %d / %d" % [cupping_round_idx, CUPPING_ROUNDS.size()]
+	header.add_theme_font_size_override("font_size", 16)
+	header.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(header)
+	var prompt = Label.new()
+	prompt.text = data.prompt
+	prompt.add_theme_font_size_override("font_size", 26)
+	prompt.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+	prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(prompt)
+	# Three cups in a row
+	var hb = HBoxContainer.new()
+	hb.alignment = BoxContainer.ALIGNMENT_CENTER
+	hb.add_theme_constant_override("separation", 16)
+	v.add_child(hb)
+	for i in 3:
+		var cup_data = data.cups[i]
+		var cup_btn = Button.new()
+		cup_btn.custom_minimum_size = Vector2(260, 240)
+		cup_btn.add_theme_font_size_override("font_size", 14)
+		var cup_v = VBoxContainer.new()
+		cup_v.alignment = BoxContainer.ALIGNMENT_CENTER
+		cup_v.position = Vector2(20, 20)
+		cup_v.size = Vector2(220, 200)
+		cup_v.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cup_btn.add_child(cup_v)
+		# Cup emoji icon
+		var icon = Label.new()
+		icon.text = "☕"
+		icon.add_theme_font_size_override("font_size", 64)
+		icon.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		icon.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cup_v.add_child(icon)
+		var name_l = Label.new()
+		name_l.text = cup_data.label
+		name_l.add_theme_font_size_override("font_size", 20)
+		name_l.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+		name_l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		name_l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name_l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cup_v.add_child(name_l)
+		var desc_l = Label.new()
+		desc_l.text = cup_data.desc
+		desc_l.add_theme_font_size_override("font_size", 13)
+		desc_l.add_theme_color_override("font_color", Color(0.85, 0.78, 0.62))
+		desc_l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		desc_l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		desc_l.custom_minimum_size = Vector2(200, 0)
+		desc_l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		cup_v.add_child(desc_l)
+		var idx = i
+		cup_btn.pressed.connect(_on_cup_chosen.bind(idx, data, hb))
+		hb.add_child(cup_btn)
+	# Result area (initially empty)
+	var result_panel = PanelContainer.new()
+	result_panel.name = "ResultPanel"
+	result_panel.visible = false
+	v.add_child(result_panel)
+	var rsb = StyleBoxFlat.new()
+	rsb.bg_color = Color(0.08, 0.05, 0.02, 0.7)
+	rsb.corner_radius_top_left=8; rsb.corner_radius_top_right=8
+	rsb.corner_radius_bottom_left=8; rsb.corner_radius_bottom_right=8
+	rsb.content_margin_left=14; rsb.content_margin_right=14
+	rsb.content_margin_top=10; rsb.content_margin_bottom=10
+	result_panel.add_theme_stylebox_override("panel", rsb)
+	var result_label = Label.new()
+	result_label.name = "ResultLabel"
+	result_label.add_theme_font_size_override("font_size", 14)
+	result_label.add_theme_color_override("font_color", Color(0.85, 0.78, 0.62))
+	result_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_label.custom_minimum_size = Vector2(820, 0)
+	result_panel.add_child(result_label)
+	# Continue / Skip row
+	var btn_row = HBoxContainer.new()
+	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	btn_row.add_theme_constant_override("separation", 16)
+	v.add_child(btn_row)
+	var skip = Button.new()
+	skip.name = "SkipBtn"
+	skip.text = "Skip Cupping"
+	skip.custom_minimum_size = Vector2(160, 44)
+	skip.pressed.connect(_close_cupping)
+	btn_row.add_child(skip)
+	var cont = Button.new()
+	cont.name = "ContinueBtn"
+	cont.text = "Continue ▶"
+	cont.add_theme_font_size_override("font_size", 16)
+	cont.custom_minimum_size = Vector2(180, 44)
+	cont.visible = false
+	cont.pressed.connect(_close_cupping)
+	btn_row.add_child(cont)
+
+func _on_cup_chosen(idx: int, data: Dictionary, hb: HBoxContainer):
+	var cup = data.cups[idx]
+	var correct = cup.correct
+	# Highlight all three
+	for i in hb.get_child_count():
+		var btn = hb.get_child(i)
+		btn.disabled = true
+		if data.cups[i].correct:
+			btn.modulate = Color(0.5, 1.5, 0.5)
+		elif i == idx:
+			btn.modulate = Color(1.5, 0.5, 0.5)
+	# Play sound
+	if correct:
+		Sfx.play("waveClear")
+		beans += 50
+		_update_hud()
+	else:
+		Sfx.play("error")
+	# Show result
+	var card = cupping_layer.get_child(1)  # PanelContainer
+	var v = card.get_child(0)  # VBoxContainer
+	var result_panel = v.get_node("ResultPanel")
+	var result_label = result_panel.get_node("ResultLabel")
+	var prefix = "[✓] CORRECT — +$50!  " if correct else "[✗] Not quite.  "
+	result_label.text = prefix + "WHY: " + data.why
+	if correct:
+		result_label.add_theme_color_override("font_color", Color(0.5, 1.0, 0.55))
+	else:
+		result_label.add_theme_color_override("font_color", Color(1.0, 0.7, 0.5))
+	result_panel.visible = true
+	# Show continue, hide skip
+	var btn_row = v.get_child(v.get_child_count() - 1)
+	btn_row.get_node("SkipBtn").visible = false
+	btn_row.get_node("ContinueBtn").visible = true
+
+func _close_cupping():
+	if is_instance_valid(cupping_layer):
+		cupping_layer.queue_free()
+
 func _show_briefing():
 	# Build the page list
 	briefing_pages = [
@@ -815,6 +1080,8 @@ func _process(delta):
 			_win()
 		else:
 			Sfx.play("waveClear")
+			# Show cupping round between waves
+			get_tree().create_timer(0.6).timeout.connect(_show_cupping_round)
 		_update_hud()
 	# perfect shot cd
 	if not perfect_ready:
