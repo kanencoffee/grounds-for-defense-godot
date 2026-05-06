@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Panel 4: DEFEND YOUR CUP — Coffee Geek determined, gripping mug -->
+  <defs>
+    <radialGradient id="hero-bg" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0" stop-color="#ffd44a"/>
+      <stop offset="0.6" stop-color="#d97706"/>
+      <stop offset="1" stop-color="#5c2310"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#hero-bg)" stroke="#000" stroke-width="10"/>
+  <!-- impact lines radiating from center -->
+  <g stroke="#000" stroke-width="4" stroke-linecap="round" opacity="0.5">
+    <line x1="400" y1="225" x2="40" y2="40"/>
+    <line x1="400" y1="225" x2="200" y2="20"/>
+    <line x1="400" y1="225" x2="600" y2="20"/>
+    <line x1="400" y1="225" x2="760" y2="40"/>
+    <line x1="400" y1="225" x2="40" y2="410"/>
+    <line x1="400" y1="225" x2="760" y2="410"/>
+    <line x1="400" y1="225" x2="20" y2="225"/>
+    <line x1="400" y1="225" x2="780" y2="225"/>
+  </g>
+  <!-- COFFEE GEEK CLOSE-UP — heroic posture, focused -->
+  <!-- shoulders / shirt -->
+  <path d="M 220 450 L 260 320 Q 280 290 320 290 L 480 290 Q 520 290 540 320 L 580 450 Z" fill="#5a8aaa" stroke="#000" stroke-width="6"/>
+  <!-- left arm + hand gripping mug -->
+  <path d="M 260 340 Q 230 360 250 410 L 290 420 Q 320 380 320 330 Z" fill="#5a8aaa" stroke="#000" stroke-width="6"/>
+  <!-- right arm down -->
+  <path d="M 540 340 Q 580 360 570 450 L 530 450 Q 510 380 510 330 Z" fill="#5a8aaa" stroke="#000" stroke-width="6"/>
+  <!-- HUGE coffee mug being held up defiantly -->
+  <g transform="translate(280 250)">
+    <path d="M 30 60 L 38 180 Q 38 196 56 196 L 124 196 Q 142 196 142 180 L 150 60 Z" fill="#fff" stroke="#000" stroke-width="6"/>
+    <ellipse cx="90" cy="60" rx="62" ry="10" fill="#3d2817" stroke="#000" stroke-width="5"/>
+    <ellipse cx="90" cy="58" rx="48" ry="5" fill="#5c3a1c"/>
+    <path d="M 150 96 Q 180 100 180 130 Q 180 160 150 160" fill="none" stroke="#000" stroke-width="6"/>
+  </g>
+  <!-- head/neck above mug, partially obscured -->
+  <rect x="370" y="220" width="48" height="40" fill="#f5d4a8" stroke="#000" stroke-width="6"/>
+  <!-- head close-up at top -->
+  <circle cx="394" cy="160" r="60" fill="#f5d4a8" stroke="#000" stroke-width="7"/>
+  <!-- ears -->
+  <ellipse cx="334" cy="160" rx="9" ry="14" fill="#f5d4a8" stroke="#000" stroke-width="5"/>
+  <ellipse cx="454" cy="160" rx="9" ry="14" fill="#f5d4a8" stroke="#000" stroke-width="5"/>
+  <!-- hair (heroic) -->
+  <path d="M 334 145 Q 330 95 394 88 Q 458 95 454 145 Q 446 115 420 100 Q 394 96 368 100 Q 342 115 334 145 Z" fill="#5c3a1c" stroke="#000" stroke-width="6"/>
+  <path d="M 360 96 L 358 80 M 394 88 L 394 72 M 428 96 L 430 80" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <!-- determined eyebrows (very angled) -->
+  <path d="M 350 144 L 380 154 L 380 158 L 348 150 Z" fill="#000"/>
+  <path d="M 408 154 L 438 144 L 440 150 L 408 158 Z" fill="#000"/>
+  <!-- intense focused eyes -->
+  <ellipse cx="370" cy="166" rx="11" ry="10" fill="#fff" stroke="#000" stroke-width="5"/>
+  <ellipse cx="418" cy="166" rx="11" ry="10" fill="#fff" stroke="#000" stroke-width="5"/>
+  <circle cx="372" cy="170" r="6" fill="#000"/>
+  <circle cx="420" cy="170" r="6" fill="#000"/>
+  <circle cx="374" cy="168" r="2" fill="#fff"/>
+  <circle cx="422" cy="168" r="2" fill="#fff"/>
+  <!-- nose -->
+  <path d="M 394 178 Q 388 196 394 204 Q 400 196 394 178 Z" fill="#d8a878" stroke="#000" stroke-width="3"/>
+  <!-- mouth: tight serious line -->
+  <path d="M 374 218 L 414 218" stroke="#000" stroke-width="5" stroke-linecap="round"/>
+  <!-- DEFEND YOUR CUP burst -->
+  <g transform="translate(140 350)">
+    <polygon points="0,30 15,5 40,20 70,0 100,20 125,5 140,30 130,50 145,60 110,55 125,75 90,68 70,90 50,68 15,75 30,60 -5,55" fill="#ffd24a" stroke="#000" stroke-width="6"/>
+    <text x="70" y="42" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="22" font-weight="900" fill="#c8302c">DEFEND</text>
+    <text x="70" y="64" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="18" font-weight="900" fill="#000">YOUR CUP!</text>
+  </g>
+  <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Panel 1: ANOTHER MORNING — peaceful coffee, steam rising -->
+  <defs>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd49a"/>
+      <stop offset="0.6" stop-color="#f0a888"/>
+      <stop offset="1" stop-color="#5c3a1c"/>
+    </linearGradient>
+    <pattern id="ht-c1" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.2" fill="#000" opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="450" fill="url(#dawn)" stroke="#000" stroke-width="10"/>
+  <!-- horizon line -->
+  <rect x="0" y="320" width="800" height="130" fill="#3d2817"/>
+  <rect x="0" y="320" width="800" height="130" fill="url(#ht-c1)"/>
+  <!-- table edge -->
+  <rect x="0" y="350" width="800" height="6" fill="#5c3a1c"/>
+  <!-- coffee cup CENTERED -->
+  <g transform="translate(330 220)">
+    <!-- mug body -->
+    <path d="M 30 60 L 38 180 Q 38 196 56 196 L 124 196 Q 142 196 142 180 L 150 60 Z" fill="#fff" stroke="#000" stroke-width="6"/>
+    <!-- coffee surface -->
+    <ellipse cx="90" cy="60" rx="62" ry="10" fill="#3d2817" stroke="#000" stroke-width="5"/>
+    <ellipse cx="90" cy="58" rx="48" ry="5" fill="#5c3a1c"/>
+    <!-- handle -->
+    <path d="M 150 96 Q 180 100 180 130 Q 180 160 150 160" fill="none" stroke="#000" stroke-width="6"/>
+  </g>
+  <!-- steam wisps -->
+  <path d="M 380 210 Q 370 180 388 150 Q 372 130 392 100" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 420 210 Q 410 175 428 145 Q 412 122 432 90" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 460 210 Q 450 180 468 152 Q 452 130 472 102" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- caption box at top -->
+  <rect x="40" y="32" width="320" height="58" fill="#fff8e8" stroke="#000" stroke-width="5"/>
+  <text x="200" y="70" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="28" fill="#000">ANOTHER MORNING...</text>
+  <!-- panel border (comic style heavy ink) -->
+  <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
+</svg>

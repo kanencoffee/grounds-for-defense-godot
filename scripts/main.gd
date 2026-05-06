@@ -119,11 +119,138 @@ func _ready():
 	_build_barista()
 	_build_slots()
 	_build_hud()
-	_show_briefing()
+	# Play intro cutscene first; briefing follows on close
+	_show_cutscene([
+		{"sprite":"cutscene-1.svg", "sting":"sting_intro", "duration":3.5},
+		{"sprite":"cutscene-2.svg", "sting":"sting_tense", "duration":3.5},
+		{"sprite":"cutscene-3.svg", "sting":"sting_reveal", "duration":3.8},
+		{"sprite":"cutscene-4.svg", "sting":"sting_hero", "duration":3.5},
+		{"sprite":"cutscene-5.svg", "sting":"waveStart", "duration":3.0},
+	], _show_briefing)
 
 var briefing_pages: Array = []
 var briefing_idx: int = 0
 var briefing_layer: CanvasLayer
+
+# ============== CUTSCENE PLAYER ==============
+var cutscene_layer: CanvasLayer
+var cutscene_panels: Array = []
+var cutscene_idx := 0
+var cutscene_on_done: Callable
+var cutscene_panel_sprite: Sprite2D
+var cutscene_advance_timer: SceneTreeTimer
+
+func _show_cutscene(panels: Array, on_done: Callable):
+	if panels.is_empty():
+		on_done.call()
+		return
+	cutscene_panels = panels
+	cutscene_idx = 0
+	cutscene_on_done = on_done
+	if cutscene_layer and is_instance_valid(cutscene_layer):
+		cutscene_layer.queue_free()
+	cutscene_layer = CanvasLayer.new()
+	cutscene_layer.layer = 110
+	add_child(cutscene_layer)
+	# Black background
+	var bg = ColorRect.new()
+	bg.color = Color(0, 0, 0, 1)
+	bg.size = Vector2(W, H)
+	cutscene_layer.add_child(bg)
+	# Panel sprite (centered)
+	cutscene_panel_sprite = Sprite2D.new()
+	cutscene_panel_sprite.position = Vector2(W/2, H/2 - 30)
+	cutscene_layer.add_child(cutscene_panel_sprite)
+	# Skip button (bottom right)
+	var skip_btn = Button.new()
+	skip_btn.text = "Skip ▶"
+	skip_btn.position = Vector2(W - 140, H - 60)
+	skip_btn.custom_minimum_size = Vector2(120, 40)
+	skip_btn.add_theme_font_size_override("font_size", 16)
+	skip_btn.pressed.connect(_skip_cutscene)
+	cutscene_layer.add_child(skip_btn)
+	# Click anywhere to advance
+	var click_catcher = Button.new()
+	click_catcher.flat = true
+	click_catcher.size = Vector2(W, H)
+	click_catcher.position = Vector2(0, 0)
+	click_catcher.modulate.a = 0
+	click_catcher.pressed.connect(_advance_cutscene)
+	cutscene_layer.add_child(click_catcher)
+	# Hint text bottom left
+	var hint = Label.new()
+	hint.text = "click anywhere to advance"
+	hint.position = Vector2(20, H - 40)
+	hint.add_theme_font_size_override("font_size", 12)
+	hint.add_theme_color_override("font_color", Color(1, 1, 1, 0.5))
+	cutscene_layer.add_child(hint)
+	_render_cutscene_panel()
+
+func _render_cutscene_panel():
+	if cutscene_idx >= cutscene_panels.size():
+		_close_cutscene()
+		return
+	var p = cutscene_panels[cutscene_idx]
+	var tex = textures.get(p.sprite)
+	if not tex:
+		_advance_cutscene()
+		return
+	# Fit panel to screen with margins
+	var panel_w = 800.0
+	var panel_h = 450.0
+	var max_w = float(W) - 100
+	var max_h = float(H) - 140
+	var s = min(max_w / panel_w, max_h / panel_h)
+	cutscene_panel_sprite.texture = tex
+	cutscene_panel_sprite.scale = Vector2.ONE * s
+	# Fade in
+	cutscene_panel_sprite.modulate.a = 0.0
+	cutscene_panel_sprite.scale = Vector2.ONE * s * 0.92
+	var tw = create_tween()
+	tw.tween_property(cutscene_panel_sprite, "modulate:a", 1.0, 0.35)
+	tw.parallel().tween_property(cutscene_panel_sprite, "scale", Vector2.ONE * s, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	# Play sting
+	if p.has("sting"):
+		Sfx.play(p.sting)
+	# Auto-advance timer
+	var dur = p.get("duration", 4.0)
+	if cutscene_advance_timer:
+		# can't cancel SceneTreeTimer, just rely on idx checks
+		pass
+	cutscene_advance_timer = get_tree().create_timer(dur)
+	var current_idx = cutscene_idx
+	cutscene_advance_timer.timeout.connect(func():
+		if cutscene_idx == current_idx and is_instance_valid(cutscene_layer):
+			_advance_cutscene()
+	)
+
+func _advance_cutscene():
+	if not is_instance_valid(cutscene_layer):
+		return
+	# Fade out current panel
+	var tw = create_tween()
+	tw.tween_property(cutscene_panel_sprite, "modulate:a", 0.0, 0.2)
+	tw.tween_callback(func():
+		cutscene_idx += 1
+		if cutscene_idx >= cutscene_panels.size():
+			_close_cutscene()
+		else:
+			_render_cutscene_panel()
+	)
+
+func _skip_cutscene():
+	_close_cutscene()
+
+func _close_cutscene():
+	if is_instance_valid(cutscene_layer):
+		var tw = create_tween()
+		tw.tween_property(cutscene_layer, "modulate:a", 0.0, 0.3)
+		tw.tween_callback(func():
+			if is_instance_valid(cutscene_layer):
+				cutscene_layer.queue_free()
+			if cutscene_on_done:
+				cutscene_on_done.call()
+		)
 
 # ============== CUPPING ROUND DATA ==============
 const CUPPING_ROUNDS = [
@@ -658,6 +785,12 @@ func _load_textures():
 	keys.append("person-sip.svg")
 	keys.append("person-yuck.svg")
 	keys.append("comic-burst.svg")
+	keys.append("cutscene-1.svg")
+	keys.append("cutscene-2.svg")
+	keys.append("cutscene-3.svg")
+	keys.append("cutscene-4.svg")
+	keys.append("cutscene-5.svg")
+	keys.append("cutscene-boss.svg")
 	for fname in keys:
 		var path = "res://assets/" + (fname if fname.ends_with(".svg") else fname + ".svg")
 		if not ResourceLoader.exists(path):
@@ -1022,6 +1155,15 @@ func _on_start_wave():
 		return
 	if wave_num >= max_waves:
 		return
+	# Play boss-intro cutscene before the final wave
+	if wave_num + 1 == max_waves:
+		_show_cutscene([
+			{"sprite":"cutscene-boss.svg", "sting":"sting_boss", "duration":4.5}
+		], _start_wave_actual)
+		return
+	_start_wave_actual()
+
+func _start_wave_actual():
 	wave_num += 1
 	spawning = true
 	wave_active = true

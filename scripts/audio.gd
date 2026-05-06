@@ -39,6 +39,36 @@ func _ready():
 	_streams["win"]       = _arpeggio([523.0, 659.0, 784.0, 1047.0, 1319.0], 0.30, 0.26)
 	_streams["error"]     = _tone_decay(180.0, 0.10, 0.20, true)
 	_streams["splash"]    = _layer([_noise(0.18, 0.18, 200.0, 2000.0), _tone_decay(180.0, 0.15, 0.12)])
+	# ===== Dramatic cutscene stings =====
+	# Intro: tense build-up — low drone + rising arp
+	_streams["sting_intro"] = _layer([
+		_tone_decay(110.0, 1.6, 0.18),
+		_tone_decay(165.0, 1.4, 0.14),
+		_arpeggio([220.0, 277.0, 330.0, 440.0], 0.18, 0.16, false, 0.0)
+	])
+	# Tension: ominous low pulse
+	_streams["sting_tense"] = _layer([
+		_tone_decay(82.0, 1.8, 0.22),
+		_tone_decay(98.0, 1.5, 0.18),
+		_noise(0.6, 0.08, 80.0, 400.0)
+	])
+	# Reveal: orchestra hit — bright chord
+	_streams["sting_reveal"] = _layer([
+		_tone_decay(220.0, 1.0, 0.24),
+		_tone_decay(277.0, 1.0, 0.20),
+		_tone_decay(330.0, 1.0, 0.20),
+		_tone_decay(440.0, 1.0, 0.18),
+		_noise(0.15, 0.18, 1500.0, 8000.0)
+	])
+	# Boss roar: low + descending sweep
+	_streams["sting_boss"] = _layer([
+		_sweep(220.0, 50.0, 1.6, 0.30),
+		_tone_decay(55.0, 2.0, 0.30),
+		_tone_decay(82.0, 2.0, 0.20),
+		_noise(0.8, 0.18, 60.0, 400.0)
+	])
+	# Heroic: ascending fanfare
+	_streams["sting_hero"] = _arpeggio([261.0, 329.0, 392.0, 523.0, 659.0, 784.0], 0.16, 0.26, false, 0.0)
 
 func play(name: String):
 	if muted: return

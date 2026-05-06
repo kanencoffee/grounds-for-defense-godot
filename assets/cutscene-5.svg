@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Panel 5: TITLE CARD — "GROUNDS FOR DEFENSE" big logo style -->
+  <defs>
+    <radialGradient id="title-bg" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0" stop-color="#ff8833"/>
+      <stop offset="0.5" stop-color="#c84a1a"/>
+      <stop offset="1" stop-color="#1a0808"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#title-bg)" stroke="#000" stroke-width="10"/>
+  <!-- comic burst star (HUGE) -->
+  <g transform="translate(400 225)">
+    <polygon points="-340,0 -260,-60 -200,-140 -100,-100 -40,-200 40,-200 100,-100 200,-140 260,-60 340,0 260,60 200,140 100,100 40,200 -40,200 -100,100 -200,140 -260,60" fill="#ffd24a" stroke="#000" stroke-width="8"/>
+    <polygon points="-260,0 -200,-50 -140,-110 -70,-80 -30,-150 30,-150 70,-80 140,-110 200,-50 260,0 200,50 140,110 70,80 30,150 -30,150 -70,80 -140,110 -200,50" fill="#ee2233" stroke="#000" stroke-width="6"/>
+    <!-- "GROUNDS" -->
+    <text x="0" y="-22" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="68" font-weight="900" fill="#fff" stroke="#000" stroke-width="3">GROUNDS</text>
+    <!-- "FOR DEFENSE" -->
+    <text x="0" y="40" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="48" font-weight="900" fill="#000">FOR DEFENSE</text>
+    <!-- subtitle -->
+    <text x="0" y="80" text-anchor="middle" font-family="Impact, sans-serif" font-size="18" fill="#fff">DEFEND YOUR CUP</text>
+  </g>
+  <!-- coffee bean accents in corners -->
+  <ellipse cx="80" cy="80" rx="40" ry="44" fill="#5c3a1c" stroke="#000" stroke-width="5"/>
+  <path d="M 80 40 Q 72 80 80 120" stroke="#000" stroke-width="4" fill="none"/>
+  <ellipse cx="720" cy="80" rx="40" ry="44" fill="#5c3a1c" stroke="#000" stroke-width="5"/>
+  <path d="M 720 40 Q 712 80 720 120" stroke="#000" stroke-width="4" fill="none"/>
+  <ellipse cx="80" cy="370" rx="40" ry="44" fill="#5c3a1c" stroke="#000" stroke-width="5"/>
+  <path d="M 80 330 Q 72 370 80 410" stroke="#000" stroke-width="4" fill="none"/>
+  <ellipse cx="720" cy="370" rx="40" ry="44" fill="#5c3a1c" stroke="#000" stroke-width="5"/>
+  <path d="M 720 330 Q 712 370 720 410" stroke="#000" stroke-width="4" fill="none"/>
+  <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
+</svg>

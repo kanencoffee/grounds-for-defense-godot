@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Boss intro: POD-ZILLA APPROACHES — dramatic silhouette of Pod-Zilla rising -->
+  <defs>
+    <linearGradient id="boss-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a1010"/>
+      <stop offset="0.5" stop-color="#1a0404"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#boss-bg)" stroke="#000" stroke-width="10"/>
+  <!-- shake lines on edges -->
+  <path d="M 20 80 L 40 70 M 30 120 L 10 130 M 20 200 L 40 200 M 30 280 L 10 290 M 20 360 L 40 350" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 780 80 L 760 70 M 770 120 L 790 130 M 780 200 L 760 200 M 770 280 L 790 290 M 780 360 L 760 350" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <!-- ground / foreground line -->
+  <path d="M 0 380 Q 200 350 400 360 Q 600 370 800 350 L 800 450 L 0 450 Z" fill="#000" stroke="#5c1010" stroke-width="4"/>
+  <!-- Pod-Zilla MASSIVE silhouette in center -->
+  <g transform="translate(280 80)">
+    <!-- royal cape behind (huge) -->
+    <path d="M -40 80 L -80 280 L -50 290 L 30 80 Z" fill="#5a1a4a" stroke="#000" stroke-width="6"/>
+    <path d="M 280 80 L 320 280 L 290 290 L 210 80 Z" fill="#5a1a4a" stroke="#000" stroke-width="6"/>
+    <!-- crown -->
+    <path d="M 40 30 L 50 0 L 80 25 L 120 -10 L 160 25 L 190 0 L 200 30 L 200 40 L 40 40 Z" fill="#ffd24a" stroke="#000" stroke-width="6"/>
+    <circle cx="120" cy="10" r="8" fill="#c8302c" stroke="#000" stroke-width="4"/>
+    <circle cx="80" cy="20" r="6" fill="#88bbee" stroke="#000" stroke-width="3"/>
+    <circle cx="160" cy="20" r="6" fill="#88bbee" stroke="#000" stroke-width="3"/>
+    <rect x="40" y="30" width="160" height="14" fill="#c8a030" stroke="#000" stroke-width="4"/>
+    <!-- pod body -->
+    <path d="M 30 50 L 42 280 Q 42 290 52 290 L 188 290 Q 198 290 198 280 L 210 50 Z" fill="#ff5520" stroke="#000" stroke-width="6"/>
+    <!-- shine -->
+    <rect x="44" y="56" width="12" height="220" fill="#fff" opacity="0.6"/>
+    <!-- center label -->
+    <ellipse cx="120" cy="170" rx="50" ry="40" fill="#fff" stroke="#000" stroke-width="6"/>
+    <text x="120" y="160" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="28" font-weight="900" fill="#000">K-POD</text>
+    <text x="120" y="190" text-anchor="middle" font-family="Impact, sans-serif" font-size="18" font-style="italic" fill="#c8302c">TYRANT</text>
+    <!-- evil eyes -->
+    <ellipse cx="80" cy="100" rx="14" ry="14" fill="#fff" stroke="#000" stroke-width="5"/>
+    <ellipse cx="160" cy="100" rx="14" ry="14" fill="#fff" stroke="#000" stroke-width="5"/>
+    <circle cx="80" cy="104" r="7" fill="#000"/>
+    <circle cx="160" cy="104" r="7" fill="#000"/>
+    <!-- evil eyebrows -->
+    <path d="M 60 86 Q 70 92 92 96 L 92 100 L 88 96 Q 70 86 60 88 Z" fill="#000"/>
+    <path d="M 148 96 Q 168 86 178 88 Q 168 92 152 100 Z" fill="#000"/>
+    <!-- evil smirk -->
+    <path d="M 70 235 Q 120 260 170 235 Q 120 244 70 235 Z" fill="#000"/>
+  </g>
+  <!-- "POD-ZILLA APPROACHES" big burst -->
+  <g transform="translate(400 60)">
+    <polygon points="-260,30 -240,5 -200,20 -160,0 -120,25 -80,5 -40,30 0,5 40,30 80,5 120,25 160,0 200,20 240,5 260,30 240,55 260,75 200,65 240,90 160,80 120,95 80,80 40,100 0,85 -40,100 -80,80 -120,95 -160,80 -200,90 -240,75" fill="#ffd24a" stroke="#000" stroke-width="6"/>
+    <text x="0" y="48" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="38" font-weight="900" fill="#c8302c">POD-ZILLA</text>
+    <text x="0" y="80" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="26" font-weight="900" fill="#000">APPROACHES!</text>
+  </g>
+  <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
+</svg>

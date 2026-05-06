@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Panel 3: BAD COFFEE INVASION — silhouettes of all defects marching -->
+  <defs>
+    <linearGradient id="invasion" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c83030"/>
+      <stop offset="0.6" stop-color="#5c1010"/>
+      <stop offset="1" stop-color="#1a1108"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#invasion)" stroke="#000" stroke-width="10"/>
+  <!-- speed lines radiating from center -->
+  <line x1="400" y1="225" x2="0" y2="0" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <line x1="400" y1="225" x2="800" y2="0" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <line x1="400" y1="225" x2="0" y2="450" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <line x1="400" y1="225" x2="800" y2="450" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <line x1="400" y1="225" x2="0" y2="225" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <line x1="400" y1="225" x2="800" y2="225" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <!-- ground line -->
+  <rect x="0" y="380" width="800" height="70" fill="#000" opacity="0.6"/>
+  <!-- silhouettes of 6 defects marching across -->
+  <!-- stale bean (left) -->
+  <ellipse cx="100" cy="350" rx="40" ry="44" fill="#000" stroke="#3d2817" stroke-width="3"/>
+  <path d="M 100 310 Q 92 350 100 390" stroke="#3d2817" stroke-width="4" fill="none"/>
+  <!-- preground bag -->
+  <rect x="180" y="295" width="70" height="100" fill="#000" stroke="#3d2817" stroke-width="3"/>
+  <rect x="178" y="290" width="74" height="10" fill="#000" stroke="#3d2817" stroke-width="3"/>
+  <!-- burnt bean -->
+  <ellipse cx="320" cy="350" rx="40" ry="44" fill="#000" stroke="#ff4400" stroke-width="3"/>
+  <circle cx="312" cy="345" r="3" fill="#ff4400"/>
+  <circle cx="328" cy="345" r="3" fill="#ff4400"/>
+  <!-- watery cup -->
+  <path d="M 410 308 L 414 388 Q 414 394 420 394 L 466 394 Q 472 394 472 388 L 476 308 Z" fill="#000" stroke="#3d2817" stroke-width="3"/>
+  <!-- milk carton -->
+  <path d="M 520 298 L 520 388 Q 520 394 526 394 L 570 394 Q 576 394 576 388 L 576 298 L 548 280 Z" fill="#000" stroke="#3d2817" stroke-width="3"/>
+  <!-- pod tyrant (biggest, on the right) -->
+  <path d="M 640 290 L 648 390 Q 648 396 656 396 L 720 396 Q 728 396 728 390 L 736 290 Z" fill="#000" stroke="#ff6633" stroke-width="4"/>
+  <path d="M 645 270 L 650 245 L 668 265 L 688 240 L 708 265 L 726 245 L 731 270 L 731 280 L 645 280 Z" fill="#000" stroke="#ffd24a" stroke-width="3"/>
+  <!-- title burst -->
+  <g transform="translate(400 100)">
+    <polygon points="-200,40 -180,10 -140,30 -100,0 -60,30 -20,10 20,30 60,10 100,30 140,0 180,30 200,40 200,70 180,90 140,80 100,90 60,80 20,90 -20,80 -60,90 -100,80 -140,90 -180,80 -200,70" fill="#ffd24a" stroke="#000" stroke-width="6"/>
+    <text x="0" y="64" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="48" font-weight="900" fill="#c8302c">BAD COFFEE</text>
+    <text x="0" y="92" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="32" font-weight="900" fill="#000">INVASION!</text>
+  </g>
+  <rect x="2" y="2" width="796" height="446" fill="none" stroke="#000" stroke-width="6"/>
+</svg>
