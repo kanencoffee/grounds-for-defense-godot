@@ -119,14 +119,78 @@ func _ready():
 	_build_barista()
 	_build_slots()
 	_build_hud()
-	# Play intro cutscene first; briefing follows on close
-	_show_cutscene([
-		{"sprite":"cutscene-1.svg", "sting":"sting_intro", "duration":3.5},
-		{"sprite":"cutscene-2.svg", "sting":"sting_tense", "duration":3.5},
-		{"sprite":"cutscene-3.svg", "sting":"sting_reveal", "duration":3.8},
-		{"sprite":"cutscene-4.svg", "sting":"sting_hero", "duration":3.5},
-		{"sprite":"cutscene-5.svg", "sting":"waveStart", "duration":3.0},
-	], _show_briefing)
+	# Audio + cutscene need user interaction first (browser autoplay policy).
+	_show_start_gate()
+
+func _show_start_gate():
+	var layer = CanvasLayer.new()
+	layer.layer = 120
+	add_child(layer)
+	var bg = ColorRect.new()
+	bg.color = Color(0.05, 0.03, 0.02, 1)
+	bg.size = Vector2(W, H)
+	layer.add_child(bg)
+	# Title text
+	var title = Label.new()
+	title.text = "GROUNDS FOR DEFENSE"
+	title.add_theme_font_size_override("font_size", 56)
+	title.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
+	title.add_theme_color_override("font_outline_color", Color(0.05, 0.02, 0.0))
+	title.add_theme_constant_override("outline_size", 5)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.size = Vector2(W, 80)
+	title.position = Vector2(0, H/2 - 160)
+	layer.add_child(title)
+	var subtitle = Label.new()
+	subtitle.text = "Defend your cup."
+	subtitle.add_theme_font_size_override("font_size", 22)
+	subtitle.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+	subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	subtitle.size = Vector2(W, 30)
+	subtitle.position = Vector2(0, H/2 - 90)
+	layer.add_child(subtitle)
+	# Big play button
+	var btn = Button.new()
+	btn.text = "▶ TAP TO BEGIN"
+	btn.add_theme_font_size_override("font_size", 28)
+	btn.size = Vector2(400, 80)
+	btn.position = Vector2(W/2 - 200, H/2 - 20)
+	layer.add_child(btn)
+	# Hint
+	var hint = Label.new()
+	hint.text = "Tip: cutscene + audio require a click to start (browser audio policy)"
+	hint.add_theme_font_size_override("font_size", 13)
+	hint.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.5))
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.size = Vector2(W, 20)
+	hint.position = Vector2(0, H/2 + 90)
+	layer.add_child(hint)
+	# Copyright bottom
+	var cr = Label.new()
+	cr.text = "© 2026 Kanen Coffee, LLC. All Rights Reserved."
+	cr.add_theme_font_size_override("font_size", 11)
+	cr.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.4))
+	cr.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cr.size = Vector2(W, 20)
+	cr.position = Vector2(0, H - 40)
+	layer.add_child(cr)
+	btn.pressed.connect(func():
+		# Prime audio + start cutscene
+		Sfx.play("place")
+		layer.queue_free()
+		_show_cutscene([
+			{"sprite":"cutscene-1.svg", "sting":"sting_intro", "duration":3.5,
+				"caption":"ANOTHER MORNING..."},
+			{"sprite":"cutscene-2.svg", "sting":"sting_tense", "duration":3.5,
+				"caption":"BUT SOMETHING'S WRONG..."},
+			{"sprite":"cutscene-3.svg", "sting":"sting_reveal", "duration":3.8,
+				"big_text":"BAD COFFEE", "sub_text":"INVASION!"},
+			{"sprite":"cutscene-4.svg", "sting":"sting_hero", "duration":3.5,
+				"big_text":"DEFEND", "sub_text":"YOUR CUP!"},
+			{"sprite":"cutscene-5.svg", "sting":"waveStart", "duration":3.0,
+				"big_text":"GROUNDS FOR", "sub_text":"DEFENSE"},
+		], _show_briefing)
+	)
 
 var briefing_pages: Array = []
 var briefing_idx: int = 0
@@ -195,6 +259,10 @@ func _render_cutscene_panel():
 	if not tex:
 		_advance_cutscene()
 		return
+	# Clear any previous caption labels
+	for child in cutscene_layer.get_children():
+		if child.has_meta("is_caption"):
+			child.queue_free()
 	# Fit panel to screen with margins
 	var panel_w = 800.0
 	var panel_h = 450.0
@@ -203,26 +271,79 @@ func _render_cutscene_panel():
 	var s = min(max_w / panel_w, max_h / panel_h)
 	cutscene_panel_sprite.texture = tex
 	cutscene_panel_sprite.scale = Vector2.ONE * s
-	# Fade in
 	cutscene_panel_sprite.modulate.a = 0.0
 	cutscene_panel_sprite.scale = Vector2.ONE * s * 0.92
 	var tw = create_tween()
 	tw.tween_property(cutscene_panel_sprite, "modulate:a", 1.0, 0.35)
 	tw.parallel().tween_property(cutscene_panel_sprite, "scale", Vector2.ONE * s, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	# Play sting
+	# Overlay caption text (Godot Labels — SVG <text> doesn't render in Godot's SVG importer)
+	var panel_top = float(H)/2 - 30 - (panel_h * s)/2
+	var panel_bottom = float(H)/2 - 30 + (panel_h * s)/2
+	var panel_center_x = float(W)/2
+	if p.has("caption"):
+		var cap_lbl = Label.new()
+		cap_lbl.text = p.caption
+		cap_lbl.add_theme_font_size_override("font_size", 36)
+		cap_lbl.add_theme_color_override("font_color", Color(0.05, 0.02, 0.0))
+		cap_lbl.add_theme_color_override("font_outline_color", Color(1, 0.94, 0.78))
+		cap_lbl.add_theme_constant_override("outline_size", 8)
+		cap_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		cap_lbl.size = Vector2(W, 50)
+		cap_lbl.position = Vector2(0, panel_top + 30)
+		cap_lbl.set_meta("is_caption", true)
+		cutscene_layer.add_child(cap_lbl)
+		_animate_caption(cap_lbl)
+	if p.has("big_text"):
+		var big_lbl = Label.new()
+		big_lbl.text = p.big_text
+		big_lbl.add_theme_font_size_override("font_size", 76)
+		big_lbl.add_theme_color_override("font_color", Color(0.95, 0.15, 0.2))
+		big_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.02, 0.0))
+		big_lbl.add_theme_constant_override("outline_size", 10)
+		big_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		big_lbl.size = Vector2(W, 90)
+		big_lbl.position = Vector2(0, panel_top + 60)
+		big_lbl.set_meta("is_caption", true)
+		big_lbl.rotation = -0.05
+		cutscene_layer.add_child(big_lbl)
+		_animate_caption(big_lbl, true)
+	if p.has("sub_text"):
+		var sub_lbl = Label.new()
+		sub_lbl.text = p.sub_text
+		sub_lbl.add_theme_font_size_override("font_size", 56)
+		sub_lbl.add_theme_color_override("font_color", Color(0.05, 0.02, 0.0))
+		sub_lbl.add_theme_color_override("font_outline_color", Color(1, 0.85, 0.3))
+		sub_lbl.add_theme_constant_override("outline_size", 8)
+		sub_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		sub_lbl.size = Vector2(W, 70)
+		sub_lbl.position = Vector2(0, panel_top + 150)
+		sub_lbl.set_meta("is_caption", true)
+		cutscene_layer.add_child(sub_lbl)
+		_animate_caption(sub_lbl, true, 0.15)
+	# Play sting (audio context already primed by start gate)
 	if p.has("sting"):
 		Sfx.play(p.sting)
 	# Auto-advance timer
 	var dur = p.get("duration", 4.0)
-	if cutscene_advance_timer:
-		# can't cancel SceneTreeTimer, just rely on idx checks
-		pass
 	cutscene_advance_timer = get_tree().create_timer(dur)
 	var current_idx = cutscene_idx
 	cutscene_advance_timer.timeout.connect(func():
 		if cutscene_idx == current_idx and is_instance_valid(cutscene_layer):
 			_advance_cutscene()
 	)
+
+func _animate_caption(lbl: Label, punchy := false, delay := 0.0):
+	lbl.modulate.a = 0.0
+	if punchy:
+		lbl.scale = Vector2(0.5, 0.5)
+		lbl.pivot_offset = Vector2(W/2.0, 30)
+	var tw = create_tween()
+	if delay > 0:
+		tw.tween_interval(delay)
+	tw.tween_property(lbl, "modulate:a", 1.0, 0.3)
+	if punchy:
+		tw.parallel().tween_property(lbl, "scale", Vector2(1.1, 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tw.tween_property(lbl, "scale", Vector2(1.0, 1.0), 0.12)
 
 func _advance_cutscene():
 	if not is_instance_valid(cutscene_layer):
@@ -1158,7 +1279,8 @@ func _on_start_wave():
 	# Play boss-intro cutscene before the final wave
 	if wave_num + 1 == max_waves:
 		_show_cutscene([
-			{"sprite":"cutscene-boss.svg", "sting":"sting_boss", "duration":4.5}
+			{"sprite":"cutscene-boss.svg", "sting":"sting_boss", "duration":4.5,
+				"big_text":"POD-ZILLA", "sub_text":"APPROACHES!"}
 		], _start_wave_actual)
 		return
 	_start_wave_actual()
