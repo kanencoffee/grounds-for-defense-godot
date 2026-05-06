@@ -1,63 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="160" height="200">
-  <!-- K-POD TYRANT (BOSS): pre-ground stale beans sealed in plastic + foil 18 months before sale; reheated water through plastic. -->
-  <ellipse cx="80" cy="190" rx="60" ry="6" fill="#1a1108" opacity="0.5"/>
-  <!-- crown -->
-  <path d="M 40 30 L 48 8 L 60 24 L 80 4 L 100 24 L 112 8 L 120 30 L 120 38 L 40 38 Z" fill="#f0c987" stroke="#8b5a2b" stroke-width="3"/>
-  <circle cx="80" cy="14" r="4" fill="#c8302c" stroke="#8b5a2b" stroke-width="2"/>
-  <circle cx="52" cy="18" r="2.5" fill="#88bbee" stroke="#8b5a2b" stroke-width="1.5"/>
-  <circle cx="108" cy="18" r="2.5" fill="#88bbee" stroke="#8b5a2b" stroke-width="1.5"/>
-  <rect x="40" y="30" width="80" height="8" fill="#d4a574" stroke="#8b5a2b" stroke-width="2"/>
-  <!-- foil top of pod -->
-  <ellipse cx="80" cy="46" rx="42" ry="6" fill="#e8e8e8" stroke="#1a1108" stroke-width="3"/>
-  <ellipse cx="80" cy="44" rx="34" ry="3" fill="#fff" opacity="0.8"/>
-  <ellipse cx="64" cy="42" rx="10" ry="1.5" fill="#fff"/>
-  <text x="100" y="48" font-family="monospace" font-size="6" font-weight="bold" fill="#1a1108" opacity="0.6">ALU</text>
-  <!-- pod body -->
-  <path d="M 32 46 L 40 184 Q 40 190 46 190 L 114 190 Q 120 190 120 184 L 128 46 Z" fill="#e85a3a" stroke="#1a1108" stroke-width="3.5"/>
-  <!-- pod ridges -->
-  <line x1="36" y1="68" x2="124" y2="68" stroke="#1a1108" stroke-width="1.2" opacity="0.5"/>
-  <line x1="38" y1="88" x2="122" y2="88" stroke="#1a1108" stroke-width="1.2" opacity="0.5"/>
-  <line x1="39" y1="108" x2="121" y2="108" stroke="#1a1108" stroke-width="1.2" opacity="0.5"/>
-  <line x1="41" y1="148" x2="119" y2="148" stroke="#1a1108" stroke-width="1.2" opacity="0.5"/>
-  <line x1="42" y1="168" x2="118" y2="168" stroke="#1a1108" stroke-width="1.2" opacity="0.5"/>
-  <!-- shine on plastic -->
-  <path d="M 40 50 L 44 184" stroke="#fff" stroke-width="3" opacity="0.45"/>
+  <!-- POD-ZILLA (BOSS) — comic book villain: bright orange pod, gold crown, purple cape -->
+  <defs>
+    <pattern id="ht-pod" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1" fill="#000" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <ellipse cx="80" cy="190" rx="60" ry="6" fill="#000" opacity="0.7"/>
+  <!-- royal cape (purple, behind everything) -->
+  <path d="M 18 60 L 8 150 L 22 158 L 44 60 Z" fill="#5a1a4a" stroke="#000" stroke-width="5"/>
+  <path d="M 142 60 L 152 150 L 138 158 L 116 60 Z" fill="#5a1a4a" stroke="#000" stroke-width="5"/>
+  <!-- cape highlights -->
+  <path d="M 14 80 L 18 140" stroke="#7a3a6a" stroke-width="3" fill="none"/>
+  <path d="M 146 80 L 142 140" stroke="#7a3a6a" stroke-width="3" fill="none"/>
+  <!-- gold crown -->
+  <path d="M 36 26 L 42 4 L 56 22 L 80 0 L 104 22 L 118 4 L 124 26 L 124 36 L 36 36 Z" fill="#ffd24a" stroke="#000" stroke-width="5"/>
+  <!-- crown jewels -->
+  <circle cx="80" cy="14" r="5" fill="#c8302c" stroke="#000" stroke-width="3"/>
+  <circle cx="56" cy="20" r="3.5" fill="#88bbee" stroke="#000" stroke-width="2.5"/>
+  <circle cx="104" cy="20" r="3.5" fill="#88bbee" stroke="#000" stroke-width="2.5"/>
+  <rect x="36" y="28" width="88" height="8" fill="#c8a030" stroke="#000" stroke-width="3"/>
+  <!-- foil top -->
+  <ellipse cx="80" cy="44" rx="44" ry="7" fill="#e8e8e8" stroke="#000" stroke-width="5"/>
+  <ellipse cx="80" cy="42" rx="36" ry="3" fill="#fff"/>
+  <ellipse cx="62" cy="40" rx="14" ry="2" fill="#fff"/>
+  <!-- pod body — bright orange plastic -->
+  <path d="M 30 44 L 38 184 Q 38 192 46 192 L 114 192 Q 122 192 122 184 L 130 44 Z" fill="#ff6633" stroke="#000" stroke-width="5"/>
+  <!-- shadow side (halftone) -->
+  <path d="M 130 44 L 122 184 Q 122 192 114 192 L 96 192 L 96 44 Z" fill="url(#ht-pod)"/>
+  <!-- highlight stripe -->
+  <rect x="44" y="48" width="8" height="138" fill="#fff" opacity="0.65"/>
+  <!-- ridges -->
+  <line x1="38" y1="76" x2="124" y2="76" stroke="#000" stroke-width="2"/>
+  <line x1="38" y1="100" x2="124" y2="100" stroke="#000" stroke-width="2"/>
+  <line x1="38" y1="148" x2="124" y2="148" stroke="#000" stroke-width="2"/>
+  <line x1="38" y1="170" x2="124" y2="170" stroke="#000" stroke-width="2"/>
   <!-- white center label -->
-  <ellipse cx="80" cy="118" rx="32" ry="26" fill="#fff8f0" stroke="#1a1108" stroke-width="2.5"/>
-  <text x="80" y="100" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1108">K-POD</text>
-  <text x="80" y="114" text-anchor="middle" font-family="serif" font-size="10" font-style="italic" fill="#c8302c">"TYRANT"</text>
-  <line x1="56" y1="120" x2="104" y2="120" stroke="#1a1108" stroke-width="0.8"/>
-  <!-- educational defect callouts on label -->
-  <text x="80" y="130" text-anchor="middle" font-family="monospace" font-size="6" font-weight="bold" fill="#1a1108">SEALED 18 MO</text>
-  <text x="80" y="138" text-anchor="middle" font-family="monospace" font-size="6" fill="#1a1108">PLASTIC + FOIL</text>
-  <!-- expiration warning sticker -->
-  <g transform="rotate(-15 144 60)">
-    <rect x="128" y="54" width="32" height="14" fill="#ffdd00" stroke="#1a1108" stroke-width="1.5"/>
-    <text x="144" y="64" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#1a1108">PRE-GROUND</text>
-  </g>
-  <!-- big eyes -->
-  <circle cx="58" cy="68" r="5" fill="#fff"/>
-  <circle cx="102" cy="68" r="5" fill="#fff"/>
-  <circle cx="58" cy="68" r="2.8" fill="#1a1108"/>
-  <circle cx="102" cy="68" r="2.8" fill="#1a1108"/>
-  <circle cx="59" cy="67" r="1" fill="#fff"/>
-  <circle cx="103" cy="67" r="1" fill="#fff"/>
-  <!-- angry eyebrows -->
-  <path d="M 50 60 L 66 64" stroke="#1a1108" stroke-width="3.5" stroke-linecap="round"/>
-  <path d="M 94 64 L 110 60" stroke="#1a1108" stroke-width="3.5" stroke-linecap="round"/>
+  <ellipse cx="80" cy="116" rx="36" ry="28" fill="#fff" stroke="#000" stroke-width="5"/>
+  <text x="80" y="108" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="20" font-weight="900" fill="#000">K-POD</text>
+  <text x="80" y="128" text-anchor="middle" font-family="Impact, sans-serif" font-size="14" font-style="italic" fill="#c8302c">TYRANT</text>
+  <!-- big evil eyes (above label) -->
+  <ellipse cx="56" cy="68" rx="8" ry="9" fill="#fff" stroke="#000" stroke-width="4"/>
+  <ellipse cx="104" cy="68" rx="8" ry="9" fill="#fff" stroke="#000" stroke-width="4"/>
+  <circle cx="56" cy="70" r="4" fill="#000"/>
+  <circle cx="104" cy="70" r="4" fill="#000"/>
+  <circle cx="58" cy="68" r="1.5" fill="#fff"/>
+  <circle cx="106" cy="68" r="1.5" fill="#fff"/>
+  <!-- evil eyebrows -->
+  <path d="M 42 56 Q 50 60 66 62 L 68 66 L 64 62 Q 50 56 42 58 Z" fill="#000"/>
+  <path d="M 96 62 Q 110 56 118 58 Q 110 60 96 66 L 94 64 Z" fill="#000"/>
   <!-- evil smirk -->
-  <path d="M 56 156 Q 80 168 104 156" fill="#1a1108"/>
-  <path d="M 60 158 L 64 162 M 68 159 L 72 163 M 76 160 L 80 164 M 84 160 L 88 163 M 92 159 L 96 162" stroke="#fff" stroke-width="0.8"/>
-  <!-- royal cape -->
-  <path d="M 24 60 L 18 140 L 28 144 L 40 60 Z" fill="#5a1a4a" stroke="#1a1108" stroke-width="2.5" opacity="0.85"/>
-  <path d="M 136 60 L 142 140 L 132 144 L 120 60 Z" fill="#5a1a4a" stroke="#1a1108" stroke-width="2.5" opacity="0.85"/>
-  <!-- price tag (gross convenience pricing) -->
-  <g transform="rotate(8 130 178)">
-    <rect x="118" y="172" width="32" height="14" fill="#fff" stroke="#1a1108" stroke-width="1.5"/>
-    <text x="134" y="182" text-anchor="middle" font-family="monospace" font-size="7" font-weight="bold" fill="#c8302c">$0.85/CUP</text>
+  <path d="M 50 158 Q 80 174 110 158 Q 80 162 50 158 Z" fill="#000"/>
+  <path d="M 56 162 L 60 168 M 66 164 L 70 170 M 76 166 L 80 172 M 86 166 L 90 170 M 96 164 L 100 168" stroke="#fff" stroke-width="1.5"/>
+  <!-- BOSS! burst -->
+  <g transform="translate(20 -8)">
+    <polygon points="0,16 8,4 18,10 28,2 36,16 44,4 52,16 48,24 56,28 42,32 50,40 36,36 28,46 20,36 8,40 12,28 -2,24" fill="#ffd24a" stroke="#000" stroke-width="4"/>
+    <text x="26" y="28" text-anchor="middle" font-family="Impact, sans-serif" font-size="13" font-weight="900" fill="#000">BOSS!</text>
   </g>
-  <text x="40" y="178" font-family="monospace" font-size="7" font-weight="bold" fill="#fff">PLASTIC</text>
-  <text x="40" y="186" font-family="monospace" font-size="7" font-weight="bold" fill="#fff">+METALLIC</text>
-  <!-- microplastic warning -->
-  <text x="80" y="198" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="bold" fill="#c8302c">⚠ MICROPLASTICS</text>
 </svg>

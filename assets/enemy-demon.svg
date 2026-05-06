@@ -1,55 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <!-- REHEATED MILK: lactose burns above 70°C, proteins denature, sugars caramelize wrong → bitter, scorched, lumpy. -->
-  <ellipse cx="64" cy="124" rx="48" ry="5" fill="#1a1108" opacity="0.4"/>
-  <!-- microwave waves (nuked) -->
-  <path d="M 4 50 Q 8 46 8 54 Q 8 62 4 58" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.7"/>
-  <path d="M 12 54 Q 16 50 16 58" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.5"/>
-  <path d="M 122 46 Q 118 42 118 50 Q 118 58 122 54" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.7"/>
-  <path d="M 114 50 Q 110 46 110 54" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.5"/>
-  <path d="M 8 80 Q 4 84 6 90" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.7"/>
-  <path d="M 122 86 Q 126 90 122 94" fill="none" stroke="#ff8855" stroke-width="2" opacity="0.7"/>
-  <!-- carton body -->
-  <path d="M 28 44 L 28 116 Q 28 120 32 120 L 96 120 Q 100 120 100 116 L 100 44 L 64 28 Z" fill="#fff8e8" stroke="#1a1108" stroke-width="3.5"/>
-  <!-- carton fold lines -->
-  <path d="M 28 44 L 64 28 L 100 44" fill="#f0e8d0" stroke="#1a1108" stroke-width="3.5"/>
-  <line x1="64" y1="28" x2="64" y2="44" stroke="#1a1108" stroke-width="2" opacity="0.4"/>
-  <!-- crusty skin on top of milk (the big "ew" feature) -->
-  <ellipse cx="64" cy="40" rx="28" ry="6" fill="#d8c4a0" stroke="#8b6f47" stroke-width="2.5"/>
-  <ellipse cx="56" cy="38" rx="6" ry="2" fill="#8b6f47" opacity="0.7"/>
-  <ellipse cx="72" cy="40" rx="4" ry="1.5" fill="#a08260" opacity="0.8"/>
-  <ellipse cx="64" cy="42" rx="10" ry="1.2" fill="#5c4a30" opacity="0.6"/>
-  <!-- crust bumps (visible chunks) -->
-  <circle cx="46" cy="38" r="3" fill="#a08260"/>
-  <circle cx="82" cy="38" r="2.5" fill="#a08260"/>
-  <circle cx="64" cy="34" r="3.5" fill="#8b6f47"/>
-  <circle cx="54" cy="40" r="2" fill="#5c4a30"/>
-  <circle cx="74" cy="40" r="2.2" fill="#5c4a30"/>
+  <!-- SKIN-DEEP MILK — sad carton with HUGE crusty top, drips, microwave waves -->
+  <defs>
+    <pattern id="ht-milk" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.8" fill="#000" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <ellipse cx="64" cy="124" rx="46" ry="5" fill="#000" opacity="0.6"/>
+  <!-- microwave radiation lines (it's been nuked) -->
+  <path d="M 6 50 Q 12 46 12 54" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 14 56 Q 20 52 20 60" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 122 50 Q 116 46 116 54" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 114 56 Q 108 52 108 60" fill="none" stroke="#ff7733" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- carton body — flat cream -->
+  <path d="M 28 44 L 28 116 Q 28 122 34 122 L 94 122 Q 100 122 100 116 L 100 44 L 64 28 Z" fill="#fff8e8" stroke="#000" stroke-width="5"/>
+  <!-- top fold -->
+  <path d="M 28 44 L 64 28 L 100 44" fill="#e8d8b8" stroke="#000" stroke-width="5"/>
+  <line x1="64" y1="28" x2="64" y2="44" stroke="#000" stroke-width="3"/>
+  <!-- shadow side -->
+  <path d="M 100 44 L 100 116 Q 100 122 94 122 L 76 122 L 76 44 Z" fill="url(#ht-milk)"/>
+  <!-- HUGE crusty top (the gross feature) -->
+  <ellipse cx="64" cy="44" rx="32" ry="7" fill="#c8a878" stroke="#000" stroke-width="4"/>
+  <ellipse cx="64" cy="42" rx="26" ry="3" fill="#a08260"/>
+  <!-- crust chunks -->
+  <circle cx="44" cy="42" r="5" fill="#a08260" stroke="#000" stroke-width="2.5"/>
+  <circle cx="84" cy="42" r="4.5" fill="#a08260" stroke="#000" stroke-width="2.5"/>
+  <circle cx="64" cy="38" r="6" fill="#8b6f47" stroke="#000" stroke-width="2.5"/>
+  <circle cx="54" cy="44" r="3" fill="#5c4a30" stroke="#000" stroke-width="2"/>
+  <circle cx="74" cy="46" r="3" fill="#5c4a30" stroke="#000" stroke-width="2"/>
   <!-- steam wisps -->
-  <path d="M 48 28 Q 44 16 50 8" fill="none" stroke="#aaa" stroke-width="3" opacity="0.6"/>
-  <path d="M 64 24 Q 60 12 66 4" fill="none" stroke="#aaa" stroke-width="3" opacity="0.6"/>
-  <path d="M 80 28 Q 76 16 82 8" fill="none" stroke="#aaa" stroke-width="3" opacity="0.6"/>
-  <!-- "MILK" label -->
-  <rect x="36" y="60" width="56" height="22" fill="#fff" stroke="#1a1108" stroke-width="2.5" rx="2"/>
-  <text x="64" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#1a1108">MILK</text>
-  <!-- defect callout -->
-  <rect x="32" y="86" width="64" height="14" fill="#ff8855" stroke="#1a1108" stroke-width="1.5"/>
-  <text x="64" y="96" text-anchor="middle" font-family="monospace" font-size="7" font-weight="bold" fill="#1a1108">REHEATED 3X</text>
-  <!-- temperature sticker -->
-  <g transform="rotate(-12 16 60)">
-    <rect x="2" y="54" width="32" height="14" fill="#ff4422" stroke="#1a1108" stroke-width="1"/>
-    <text x="18" y="64" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="bold" fill="#fff">SCORCHED</text>
+  <path d="M 44 28 Q 38 16 44 4" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 64 24 Q 58 10 64 -2" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 84 28 Q 78 16 84 4" fill="none" stroke="#888" stroke-width="4" stroke-linecap="round"/>
+  <!-- BIG MILK label -->
+  <rect x="36" y="62" width="56" height="22" fill="#fff" stroke="#000" stroke-width="4"/>
+  <text x="64" y="80" text-anchor="middle" font-family="Impact, Arial Black, sans-serif" font-size="20" font-weight="900" fill="#000">MILK</text>
+  <!-- big sad eyes on carton -->
+  <circle cx="50" cy="98" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
+  <circle cx="78" cy="98" r="5" fill="#fff" stroke="#000" stroke-width="3"/>
+  <circle cx="50" cy="100" r="2.5" fill="#000"/>
+  <circle cx="78" cy="100" r="2.5" fill="#000"/>
+  <!-- frown -->
+  <path d="M 50 114 Q 64 108 78 114" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- tilted "RE-HEATED!" tag -->
+  <g transform="rotate(-10 14 110)">
+    <rect x="-2" y="100" width="50" height="16" fill="#ff7733" stroke="#000" stroke-width="3"/>
+    <text x="23" y="111" text-anchor="middle" font-family="Impact, sans-serif" font-size="10" fill="#000">RE-HEATED!</text>
   </g>
-  <!-- expiration -->
-  <g transform="rotate(8 110 92)">
-    <rect x="92" y="86" width="32" height="14" fill="#000" stroke="#fff" stroke-width="0.8"/>
-    <text x="108" y="92" text-anchor="middle" font-family="sans-serif" font-size="4" fill="#fff">EXP</text>
-    <text x="108" y="98" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#ff4444">YESTERDAY</text>
-  </g>
-  <!-- denatured proteins science note -->
-  <text x="32" y="110" font-family="monospace" font-size="6" fill="#1a1108">PROTEINS:</text>
-  <text x="32" y="116" font-family="monospace" font-size="6" font-weight="bold" fill="#c8302c">DENATURED</text>
-  <!-- sad face -->
-  <ellipse cx="48" cy="50" rx="2" ry="2.5" fill="#1a1108"/>
-  <ellipse cx="80" cy="50" rx="2" ry="2.5" fill="#1a1108"/>
-  <path d="M 50 56 Q 64 50 78 56" fill="none" stroke="#1a1108" stroke-width="2" stroke-linecap="round"/>
 </svg>

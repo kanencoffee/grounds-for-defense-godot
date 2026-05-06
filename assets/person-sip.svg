@@ -1,72 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
-  <!-- Person sipping happily — mug RIM at mouth, body hanging below (natural sip) -->
-  <defs>
-    <radialGradient id="halo4" cx="0.5" cy="0.4">
-      <stop offset="0" stop-color="#fff5d6" stop-opacity="0.7"/>
-      <stop offset="1" stop-color="#f0c987" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="shirt2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#5a8aaa"/>
-      <stop offset="1" stop-color="#3a6280"/>
-    </linearGradient>
-    <linearGradient id="skin4" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#f5d4a8"/>
-      <stop offset="1" stop-color="#d4a574"/>
-    </linearGradient>
-  </defs>
-  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#halo4)"/>
-  <!-- shadow -->
-  <ellipse cx="96" cy="220" rx="64" ry="6" fill="#1a1108" opacity="0.45"/>
-  <!-- T-shirt body (relaxed pose) -->
-  <path d="M 44 116 L 32 220 L 160 220 L 148 116 Q 148 102 134 96 L 130 100 L 96 116 L 62 100 L 58 96 Q 44 102 44 116 Z" fill="url(#shirt2)" stroke="#1a1108" stroke-width="3"/>
-  <path d="M 56 130 L 50 215" stroke="#3a6280" stroke-width="2" opacity="0.5"/>
-  <path d="M 136 130 L 142 215" stroke="#1a3850" stroke-width="2" opacity="0.5"/>
-  <path d="M 76 96 L 96 116 L 116 96" fill="none" stroke="#1a3850" stroke-width="2.5"/>
+  <!-- COFFEE GEEK (sipping happily) — comic style, mug at mouth, eyes happy -->
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#000" opacity="0.6"/>
+  <!-- big steam burst at top -->
+  <path d="M 80 14 Q 72 -2 84 -10" stroke="#aaa" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 96 12 Q 86 -4 100 -14" stroke="#aaa" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 112 14 Q 122 -2 110 -10" stroke="#aaa" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- T-shirt body -->
+  <path d="M 44 116 L 32 222 L 160 222 L 148 116 Q 148 100 134 94 L 130 100 L 96 116 L 62 100 L 58 94 Q 44 100 44 116 Z" fill="#5a8aaa" stroke="#000" stroke-width="5"/>
+  <path d="M 76 96 L 96 116 L 116 96" fill="none" stroke="#000" stroke-width="4"/>
   <!-- right arm relaxed -->
-  <ellipse cx="148" cy="140" rx="12" ry="32" fill="url(#shirt2)" stroke="#1a1108" stroke-width="2.5"/>
-  <circle cx="148" cy="180" r="11" fill="url(#skin4)" stroke="#1a1108" stroke-width="2.5"/>
-  <!-- HEAD (drawn first so mug overlaps lower face only) -->
-  <!-- neck -->
-  <rect x="84" y="76" width="24" height="22" fill="url(#skin4)" stroke="#1a1108" stroke-width="2.5"/>
-  <rect x="84" y="92" width="24" height="6" fill="#1a1108" opacity="0.3"/>
-  <!-- head -->
-  <circle cx="96" cy="56" r="30" fill="url(#skin4)" stroke="#1a1108" stroke-width="3"/>
-  <!-- ears -->
-  <ellipse cx="66" cy="56" rx="4" ry="6" fill="url(#skin4)" stroke="#1a1108" stroke-width="2"/>
-  <ellipse cx="126" cy="56" rx="4" ry="6" fill="url(#skin4)" stroke="#1a1108" stroke-width="2"/>
+  <ellipse cx="148" cy="146" rx="14" ry="36" fill="#5a8aaa" stroke="#000" stroke-width="4"/>
+  <circle cx="148" cy="184" r="13" fill="#f5d4a8" stroke="#000" stroke-width="4"/>
+  <!-- LEFT arm raised forward, holding mug at mouth -->
+  <path d="M 32 130 Q 28 110 56 96 L 76 90 Q 84 96 80 110 L 60 142 Z" fill="#5a8aaa" stroke="#000" stroke-width="4"/>
+  <ellipse cx="42" cy="124" rx="14" ry="22" fill="#5a8aaa" stroke="#000" stroke-width="4"/>
+  <!-- left hand grasping mug from below -->
+  <circle cx="78" cy="92" r="11" fill="#f5d4a8" stroke="#000" stroke-width="4"/>
+  <!-- HEAD -->
+  <rect x="84" y="76" width="24" height="22" fill="#f5d4a8" stroke="#000" stroke-width="4"/>
+  <circle cx="96" cy="56" r="32" fill="#f5d4a8" stroke="#000" stroke-width="5"/>
+  <ellipse cx="64" cy="56" rx="5" ry="8" fill="#f5d4a8" stroke="#000" stroke-width="3"/>
+  <ellipse cx="128" cy="56" rx="5" ry="8" fill="#f5d4a8" stroke="#000" stroke-width="3"/>
   <!-- hair -->
-  <path d="M 66 50 Q 64 22 96 18 Q 128 22 126 50 Q 124 36 110 30 Q 96 28 82 30 Q 68 36 66 50 Z" fill="#5c3a1c" stroke="#1a1108" stroke-width="2.5"/>
-  <path d="M 76 30 L 78 24 M 100 26 L 102 20 M 118 32 L 122 28" stroke="#3d2817" stroke-width="2" stroke-linecap="round"/>
-  <!-- eyebrows (slightly raised, content) -->
-  <path d="M 78 48 Q 84 44 90 48" stroke="#1a1108" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M 102 48 Q 108 44 114 48" stroke="#1a1108" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- happy closed eyes (^^ shape) -->
-  <path d="M 78 58 Q 84 54 90 58" stroke="#1a1108" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M 102 58 Q 108 54 114 58" stroke="#1a1108" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <!-- nose (visible above mug) -->
-  <path d="M 96 60 Q 94 68 96 72 Q 98 68 96 60" fill="#d4a574" stroke="#1a1108" stroke-width="1"/>
-  <!-- pink contented cheeks -->
-  <ellipse cx="74" cy="68" rx="4" ry="3" fill="#e89b7a" opacity="0.7"/>
-  <ellipse cx="118" cy="68" rx="4" ry="3" fill="#e89b7a" opacity="0.7"/>
-  <!-- LEFT arm raised forward (cup-holding) -->
-  <ellipse cx="44" cy="120" rx="12" ry="22" fill="url(#shirt2)" stroke="#1a1108" stroke-width="2.5"/>
-  <!-- forearm coming forward -->
-  <path d="M 32 132 Q 30 110 56 96 L 80 92 Q 86 96 82 110 L 60 144 Z" fill="url(#shirt2)" stroke="#1a1108" stroke-width="2.5"/>
-  <!-- wrist + hand -->
-  <circle cx="84" cy="100" r="9" fill="url(#skin4)" stroke="#1a1108" stroke-width="2.5"/>
-  <!-- COFFEE MUG: rim at mouth (~y=78), body hangs down to chest. -->
-  <!-- mug body -->
-  <path d="M 70 80 L 74 130 Q 74 136 80 136 L 112 136 Q 118 136 118 130 L 122 80 Z" fill="#fff8f0" stroke="#1a1108" stroke-width="3"/>
-  <!-- mug rim (top, where mouth is) -->
-  <ellipse cx="96" cy="80" rx="26" ry="4" fill="#3d2817" stroke="#1a1108" stroke-width="2"/>
-  <ellipse cx="96" cy="79" rx="20" ry="2" fill="#5c3a1c"/>
-  <!-- handle -->
-  <path d="M 122 92 Q 134 96 134 108 Q 134 120 122 120" fill="none" stroke="#1a1108" stroke-width="3"/>
-  <!-- steam from mug -->
-  <path d="M 86 70 Q 82 60 88 50" stroke="#aaa" stroke-width="2" fill="none" opacity="0.7"/>
-  <path d="M 96 68 Q 92 56 98 46" stroke="#aaa" stroke-width="2" fill="none" opacity="0.7"/>
-  <path d="M 106 70 Q 102 60 108 50" stroke="#aaa" stroke-width="2" fill="none" opacity="0.7"/>
-  <!-- "Ahhh" indicator (off to the side) -->
-  <text x="146" y="92" font-family="serif" font-size="14" font-style="italic" fill="#f0c987" opacity="0.85">~</text>
-  <text x="156" y="102" font-family="serif" font-size="11" font-style="italic" fill="#f0c987" opacity="0.7">~</text>
+  <path d="M 64 50 Q 60 18 96 14 Q 132 18 128 50 Q 124 32 110 26 Q 96 24 82 26 Q 68 32 64 50 Z" fill="#5c3a1c" stroke="#000" stroke-width="5"/>
+  <!-- relaxed eyebrows -->
+  <path d="M 76 48 Q 84 44 92 48" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 100 48 Q 108 44 116 48" stroke="#000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- happy ^^ closed eyes -->
+  <path d="M 76 60 Q 84 54 92 60" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 100 60 Q 108 54 116 60" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- nose visible above mug -->
+  <path d="M 96 64 Q 92 74 96 78 Q 100 74 96 64 Z" fill="#d8a878" stroke="#000" stroke-width="2"/>
+  <!-- pink content cheeks -->
+  <circle cx="74" cy="74" r="5" fill="#e89b7a" opacity="0.85"/>
+  <circle cx="118" cy="74" r="5" fill="#e89b7a" opacity="0.85"/>
+  <!-- COFFEE MUG: rim at chin/mouth (~y=84), body hangs down -->
+  <path d="M 70 84 L 74 134 Q 74 140 80 140 L 112 140 Q 118 140 118 134 L 122 84 Z" fill="#fff" stroke="#000" stroke-width="5"/>
+  <ellipse cx="96" cy="84" rx="26" ry="5" fill="#3d2817" stroke="#000" stroke-width="3"/>
+  <ellipse cx="96" cy="82" rx="20" ry="2.5" fill="#5c3a1c"/>
+  <path d="M 122 96 Q 134 100 134 110 Q 134 122 122 122" fill="none" stroke="#000" stroke-width="4"/>
+  <!-- "AHHH!" comic burst -->
+  <g transform="translate(140 100)">
+    <polygon points="0,12 6,2 14,8 22,0 28,12 22,18 28,22 18,26 22,32 12,28 6,32 8,22 -2,18" fill="#ffd24a" stroke="#000" stroke-width="3"/>
+    <text x="14" y="22" text-anchor="middle" font-family="Impact, sans-serif" font-size="11" font-weight="bold" fill="#000">AHH!</text>
+  </g>
 </svg>
