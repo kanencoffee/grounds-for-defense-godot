@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- RILEY — vintage academic; ginger curly bob, wire round glasses, mustard cardigan + bowtie -->
+  <defs>
+    <radialGradient id="r-page" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#f0dcb8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="r-skin" cx="0.4" cy="0.4">
+      <stop offset="0" stop-color="#fce4c8"/>
+      <stop offset="1" stop-color="#e8b890" stop-opacity="0.9"/>
+    </radialGradient>
+    <radialGradient id="r-cardigan" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#e8b440"/>
+      <stop offset="1" stop-color="#a87830" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#r-page)"/>
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#3d2817" opacity="0.3"/>
+  <!-- cardigan body -->
+  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="url(#r-cardigan)"/>
+  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- cardigan opens at center showing white shirt + bowtie -->
+  <rect x="80" y="116" width="32" height="106" fill="#fff8e8"/>
+  <path d="M 80 116 L 80 222" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 112 116 L 112 222" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- buttons -->
+  <circle cx="96" cy="140" r="2" fill="#7a5022" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="160" r="2" fill="#7a5022" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="180" r="2" fill="#7a5022" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="200" r="2" fill="#7a5022" stroke="#3d2817" stroke-width="1"/>
+  <!-- subtle bust contour -->
+  <path d="M 60 134 Q 84 148 96 144 Q 108 148 132 134" fill="none" stroke="#7a5022" stroke-width="1.2" opacity="0.5"/>
+  <!-- BOWTIE (signature accessory) -->
+  <path d="M 86 110 L 80 100 L 80 116 L 86 110 L 80 122 L 80 116 Z" fill="#a83040" stroke="#3d2817" stroke-width="1.5"/>
+  <path d="M 106 110 L 112 100 L 112 116 L 106 110 L 112 122 L 112 116 Z" fill="#a83040" stroke="#3d2817" stroke-width="1.5"/>
+  <rect x="92" y="106" width="8" height="10" fill="#7a1828" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- collar (visible above bowtie) -->
+  <path d="M 80 100 L 96 110 L 112 100" fill="none" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- arms -->
+  <ellipse cx="44" cy="148" rx="14" ry="34" fill="url(#r-cardigan)" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="148" cy="148" rx="14" ry="34" fill="url(#r-cardigan)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- hands -->
+  <circle cx="48" cy="178" r="11" fill="url(#r-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <circle cx="148" cy="184" r="11" fill="url(#r-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- mug -->
+  <path d="M 56 158 L 62 192 Q 62 198 68 198 L 96 198 Q 102 198 102 192 L 108 158 Z" fill="#fff8e8" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="82" cy="158" rx="26" ry="4" fill="#5c3a1c" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="82" cy="156" rx="20" ry="2" fill="#3d2817"/>
+  <path d="M 108 168 Q 122 172 122 180 Q 122 188 108 188" fill="none" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 70 152 Q 66 144 72 136" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 88 150 Q 84 140 90 132" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- neck -->
+  <rect x="84" y="76" width="24" height="22" fill="url(#r-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- head — pale skin with freckles -->
+  <circle cx="96" cy="56" r="32" fill="url(#r-skin)" stroke="#3d2817" stroke-width="2"/>
+  <ellipse cx="64" cy="56" rx="5" ry="8" fill="url(#r-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="128" cy="56" rx="5" ry="8" fill="url(#r-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- GINGER CURLY BOB (chin-length, voluminous) -->
+  <path d="M 60 50 Q 52 22 96 12 Q 140 22 132 50 Q 138 80 132 90 Q 122 86 122 70 Q 118 32 96 28 Q 74 32 70 70 Q 70 86 60 90 Q 54 80 60 50 Z" fill="#d04818" stroke="#3d2817" stroke-width="2"/>
+  <!-- curls -->
+  <circle cx="68" cy="80" r="7" fill="#d04818" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="124" cy="80" r="7" fill="#d04818" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="60" cy="70" r="5" fill="#d04818" stroke="#3d2817" stroke-width="1.5"/>
+  <circle cx="132" cy="70" r="5" fill="#d04818" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- bangs -->
+  <path d="M 76 36 Q 84 30 96 32 Q 108 30 116 36 Q 108 26 96 28 Q 84 26 76 36 Z" fill="#d04818" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- ROUND WIRE GLASSES -->
+  <circle cx="82" cy="60" r="10" fill="#fff" fill-opacity="0.15" stroke="#3d2817" stroke-width="2"/>
+  <circle cx="110" cy="60" r="10" fill="#fff" fill-opacity="0.15" stroke="#3d2817" stroke-width="2"/>
+  <line x1="92" y1="60" x2="100" y2="60" stroke="#3d2817" stroke-width="2"/>
+  <!-- eyes -->
+  <circle cx="82" cy="61" r="2.5" fill="#3a5a2a"/>
+  <circle cx="110" cy="61" r="2.5" fill="#3a5a2a"/>
+  <circle cx="83" cy="60" r="0.8" fill="#fff"/>
+  <circle cx="111" cy="60" r="0.8" fill="#fff"/>
+  <!-- FRECKLES across nose bridge -->
+  <circle cx="90" cy="68" r="0.8" fill="#a04018" opacity="0.7"/>
+  <circle cx="96" cy="66" r="0.8" fill="#a04018" opacity="0.7"/>
+  <circle cx="102" cy="68" r="0.8" fill="#a04018" opacity="0.7"/>
+  <circle cx="86" cy="72" r="0.7" fill="#a04018" opacity="0.6"/>
+  <circle cx="100" cy="72" r="0.7" fill="#a04018" opacity="0.6"/>
+  <circle cx="106" cy="70" r="0.6" fill="#a04018" opacity="0.5"/>
+  <!-- nose -->
+  <path d="M 96 70 Q 93 78 96 82 Q 99 78 96 70 Z" fill="#e8b890" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- bright smile -->
+  <path d="M 84 86 Q 96 92 108 86" fill="#c84858" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- rosy cheeks -->
+  <ellipse cx="74" cy="76" rx="6" ry="3.5" fill="#e87878" opacity="0.5"/>
+  <ellipse cx="118" cy="76" rx="6" ry="3.5" fill="#e87878" opacity="0.5"/>
+</svg>

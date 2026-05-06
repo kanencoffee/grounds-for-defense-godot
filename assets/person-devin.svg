@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- DEVIN — professor-poet vibe; dark skin, locs in low bun, full beard, big square glasses, purple cardigan -->
+  <defs>
+    <radialGradient id="d-page" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#f0dcb8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="d-skin" cx="0.4" cy="0.4">
+      <stop offset="0" stop-color="#7a4828"/>
+      <stop offset="1" stop-color="#4a2818" stop-opacity="0.85"/>
+    </radialGradient>
+    <radialGradient id="d-cardigan" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#7a3a98"/>
+      <stop offset="1" stop-color="#3a1a58" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#d-page)"/>
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#3d2817" opacity="0.4"/>
+  <!-- cardigan body (purple) -->
+  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="url(#d-cardigan)"/>
+  <path d="M 38 122 L 28 222 L 164 222 L 154 122 Q 154 100 138 92 L 96 116 L 54 92 Q 38 100 38 122 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- cardigan opens at center showing button-up shirt -->
+  <rect x="80" y="116" width="32" height="106" fill="#fff8e8"/>
+  <path d="M 80 116 L 80 222" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 112 116 L 112 222" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- button-up buttons -->
+  <circle cx="96" cy="138" r="2" fill="#3a1a58" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="160" r="2" fill="#3a1a58" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="182" r="2" fill="#3a1a58" stroke="#3d2817" stroke-width="1"/>
+  <circle cx="96" cy="204" r="2" fill="#3a1a58" stroke="#3d2817" stroke-width="1"/>
+  <!-- subtle chest definition -->
+  <path d="M 96 116 L 96 142" stroke="#3d2817" stroke-width="1.2" opacity="0.4"/>
+  <path d="M 76 134 Q 86 142 96 142 Q 106 142 116 134" fill="none" stroke="#3d2817" stroke-width="1.2" opacity="0.4"/>
+  <!-- shirt collar showing above cardigan -->
+  <path d="M 80 100 L 96 116 L 112 100" fill="#fff8e8" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 86 100 L 96 110 L 106 100" fill="none" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- arms -->
+  <ellipse cx="44" cy="148" rx="14" ry="34" fill="url(#d-cardigan)" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="148" cy="148" rx="14" ry="34" fill="url(#d-cardigan)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- hands (dark skin) -->
+  <circle cx="48" cy="178" r="11" fill="url(#d-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <circle cx="148" cy="184" r="11" fill="url(#d-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- mug -->
+  <path d="M 56 158 L 62 192 Q 62 198 68 198 L 96 198 Q 102 198 102 192 L 108 158 Z" fill="#fff8e8" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="82" cy="158" rx="26" ry="4" fill="#5c3a1c" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="82" cy="156" rx="20" ry="2" fill="#3d2817"/>
+  <path d="M 108 168 Q 122 172 122 180 Q 122 188 108 188" fill="none" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 70 152 Q 66 144 72 136" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 88 150 Q 84 140 90 132" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- neck -->
+  <rect x="84" y="76" width="24" height="22" fill="url(#d-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- head — dark skin -->
+  <circle cx="96" cy="56" r="32" fill="url(#d-skin)" stroke="#3d2817" stroke-width="2"/>
+  <ellipse cx="64" cy="56" rx="5" ry="8" fill="url(#d-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="128" cy="56" rx="5" ry="8" fill="url(#d-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- LOCS pulled back into low bun -->
+  <!-- top of head: locs visible flowing back -->
+  <path d="M 64 38 Q 60 14 96 12 Q 132 14 128 38 L 130 50 Q 124 24 110 22 Q 96 20 82 22 Q 68 24 62 50 L 64 38 Z" fill="#1a0808" stroke="#3d2817" stroke-width="2"/>
+  <!-- individual locs going back (lines) -->
+  <line x1="76" y1="20" x2="78" y2="40" stroke="#3d2817" stroke-width="1.2"/>
+  <line x1="82" y1="16" x2="84" y2="38" stroke="#3d2817" stroke-width="1.2"/>
+  <line x1="90" y1="14" x2="92" y2="36" stroke="#3d2817" stroke-width="1.2"/>
+  <line x1="100" y1="14" x2="100" y2="36" stroke="#3d2817" stroke-width="1.2"/>
+  <line x1="108" y1="16" x2="108" y2="38" stroke="#3d2817" stroke-width="1.2"/>
+  <line x1="114" y1="20" x2="114" y2="40" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- low bun (back of head, peeking from sides) -->
+  <ellipse cx="64" cy="78" rx="8" ry="10" fill="#1a0808" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="128" cy="78" rx="8" ry="10" fill="#1a0808" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- BIG SQUARE GLASSES (the pinnacle of nerd-cool) -->
+  <rect x="68" y="50" width="24" height="18" rx="2" fill="#fff" fill-opacity="0.1" stroke="#1a1108" stroke-width="3"/>
+  <rect x="100" y="50" width="24" height="18" rx="2" fill="#fff" fill-opacity="0.1" stroke="#1a1108" stroke-width="3"/>
+  <line x1="92" y1="59" x2="100" y2="59" stroke="#1a1108" stroke-width="3"/>
+  <!-- eyes -->
+  <circle cx="80" cy="60" r="2.5" fill="#3d2817"/>
+  <circle cx="112" cy="60" r="2.5" fill="#3d2817"/>
+  <circle cx="81" cy="59" r="0.8" fill="#fff"/>
+  <circle cx="113" cy="59" r="0.8" fill="#fff"/>
+  <!-- thoughtful eyebrows -->
+  <path d="M 68 46 Q 80 44 92 46" stroke="#1a1108" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 100 46 Q 112 44 124 46" stroke="#1a1108" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M 96 70 Q 92 80 96 84 Q 100 80 96 70 Z" fill="#5a3018" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- FULL BEARD with greys -->
+  <path d="M 70 78 Q 70 100 96 102 Q 122 100 122 78 Q 118 90 96 92 Q 74 90 70 78 Z" fill="#1a0808" stroke="#3d2817" stroke-width="2"/>
+  <!-- mustache -->
+  <path d="M 78 78 Q 88 82 96 80 Q 104 82 114 78 Q 110 86 96 86 Q 82 86 78 78 Z" fill="#1a0808" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- distinguished grey streak in beard -->
+  <path d="M 78 88 Q 86 90 86 96" stroke="#888" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- soft warm smile through beard -->
+  <path d="M 88 88 Q 96 92 104 88" stroke="#3d1818" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- subtle cheek warmth -->
+  <ellipse cx="74" cy="68" rx="5" ry="3" fill="#a83040" opacity="0.3"/>
+  <ellipse cx="118" cy="68" rx="5" ry="3" fill="#a83040" opacity="0.3"/>
+</svg>

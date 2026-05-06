@@ -180,6 +180,14 @@ func _show_start_gate():
 		_show_character_select()
 	)
 
+const CHARACTERS = [
+	{"id":"maya",   "name":"MAYA",   "tagline":"Bookish & warm",        "sprite":"person-maya.svg"},
+	{"id":"theo",   "name":"THEO",   "tagline":"Indie barista",         "sprite":"person-theo.svg"},
+	{"id":"jun",    "name":"JUN",    "tagline":"Quiet intellectual",    "sprite":"person-jun.svg"},
+	{"id":"riley",  "name":"RILEY",  "tagline":"Vintage academic",      "sprite":"person-riley.svg"},
+	{"id":"devin",  "name":"DEVIN",  "tagline":"Professor-poet",        "sprite":"person-devin.svg"},
+]
+
 func _show_character_select():
 	var layer = CanvasLayer.new()
 	layer.layer = 115
@@ -190,52 +198,59 @@ func _show_character_select():
 	layer.add_child(bg)
 	var header = Label.new()
 	header.text = "CHOOSE YOUR COFFEE GEEK"
-	header.add_theme_font_size_override("font_size", 38)
+	header.add_theme_font_size_override("font_size", 36)
 	header.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
 	header.add_theme_color_override("font_outline_color", Color(0, 0, 0))
 	header.add_theme_constant_override("outline_size", 5)
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	header.size = Vector2(W, 50)
-	header.position = Vector2(0, 60)
+	header.size = Vector2(W, 48)
+	header.position = Vector2(0, 30)
 	layer.add_child(header)
 	var sub = Label.new()
-	sub.text = "Same game either way."
-	sub.add_theme_font_size_override("font_size", 16)
+	sub.text = "Pick a character. Same game either way."
+	sub.add_theme_font_size_override("font_size", 14)
 	sub.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	sub.size = Vector2(W, 24)
-	sub.position = Vector2(0, 120)
+	sub.size = Vector2(W, 20)
+	sub.position = Vector2(0, 80)
 	layer.add_child(sub)
-	# Two character cards side-by-side
-	var card_w = 380.0
+	# 5 cards in a row
+	var card_w = 220.0
 	var card_h = 480.0
-	var gap = 60.0
-	var total_w = card_w * 2 + gap
+	var gap = 18.0
+	var total_w = card_w * 5 + gap * 4
 	var start_x = (float(W) - total_w) / 2.0
-	for i in 2:
-		var key = "male" if i == 0 else "female"
-		var label_text = "MALE" if i == 0 else "FEMALE"
+	for i in CHARACTERS.size():
+		var ch = CHARACTERS[i]
 		var x = start_x + i * (card_w + gap)
 		var card = Button.new()
 		card.size = Vector2(card_w, card_h)
-		card.position = Vector2(x, 170)
+		card.position = Vector2(x, 130)
 		layer.add_child(card)
 		var preview = Sprite2D.new()
-		preview.texture = textures.get("person-" + key + ".svg")
+		preview.texture = textures.get(ch.sprite)
 		preview.position = Vector2(card_w/2, 220)
-		preview.scale = Vector2(1.3, 1.3)
-		preview.mouse_filter = Control.MOUSE_FILTER_IGNORE if preview.has_method("set_mouse_filter") else 0
+		preview.scale = Vector2(1.0, 1.0)
 		card.add_child(preview)
 		var name_lbl = Label.new()
-		name_lbl.text = label_text
-		name_lbl.add_theme_font_size_override("font_size", 28)
+		name_lbl.text = ch.name
+		name_lbl.add_theme_font_size_override("font_size", 24)
 		name_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53))
 		name_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_lbl.size = Vector2(card_w, 40)
-		name_lbl.position = Vector2(0, card_h - 60)
+		name_lbl.size = Vector2(card_w, 32)
+		name_lbl.position = Vector2(0, card_h - 64)
 		card.add_child(name_lbl)
+		var tag_lbl = Label.new()
+		tag_lbl.text = ch.tagline
+		tag_lbl.add_theme_font_size_override("font_size", 13)
+		tag_lbl.add_theme_color_override("font_color", Color(0.85, 0.7, 0.5))
+		tag_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		tag_lbl.size = Vector2(card_w, 20)
+		tag_lbl.position = Vector2(0, card_h - 32)
+		card.add_child(tag_lbl)
+		var ch_id = ch.id
 		card.pressed.connect(func():
-			character_id = key
+			character_id = ch_id
 			Sfx.play("place")
 			layer.queue_free()
 			if is_instance_valid(person_sprite):
@@ -998,6 +1013,11 @@ func _load_textures():
 	keys.append("person-female.svg")
 	keys.append("person-female-sip.svg")
 	keys.append("person-female-yuck.svg")
+	keys.append("person-maya.svg")
+	keys.append("person-theo.svg")
+	keys.append("person-jun.svg")
+	keys.append("person-riley.svg")
+	keys.append("person-devin.svg")
 	keys.append("comic-burst.svg")
 	keys.append("cutscene-1.svg")
 	keys.append("cutscene-2.svg")
@@ -1051,11 +1071,16 @@ var person_busy := false  # true while showing sip or yuck
 var character_id := "male"  # "male" or "female"
 
 func _person_key(state: String) -> String:
-	# state in {"idle", "sip", "yuck"} → returns the sprite filename for the chosen character
-	var suffix = ""
-	if state == "sip": suffix = "-sip"
-	elif state == "yuck": suffix = "-yuck"
-	return "person-" + character_id + suffix + ".svg"
+	# state in {"idle", "sip", "yuck"} → returns the sprite filename for the chosen character.
+	# Falls back to the default male sip/yuck if the chosen character doesn't have those variants yet.
+	if state == "idle":
+		return "person-" + character_id + ".svg"
+	var suffix = "-sip" if state == "sip" else "-yuck"
+	var specific = "person-" + character_id + suffix + ".svg"
+	if textures.has(specific):
+		return specific
+	# fallback so sip/yuck still work for new characters
+	return "person-male" + suffix + ".svg"
 
 func _build_barista():
 	person_sprite = Sprite2D.new()

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 240" width="192" height="240">
+  <!-- JUN — modernist, sleek; black undercut, square wire glasses, navy turtleneck -->
+  <defs>
+    <radialGradient id="j-page" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#f0dcb8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="j-skin" cx="0.4" cy="0.4">
+      <stop offset="0" stop-color="#f0d8b0"/>
+      <stop offset="1" stop-color="#c89878" stop-opacity="0.8"/>
+    </radialGradient>
+    <radialGradient id="j-turtleneck" cx="0.5" cy="0.4">
+      <stop offset="0" stop-color="#3a4a6a"/>
+      <stop offset="1" stop-color="#1a2a4a" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="96" cy="128" rx="120" ry="120" fill="url(#j-page)"/>
+  <ellipse cx="96" cy="222" rx="62" ry="6" fill="#3d2817" opacity="0.3"/>
+  <!-- TURTLENECK (covers from chin to chest, defining feature) -->
+  <path d="M 38 116 L 28 222 L 164 222 L 154 116 Q 154 96 138 88 L 128 84 L 128 96 L 96 116 L 64 96 L 64 84 L 54 88 Q 38 96 38 116 Z" fill="url(#j-turtleneck)"/>
+  <path d="M 38 116 L 28 222 L 164 222 L 154 116 Q 154 96 138 88 L 128 84 L 128 96 L 96 116 L 64 96 L 64 84 L 54 88 Q 38 96 38 116 Z" fill="none" stroke="#3d2817" stroke-width="2"/>
+  <!-- turtleneck COLLAR (the round neck) -->
+  <ellipse cx="96" cy="84" rx="32" ry="6" fill="#1a2a4a" stroke="#3d2817" stroke-width="2"/>
+  <ellipse cx="96" cy="80" rx="28" ry="3" fill="#3a4a6a"/>
+  <!-- subtle chest definition -->
+  <path d="M 96 116 L 96 142" stroke="#0a1a2a" stroke-width="1.2" opacity="0.6"/>
+  <path d="M 76 132 Q 86 142 96 142 Q 106 142 116 132" fill="none" stroke="#0a1a2a" stroke-width="1.2" opacity="0.6"/>
+  <!-- arms -->
+  <ellipse cx="44" cy="148" rx="14" ry="34" fill="url(#j-turtleneck)" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="148" cy="148" rx="14" ry="34" fill="url(#j-turtleneck)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- hands -->
+  <circle cx="48" cy="178" r="11" fill="url(#j-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <circle cx="148" cy="184" r="11" fill="url(#j-skin)" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- mug -->
+  <path d="M 56 158 L 62 192 Q 62 198 68 198 L 96 198 Q 102 198 102 192 L 108 158 Z" fill="#fff8e8" stroke="#3d2817" stroke-width="1.8"/>
+  <ellipse cx="82" cy="158" rx="26" ry="4" fill="#5c3a1c" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="82" cy="156" rx="20" ry="2" fill="#3d2817"/>
+  <path d="M 108 168 Q 122 172 122 180 Q 122 188 108 188" fill="none" stroke="#3d2817" stroke-width="1.8"/>
+  <path d="M 70 152 Q 66 144 72 136" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 88 150 Q 84 140 90 132" stroke="#aaa" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- head — light skin -->
+  <circle cx="96" cy="56" r="32" fill="url(#j-skin)" stroke="#3d2817" stroke-width="2"/>
+  <ellipse cx="64" cy="56" rx="5" ry="8" fill="url(#j-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <ellipse cx="128" cy="56" rx="5" ry="8" fill="url(#j-skin)" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- SLEEK UNDERCUT — long top, very short sides -->
+  <path d="M 68 44 Q 64 12 96 10 Q 128 12 124 44 L 128 50 Q 122 32 110 26 Q 96 22 82 26 Q 70 32 64 50 L 68 44 Z" fill="#1a1108" stroke="#3d2817" stroke-width="2"/>
+  <!-- top wave swept -->
+  <path d="M 78 18 Q 96 6 116 14 Q 110 22 96 22 Q 82 22 78 18 Z" fill="#1a1108" stroke="#3d2817" stroke-width="1.8"/>
+  <!-- shaved sides indicated with ink shading -->
+  <line x1="64" y1="44" x2="68" y2="60" stroke="#3d2817" stroke-width="0.8" opacity="0.5"/>
+  <line x1="128" y1="44" x2="124" y2="60" stroke="#3d2817" stroke-width="0.8" opacity="0.5"/>
+  <!-- SQUARE WIRE-FRAME GLASSES (sleek minimalist) -->
+  <rect x="70" y="52" width="20" height="14" fill="#fff" fill-opacity="0.1" stroke="#3d2817" stroke-width="1.5"/>
+  <rect x="102" y="52" width="20" height="14" fill="#fff" fill-opacity="0.1" stroke="#3d2817" stroke-width="1.5"/>
+  <line x1="90" y1="59" x2="102" y2="59" stroke="#3d2817" stroke-width="1.5"/>
+  <!-- eyes -->
+  <ellipse cx="80" cy="59" rx="2" ry="2.5" fill="#3d2817"/>
+  <ellipse cx="112" cy="59" rx="2" ry="2.5" fill="#3d2817"/>
+  <circle cx="81" cy="58" r="0.6" fill="#fff"/>
+  <circle cx="113" cy="58" r="0.6" fill="#fff"/>
+  <!-- subtle confident eyebrows above glasses -->
+  <path d="M 70 46 Q 80 44 90 46" stroke="#1a1108" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 102 46 Q 112 44 122 46" stroke="#1a1108" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M 96 68 Q 92 78 96 82 Q 100 78 96 68 Z" fill="#c89878" stroke="#3d2817" stroke-width="1.2"/>
+  <!-- subtle smirk -->
+  <path d="M 86 84 Q 96 88 106 84" stroke="#3d2817" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- soft cheek -->
+  <ellipse cx="76" cy="74" rx="4" ry="2.5" fill="#d86060" opacity="0.3"/>
+  <ellipse cx="116" cy="74" rx="4" ry="2.5" fill="#d86060" opacity="0.3"/>
+</svg>
