@@ -1,8 +1,11 @@
 # Grounds for Defense — Godot 4
 
-Coffee-themed tower defense, ported from the [Phaser version](https://github.com/kanencoffee/grounds-for-defense) to Godot 4.
+> **© 2026 Kanen Coffee, LLC. All Rights Reserved.**
+> Proprietary software. See [LICENSE](./LICENSE) for terms.
 
-Defend the Barista from waves of bad coffee — stale beans, pre-ground bags, reheated milk, and the K-Pod Tyrant himself.
+Coffee-themed tower defense + quality-control teaching tool, ported from the [Phaser version](https://github.com/kanencoffee/grounds-for-defense) to Godot 4.
+
+You're a coffee geek in training. Bad coffee — stale lots, pre-ground bags, charred roasts, watered-down brews, reheated milk, and Pod-zilla — is coming for your cup. Match the right inspection tool to each defect type. Don't drink the swill.
 
 ## Quickstart
 

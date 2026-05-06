@@ -541,6 +541,13 @@ func _build_briefing_ui():
 	next_btn.custom_minimum_size = Vector2(160, 44)
 	next_btn.pressed.connect(_briefing_next)
 	btn_row.add_child(next_btn)
+	# Copyright footer
+	var copyright_lbl = Label.new()
+	copyright_lbl.text = "© 2026 Kanen Coffee, LLC. All Rights Reserved."
+	copyright_lbl.add_theme_font_size_override("font_size", 10)
+	copyright_lbl.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.4))
+	copyright_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v.add_child(copyright_lbl)
 
 func _render_briefing_page():
 	if not is_instance_valid(briefing_layer): return
@@ -913,6 +920,13 @@ func _build_hud():
 	info_label.add_theme_font_size_override("font_size", 14)
 	info_label.add_theme_color_override("font_color", Color(0.94,0.79,0.53))
 	canvas.add_child(info_label)
+	# Tiny persistent copyright in bottom-right corner
+	var copyright_corner = Label.new()
+	copyright_corner.text = "© 2026 Kanen Coffee, LLC."
+	copyright_corner.position = Vector2(W - 230, H - 24)
+	copyright_corner.add_theme_font_size_override("font_size", 10)
+	copyright_corner.add_theme_color_override("font_color", Color(0.94, 0.79, 0.53, 0.3))
+	canvas.add_child(copyright_corner)
 
 func _stat_label(label_text: String, value_text: String) -> Label:
 	var box = VBoxContainer.new()
