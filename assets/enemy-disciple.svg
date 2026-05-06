@@ -1,43 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <!-- STALE BEAN: After roasting, beans degrade — CO2 escapes, volatile aromatics oxidize within weeks. -->
+  <!-- SIR STALES-A-LOT — comic book style — bold outlines, flat colors, halftone shading, action pose -->
   <defs>
-    <radialGradient id="dustcloud" cx="0.5" cy="0.5">
-      <stop offset="0" stop-color="#8b7a5c" stop-opacity="0.4"/>
-      <stop offset="1" stop-color="#8b7a5c" stop-opacity="0"/>
-    </radialGradient>
+    <pattern id="halftone-dark" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.2" fill="#1a1108" opacity="0.55"/>
+    </pattern>
+    <pattern id="halftone-mid" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.0" fill="#3d2817" opacity="0.4"/>
+    </pattern>
   </defs>
-  <ellipse cx="64" cy="116" rx="42" ry="5" fill="#1a1108" opacity="0.4"/>
-  <ellipse cx="64" cy="64" rx="60" ry="50" fill="url(#dustcloud)"/>
-  <circle cx="14" cy="20" r="2" fill="#a89878" opacity="0.7"/>
-  <circle cx="110" cy="24" r="1.5" fill="#a89878" opacity="0.6"/>
-  <circle cx="100" cy="14" r="2" fill="#a89878" opacity="0.5"/>
-  <circle cx="22" cy="10" r="1.2" fill="#a89878" opacity="0.6"/>
-  <circle cx="116" cy="48" r="1.8" fill="#a89878" opacity="0.5"/>
-  <circle cx="8" cy="52" r="1.5" fill="#a89878" opacity="0.6"/>
-  <ellipse cx="64" cy="68" rx="44" ry="48" fill="#7a6248" stroke="#3d2817" stroke-width="4"/>
-  <ellipse cx="56" cy="56" rx="18" ry="12" fill="#9a8265" opacity="0.4"/>
-  <path d="M 64 28 Q 54 68 64 108" fill="none" stroke="#3d2817" stroke-width="6"/>
-  <path d="M 64 32 Q 58 68 64 104" fill="none" stroke="#1a1108" stroke-width="2" opacity="0.5"/>
-  <path d="M 18 38 L 38 50 M 18 38 L 26 56 M 18 38 L 30 38" stroke="#d0c0a0" stroke-width="1" opacity="0.7"/>
-  <path d="M 110 28 L 90 46 M 110 28 L 102 50 M 110 28 L 96 36" stroke="#d0c0a0" stroke-width="1" opacity="0.7"/>
-  <circle cx="88" cy="84" r="7" fill="#5a7a4a" opacity="0.8"/>
-  <circle cx="88" cy="84" r="4" fill="#3a5a2a"/>
-  <circle cx="91" cy="82" r="1.5" fill="#7a9a5a"/>
-  <circle cx="40" cy="92" r="5" fill="#5a7a4a" opacity="0.7"/>
-  <circle cx="40" cy="92" r="2.5" fill="#3a5a2a"/>
-  <ellipse cx="44" cy="72" rx="3.5" ry="5" fill="#1a1108"/>
-  <ellipse cx="84" cy="72" rx="3.5" ry="5" fill="#1a1108"/>
-  <ellipse cx="45" cy="70" rx="0.8" ry="1" fill="#fff" opacity="0.6"/>
-  <ellipse cx="85" cy="70" rx="0.8" ry="1" fill="#fff" opacity="0.6"/>
-  <path d="M 36 64 L 50 70" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M 78 70 L 92 64" stroke="#1a1108" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M 44 92 Q 64 86 84 92" fill="none" stroke="#1a1108" stroke-width="3" stroke-linecap="round"/>
-  <rect x="32" y="38" width="64" height="14" fill="#fff8f0" stroke="#1a1108" stroke-width="1.5" rx="1" opacity="0.95"/>
-  <text x="64" y="48" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#8b1c1c">ROASTED 2 YRS AGO</text>
-  <g transform="rotate(-15 12 100)">
-    <rect x="2" y="94" width="26" height="12" fill="#c8302c" stroke="#1a1108" stroke-width="1"/>
-    <text x="15" y="102" text-anchor="middle" font-family="sans-serif" font-size="6" font-weight="bold" fill="#fff">STALE</text>
+  <!-- floor shadow -->
+  <ellipse cx="64" cy="120" rx="40" ry="4" fill="#000" opacity="0.6"/>
+  <!-- motion lines (action pose feel) -->
+  <line x1="6" y1="44" x2="20" y2="42" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <line x1="4" y1="64" x2="18" y2="62" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <line x1="6" y1="84" x2="20" y2="82" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <!-- bean body — flat color base -->
+  <ellipse cx="64" cy="68" rx="44" ry="48" fill="#9a7a52" stroke="#000" stroke-width="5"/>
+  <!-- shadow side (flat darker color, no gradient) -->
+  <path d="M 64 22 Q 90 22 106 60 Q 110 80 100 100 Q 90 116 64 116 Q 64 22 64 22 Z" fill="#5c3d20"/>
+  <!-- halftone dot shading on the shadow side -->
+  <path d="M 64 22 Q 90 22 106 60 Q 110 80 100 100 Q 90 116 64 116 Q 64 22 64 22 Z" fill="url(#halftone-dark)"/>
+  <!-- highlight side (flat lighter) -->
+  <ellipse cx="44" cy="50" rx="14" ry="20" fill="#c8a878"/>
+  <!-- bold center crease -->
+  <path d="M 64 22 Q 56 68 64 114" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/>
+  <!-- mold spot 1 — comic-flat green -->
+  <circle cx="86" cy="86" r="9" fill="#5a8a3a" stroke="#000" stroke-width="3"/>
+  <circle cx="84" cy="84" r="3" fill="#1a4818"/>
+  <!-- mold spot 2 -->
+  <circle cx="38" cy="92" r="6" fill="#5a8a3a" stroke="#000" stroke-width="3"/>
+  <circle cx="38" cy="92" r="2" fill="#1a4818"/>
+  <!-- big angry-tired comic eyes -->
+  <ellipse cx="44" cy="68" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="4"/>
+  <ellipse cx="84" cy="68" rx="9" ry="11" fill="#fff" stroke="#000" stroke-width="4"/>
+  <circle cx="44" cy="72" r="5" fill="#000"/>
+  <circle cx="84" cy="72" r="5" fill="#000"/>
+  <circle cx="46" cy="70" r="2" fill="#fff"/>
+  <circle cx="86" cy="70" r="2" fill="#fff"/>
+  <!-- droopy bushy eyebrows -->
+  <path d="M 30 56 Q 38 58 50 62 L 52 64 L 50 60 Q 38 54 30 56 Z" fill="#1a1108"/>
+  <path d="M 78 64 Q 90 58 98 56 Q 90 54 78 60 L 76 64 Z" fill="#1a1108"/>
+  <!-- frown -->
+  <path d="M 42 96 Q 64 88 86 96 Q 64 94 42 96 Z" fill="#000"/>
+  <!-- speech burst with the WORD -->
+  <g transform="translate(82 8)">
+    <polygon points="0,12 6,4 14,8 22,2 28,12 34,4 38,12 32,18 38,22 30,26 34,32 24,28 18,34 12,28 4,32 6,22 -2,18" fill="#ffd24a" stroke="#000" stroke-width="3"/>
+    <text x="18" y="22" text-anchor="middle" font-family="Impact, sans-serif" font-size="10" font-weight="bold" fill="#000">STALE!</text>
   </g>
-  <text x="98" y="118" font-family="sans-serif" font-size="9" font-weight="bold" fill="#3d2817">-50%</text>
-  <text x="93" y="126" font-family="sans-serif" font-size="5" fill="#3d2817">AROMA</text>
+  <!-- date stamp tag (comic style) -->
+  <g transform="rotate(-12 28 110)">
+    <rect x="8" y="100" width="40" height="16" fill="#c8302c" stroke="#000" stroke-width="3"/>
+    <text x="28" y="111" text-anchor="middle" font-family="Impact, sans-serif" font-size="9" fill="#fff">2-YR-OLD</text>
+  </g>
 </svg>

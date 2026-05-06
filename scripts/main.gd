@@ -657,6 +657,7 @@ func _load_textures():
 	keys.append("person.svg")
 	keys.append("person-sip.svg")
 	keys.append("person-yuck.svg")
+	keys.append("comic-burst.svg")
 	for fname in keys:
 		var path = "res://assets/" + (fname if fname.ends_with(".svg") else fname + ".svg")
 		if not ResourceLoader.exists(path):
@@ -1312,39 +1313,47 @@ func _kill_enemy(e):
 	_spawn_kill_label(e.position, label_text, "+$%d" % def.bounty)
 
 func _spawn_kill_label(pos: Vector2, defect_text: String, bounty_text: String):
-	# Green "DEFECT NAME!" with bounty below — pops up + drifts up + fades
-	var box = VBoxContainer.new()
-	box.alignment = BoxContainer.ALIGNMENT_CENTER
-	box.position = pos + Vector2(-90, -90)
-	box.size = Vector2(180, 0)
-	add_child(box)
+	# Comic-book burst with text on top — pops up, scale-punches, drifts, fades
+	var root = Node2D.new()
+	root.position = pos + Vector2(0, -50)
+	add_child(root)
+	# Comic burst sprite (background)
+	var burst = Sprite2D.new()
+	burst.texture = textures.get("comic-burst.svg")
+	burst.scale = Vector2(0.85, 0.85)
+	root.add_child(burst)
+	# Slight rotation for energy
+	root.rotation = randf_range(-0.15, 0.15)
+	# Defect name on top
 	var name_lbl = Label.new()
-	name_lbl.text = "✓ " + defect_text
-	name_lbl.add_theme_font_size_override("font_size", 18)
-	name_lbl.add_theme_color_override("font_color", Color(0.45, 1.0, 0.55))
-	name_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.15, 0.05))
-	name_lbl.add_theme_constant_override("outline_size", 5)
+	name_lbl.text = defect_text
+	name_lbl.add_theme_font_size_override("font_size", 22)
+	name_lbl.add_theme_color_override("font_color", Color(0, 0, 0))
+	name_lbl.add_theme_color_override("font_outline_color", Color(1, 1, 1))
+	name_lbl.add_theme_constant_override("outline_size", 4)
 	name_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	box.add_child(name_lbl)
+	name_lbl.size = Vector2(170, 30)
+	name_lbl.position = Vector2(-85, -22)
+	root.add_child(name_lbl)
+	# Bounty under it
 	var bounty_lbl = Label.new()
 	bounty_lbl.text = bounty_text
-	bounty_lbl.add_theme_font_size_override("font_size", 14)
-	bounty_lbl.add_theme_color_override("font_color", Color(1.0, 0.92, 0.5))
-	bounty_lbl.add_theme_color_override("font_outline_color", Color(0.05, 0.05, 0.0))
+	bounty_lbl.add_theme_font_size_override("font_size", 16)
+	bounty_lbl.add_theme_color_override("font_color", Color(0, 0.5, 0))
+	bounty_lbl.add_theme_color_override("font_outline_color", Color(1, 1, 1))
 	bounty_lbl.add_theme_constant_override("outline_size", 3)
 	bounty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bounty_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	box.add_child(bounty_lbl)
-	# punch-up scale + drift up + fade
-	box.scale = Vector2(0.5, 0.5)
+	bounty_lbl.size = Vector2(170, 22)
+	bounty_lbl.position = Vector2(-85, 6)
+	root.add_child(bounty_lbl)
+	# Animation: scale punch-in, drift up, fade
+	root.scale = Vector2(0.2, 0.2)
 	var tw = create_tween()
-	tw.tween_property(box, "scale", Vector2(1.1, 1.1), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tw.tween_property(box, "scale", Vector2(1.0, 1.0), 0.10)
-	tw.parallel().tween_property(box, "position:y", box.position.y - 50, 1.0)
-	tw.tween_interval(0.4)
-	tw.tween_property(box, "modulate:a", 0.0, 0.4)
-	tw.tween_callback(func(): box.queue_free())
+	tw.tween_property(root, "scale", Vector2(1.0, 1.0), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(root, "position:y", root.position.y - 30, 1.0)
+	tw.tween_interval(0.45)
+	tw.tween_property(root, "modulate:a", 0.0, 0.4)
+	tw.tween_callback(func(): root.queue_free())
 
 func _enemy_update(e, delta):
 	var def = e.get_meta("def")

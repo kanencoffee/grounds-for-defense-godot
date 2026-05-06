@@ -1,24 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
-  <!-- THE EYE (sight): visual inspection — spots mold, foreign matter, color defects -->
+  <!-- SHERLOCK BEANS — comic book style: bold outlines, flat colors, halftone shadow -->
   <defs>
-    <radialGradient id="iris" cx="0.5" cy="0.5">
-      <stop offset="0" stop-color="#5b8a4a"/>
-      <stop offset="0.7" stop-color="#3d5c2a"/>
-      <stop offset="1" stop-color="#1a2810"/>
-    </radialGradient>
+    <pattern id="ht-eye" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.9" fill="#000" opacity="0.45"/>
+    </pattern>
   </defs>
-  <!-- magnifying glass handle -->
-  <rect x="62" y="62" width="10" height="30" rx="3" fill="#5c3a1c" stroke="#1a1108" stroke-width="2.5" transform="rotate(45 67 77)"/>
-  <!-- glass ring -->
-  <circle cx="42" cy="42" r="32" fill="none" stroke="#5c3a1c" stroke-width="6"/>
-  <circle cx="42" cy="42" r="28" fill="#fff" stroke="#1a1108" stroke-width="2" opacity="0.4"/>
-  <!-- eye -->
-  <ellipse cx="42" cy="42" rx="22" ry="14" fill="#fff" stroke="#1a1108" stroke-width="2"/>
-  <circle cx="42" cy="42" r="11" fill="url(#iris)" stroke="#1a1108" stroke-width="1.5"/>
-  <circle cx="42" cy="42" r="5" fill="#0a0604"/>
-  <circle cx="44" cy="40" r="2" fill="#fff" opacity="0.9"/>
-  <!-- eyelashes -->
-  <path d="M 22 30 L 18 26 M 28 24 L 28 18 M 36 22 L 36 16 M 48 22 L 48 16 M 56 24 L 56 18 M 62 30 L 66 26" stroke="#1a1108" stroke-width="2" stroke-linecap="round"/>
-  <!-- glass shine -->
-  <ellipse cx="32" cy="32" rx="6" ry="3" fill="#fff" opacity="0.7"/>
+  <!-- magnifying handle (bottom right, dramatic angle) -->
+  <rect x="60" y="60" width="12" height="32" rx="3" fill="#8b5a2b" stroke="#000" stroke-width="4" transform="rotate(45 66 76)"/>
+  <rect x="60" y="60" width="12" height="32" rx="3" fill="url(#ht-eye)" transform="rotate(45 66 76)"/>
+  <!-- glass ring (chunky outline) -->
+  <circle cx="42" cy="42" r="34" fill="#5c3a1c" stroke="#000" stroke-width="6"/>
+  <circle cx="42" cy="42" r="28" fill="#fff8e8" stroke="#000" stroke-width="3"/>
+  <!-- eyeball -->
+  <ellipse cx="42" cy="42" rx="22" ry="18" fill="#fff" stroke="#000" stroke-width="4"/>
+  <!-- iris (flat green) -->
+  <circle cx="42" cy="42" r="13" fill="#5b8a4a" stroke="#000" stroke-width="3"/>
+  <!-- pupil flat black -->
+  <circle cx="42" cy="42" r="6" fill="#000"/>
+  <!-- comic highlight (white spot + small one) -->
+  <circle cx="46" cy="38" r="3" fill="#fff"/>
+  <circle cx="38" cy="44" r="1.5" fill="#fff"/>
+  <!-- big bushy eyebrow -->
+  <path d="M 14 18 Q 28 14 50 22 L 52 26 L 48 22 Q 30 18 16 24 Z" fill="#000"/>
+  <!-- short eyelashes -->
+  <path d="M 18 28 L 14 22" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 28 22 L 26 14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 56 22 L 58 14" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 64 28 L 68 22" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+  <!-- glass shine highlight (big swoosh) -->
+  <path d="M 26 18 Q 16 28 22 38 Q 18 26 30 22" fill="#fff" opacity="0.85"/>
+  <!-- small shadow on the bottom of glass (halftone) -->
+  <path d="M 16 50 Q 42 78 68 50 Q 42 70 16 50 Z" fill="url(#ht-eye)"/>
+  <!-- tiny magnifier shadow on the floor -->
+  <ellipse cx="86" cy="92" rx="6" ry="2" fill="#000" opacity="0.5"/>
 </svg>

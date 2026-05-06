@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="200" height="160">
+  <!-- Comic-book impact starburst (background sprite) -->
+  <!-- big jagged yellow burst -->
+  <polygon points="100,10 116,32 142,18 134,46 168,40 152,64 184,80 152,96 168,120 134,114 142,142 116,128 100,150 84,128 58,142 66,114 32,120 48,96 16,80 48,64 32,40 66,40 58,18 84,32"
+           fill="#ffd24a" stroke="#000" stroke-width="6" stroke-linejoin="miter"/>
+  <!-- inner red burst -->
+  <polygon points="100,30 110,46 128,40 124,58 144,62 130,76 152,84 130,92 144,110 124,108 128,128 110,118 100,134 90,118 72,128 76,108 56,110 70,92 48,84 70,76 56,62 76,62 72,40 90,46"
+           fill="#ee2233" stroke="#000" stroke-width="4" stroke-linejoin="miter"/>
+</svg>
